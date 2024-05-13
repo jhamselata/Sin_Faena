@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\User;
 
 class UsuarioController extends Controller
 {
@@ -12,7 +13,7 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -58,8 +59,7 @@ class UsuarioController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
+    public function destroy() {
+
     }
 }

@@ -22,8 +22,8 @@
                                         <nav class="sb-sidenav-menu-nested nav">
                                             <a class="nav-link" href="#">Usuarios</a>
                                             <a class="nav-link" href="{{ route('admin.empleados.index') }}">Empleados</a>
-                                            <a class="nav-link" href="{{ route('admin.clientes.cliente') }}">Clientes</a>
-                                            <a class="nav-link" href="{{ route('admin.servicios.servicio') }}">Servicios</a>
+                                            <a class="nav-link" href="{{ route('admin.clientes.index') }}">Clientes</a>
+                                            <a class="nav-link" href="{{ route('admin.servicios.index') }}">Servicios</a>
                                             <a class="nav-link" href="{{ route('admin.solicitudes.solicitud') }}">Solicitudes</a>
                                             <a class="nav-link" href="{{ route('admin.pedidos.pedido') }}">Pedidos</a>
                                             <a class="nav-link" href="{{ route('admin.agendas.agenda') }}">Agenda</a>

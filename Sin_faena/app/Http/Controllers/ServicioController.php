@@ -3,63 +3,57 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreServicioRequest;
+use App\Http\Requests\UpdateServicioRequest;
+use App\Models\Servicio;
+use App\Models\Tipo_servicio;
+
+
 use Illuminate\Http\Request;
 
 class ServicioController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        return view('admin.servicios.servicio');
+        $servicios = Servicio::all();
+        $tipo_servicios = Tipo_servicio::all();
+
+        return view('admin.servicios.index', compact('servicios', 'tipo_servicios'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        $servicios = Servicio::all();
+        $tipo_servicios = Tipo_servicio::all();
+
+        return view('admin.servicios.create', compact('servicios', 'tipo_servicios'));
+    }
+    
+    public function store(StoreServicioRequest $request) {
+        Servicio::create($request->validated());
+        return redirect()->route('admin.servicios.store')->with('success', 'Servicio actualizado exitosamente');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+    public function show(Servicio $servicio) {
+        $tipo_servicios = Tipo_servicio::all();
+
+        return view('admin.servicios.show', compact('servicio', 'tipo_servicios'));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+    public function edit(Servicio $servicios) {
+        $tipo_servicios = Tipo_servicio::all();
+
+        return view('admin.servicios.edit', compact('servicios', 'tipo_servicios'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
+    public function update(UpdateServicioRequest $request, Servicio $servicio) {
+        $servicio->update($request->validated());
+        return redirect()->route('admin.servicios.index')->with('success', 'Servicio actualizado exitosamente');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
+    public function destroy(Servicio $servicio) {
+        $servicio->delete();
+        return back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

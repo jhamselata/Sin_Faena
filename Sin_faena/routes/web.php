@@ -35,6 +35,8 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/clientes', [ClientController::class, 'index'])->name("admin.clientes.cliente");
 
+Route::get('/users', [UsuarioController::class, 'index'])->name("admin.users.servicio");
+
 Route::get('/agendas', [AgendaController::class, 'index'])->name("admin.agendas.agenda");
 
 Route::get('/empleados', [EmpleadoController::class, 'index'])->name("admin.empleados.empleado");
@@ -60,6 +62,26 @@ Route::get('empleados/{empleado}', [EmpleadoController::class,'show'])->name('ad
 Route::get('empleados/{empleado}/edit', [EmpleadoController::class, 'edit'])->name('admin.empleados.edit');
 Route::put('empleados/{empleado}', [EmpleadoController::class,'update'])->name('admin.empleados.update');
 Route::delete('empleados/{empleado}', [EmpleadoController::class,'destroy'])->name('admin.empleados.destroy');
+
+Route::get('clientes', [ClientController::class, 'index'])->name('admin.clientes.index');
+Route::get('clientes/create', [ClientController::class, 'create'])->name('admin.clientes.create');
+Route::post('clientes', [ClientController::class,'store'])->name('admin.clientes.store');
+Route::get('clientes/{cliente}', [ClientController::class,'show'])->name('admin.clientes.show');
+Route::get('clientes/{clientes}/edit', [ClientController::class, 'edit'])->name('admin.clientes.edit');
+Route::put('clientes/{cliente}', [ClientController::class,'update'])->name('admin.clientes.update');
+Route::delete('clientes/{cliente}', [ClientController::class,'destroy'])->name('admin.clientes.destroy');
+
+Route::get('servicios', [ServicioController::class, 'index'])->name('admin.servicios.index');
+Route::get('servicios/create', [ServicioController::class, 'create'])->name('admin.servicios.create');
+Route::post('servicios', [ServicioController::class,'store'])->name('admin.servicios.store');
+Route::get('servicios/{servicio}', [ServicioController::class,'show'])->name('admin.servicios.show');
+Route::get('servicios/{servicios}/edit', [ServicioController::class, 'edit'])->name('admin.servicios.edit');
+Route::put('servicios/{servicio}', [ServicioController::class,'update'])->name('admin.servicios.update');
+Route::delete('servicios/{servicio}', [ServicioController::class,'destroy'])->name('admin.servicios.destroy');
+
+Route::get('/users', [UsuarioController::class, 'index'])->name("admin.users.servicio");
+Route::delete('users/{user}', [ServicioController::class,'destroy'])->name('admin.users.destroy');
+
 
 
 //Route::get('/index', [UsuarioController::class, 'index'])->name("admin.clientes.cliente");
