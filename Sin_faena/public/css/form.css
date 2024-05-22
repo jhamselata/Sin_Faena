@@ -69,9 +69,21 @@ form.sign-in-form {
 .input-field {
   max-width: 380px;
   width: 100%;
-  background-color: #f0f0f0;
+  background-color: #E8F0FE;
   margin: 5px 0;
   height: 55px;
+  border-radius: 55px;
+  display: grid;
+  grid-template-columns: 15% 85%;
+  padding: 0 0.4rem;
+  position: relative;
+}
+
+.form-control {
+  max-width: 380px;
+  width: 100%;
+  background: transparent;
+  margin: 5px 0;
   border-radius: 55px;
   display: grid;
   grid-template-columns: 15% 85%;
@@ -88,7 +100,7 @@ form.sign-in-form {
 }
 
 .input-field input {
-  background: none;
+  background: transparent;
   outline: none;
   border: none;
   line-height: 1;
@@ -102,6 +114,14 @@ form.sign-in-form {
   font-weight: 400;
 }
 
+.form-group a {
+  color: #fc8b2e;
+}
+
+.form-group a:hover {
+  color: #c96c1f;
+}
+
 .btn {
   width: 150px;
   background-color: #FF751F;
@@ -112,22 +132,14 @@ form.sign-in-form {
   color: #fff;
   text-transform: uppercase;
   font-weight: 600;
-  margin: 10px 0;
+  margin: 20px 0;
+  margin-left: 20px;
   cursor: pointer;
   transition: 0.5s;
 }
 
 .btn:hover {
-  background-color: #FF751F;
-}
-
-.link {
-  text-decoration: none;
-  color: #fff;
-}
-
-.link:hover {
-  color: #FF751F;
+  background-color: #ff751fc1;
 }
 
 .panels-container {
@@ -182,6 +194,22 @@ form.sign-in-form {
   font-weight: 600;
   line-height: 1;
   font-size: 1.5rem;
+}
+
+.btn.transparent {
+  margin: 0;
+  background: none;
+  border: 2px solid #fff;
+  width: 130px;
+  height: 41px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  margin: 20px;
+}
+
+.btn.transparent:hover{
+  background: #fc8b2e;
+  box-shadow: 0 0 10px #ca9547, 0 0 40px #ca9547, 0 0 80px #ca9547;
 }
 
 .right-panel .content {
