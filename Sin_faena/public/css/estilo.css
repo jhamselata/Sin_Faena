@@ -61,7 +61,7 @@ body {
     font-size: 1.1rem;
     font-weight: 500;
     padding: 5px 0;
-    margin: 0px 30px;
+    margin: 0px 20px;
     transition: all .50s ease;
     text-decoration: none;
 }
@@ -76,12 +76,22 @@ body {
 }
 
 .main a {
-    margin-right: 25px;
-    margin-left: 10px;
+    margin-right: 10px;
+    margin-left: 5px;
     color: var(--text-color);
     font-size: 1.1rem;
     font-weight: 500;
     transition: all .50s ease;
+}
+
+.otro {
+    color: var(--hr-color);
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 5px 0;
+    margin: 0px 20px;
+    transition: all .50s ease;
+    text-decoration: none;
 }
 
 .main i {
@@ -127,7 +137,7 @@ body {
     font-size: var(--h1-font);
     font-weight: 800;
     line-height: 1.2;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     color: var(--bg-color);
 }
 
@@ -151,7 +161,7 @@ body {
 .btn-neon{
     position: relative;
     display: inline-block;
-    padding: 15px 30px;
+    padding: 8px 15px;
     background: var(--hr-color);
     color: var(--bg-color);
     text-decoration: none;
@@ -163,10 +173,28 @@ body {
 
 .btn-neon:hover{
     background: #fc8b2e;
+    color: var(--bg-color);
+ }
+
+ .btn-neon1{
+    position: relative;
+    display: inline-block;
+    padding: 15px 30px;
+    background: var(--hr-color);
+    color: var(--bg-color);
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    overflow: hidden;
+    transition: 0.2s;
+}
+
+.btn-neon1:hover{
+    background: #fc8b2e;
     box-shadow: 0 0 10px #ca9547, 0 0 40px #ca9547, 0 0 80px #ca9547;
  }
 
-.btn-neon a{
+.btn-neon1 a{
     position: absolute;
     display: block;
 }

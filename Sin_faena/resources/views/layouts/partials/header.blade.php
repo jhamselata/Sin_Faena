@@ -1,6 +1,6 @@
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
                     <!-- Logo -->
-                    <a class="navbar-brand ps-3" href="index.html">Sin Faena</a>
+                    <a class="navbar-brand ps-3" href="{{ route('inicio') }}">Sin Faena</a>
         
                     <!-- Desplegable del menu -->
                     <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
@@ -18,8 +18,8 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#!">Cerrar sesión</a></li>
+                                
+                                <li><a class="dropdown-item" href="#!" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">Cerrar sesión</a></li>
                             </ul>
                         </li>
                     </ul>

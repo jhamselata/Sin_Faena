@@ -53,5 +53,9 @@ class User extends Authenticatable
     public function empleado(){
         return $this->hasmany(Empleado::class)->withDefault();
     }   
+
+    public function pedido(){
+        return $this->hasmany(Pedido::class)->withDefault();
+    }
     
 }

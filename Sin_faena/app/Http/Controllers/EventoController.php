@@ -3,19 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Evento;
+use App\Models\TipoEvento;
 use Illuminate\Http\Request;
-use App\Models\User;
 
-class UsuarioController extends Controller
+class EventoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $users = User::all();
+        $tipo_eventos = TipoEvento::all();
+        
+        return view('admin.eventos.index', compact('tipo_eventos'));
+    }
 
-        return view('admin.usuarios.index', compact('users'));
+    public function getAllEvents()
+    {
+        $events = Evento::all();
+
+        return response()->json($events);
     }
 
     /**
@@ -61,7 +69,8 @@ class UsuarioController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy() {
-
+    public function destroy(string $id)
+    {
+        //
     }
 }

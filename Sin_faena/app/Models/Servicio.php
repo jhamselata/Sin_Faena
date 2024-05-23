@@ -27,4 +27,8 @@ class Servicio extends Model
         return $this->belongsTo(Servicio::class)->withDefault();
     }
 
+    public function Detalle_pedido(){
+        return $this->hasmany(Detalle_pedido::class)->withDefault();
+    }
+
 }
