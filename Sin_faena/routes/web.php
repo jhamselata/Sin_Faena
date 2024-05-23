@@ -3,6 +3,7 @@
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\EmpleadoController;
+use App\Http\Controllers\EventoController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\SolicitudController;
@@ -18,7 +19,7 @@ Route::get('/', function () {
 
 Route::get('/inicio', function () {
     return view('layouts.index');
-});
+})->name('inicio');
 
 
 Route::get('/dashboard', function () {
@@ -78,6 +79,24 @@ Route::get('servicios/{servicio}', [ServicioController::class,'show'])->name('ad
 Route::get('servicios/{servicios}/edit', [ServicioController::class, 'edit'])->name('admin.servicios.edit');
 Route::put('servicios/{servicio}', [ServicioController::class,'update'])->name('admin.servicios.update');
 Route::delete('servicios/{servicio}', [ServicioController::class,'destroy'])->name('admin.servicios.destroy');
+
+Route::get('pedidos', [PedidoController::class, 'index'])->name('admin.pedidos.index');
+Route::get('pedidos/create', [PedidoController::class, 'create'])->name('admin.pedidos.create');
+Route::post('pedidos', [PedidoController::class,'store'])->name('admin.pedidos.store');
+Route::get('pedidos/{pedido}', [PedidoController::class,'show'])->name('admin.pedidos.show');
+Route::get('pedidos/{id}/edit', [PedidoController::class, 'edit'])->name('admin.pedidos.edit');
+Route::put('pedidos/{id}', [PedidoController::class,'update'])->name('admin.pedidos.update');
+Route::delete('pedidos/{pedido}', [PedidoController::class,'destroy'])->name('admin.pedidos.destroy');
+
+Route::get('eventos', [EventoController::class, 'index'])->name('admin.eventos.index');
+Route::get('/eventos/all', [EventoController::class, 'getAllEvents'])->name('admin.eventos.all');
+Route::get('eventos/create', [EventoController::class, 'create'])->name('admin.eventos.create');
+Route::post('eventos', [EventoController::class,'store'])->name('admin.eventos.store');
+Route::get('eventos/{evento}', [EventoController::class,'show'])->name('admin.eventos.show');
+Route::get('eventos/{evento}/edit', [EventoController::class, 'edit'])->name('admin.eventos.edit');
+Route::put('eventos/{evento}', [EventoController::class,'update'])->name('admin.eventos.update');
+Route::delete('eventos/{evento}', [EventoController::class,'destroy'])->name('admin.eventos.destroy');
+
 
 Route::get('/users', [UsuarioController::class, 'index'])->name("admin.users.servicio");
 Route::delete('users/{user}', [ServicioController::class,'destroy'])->name('admin.users.destroy');

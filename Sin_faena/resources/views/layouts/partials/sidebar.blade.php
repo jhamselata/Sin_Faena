@@ -4,7 +4,7 @@
                             <div class="sb-sidenav-menu">
                                 <div class="nav">
         
-                                    <a class="nav-link" href="index.html">
+                                    <a class="nav-link" href="{{ route('dashboard') }}">
                                         <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
                                         Inicio
                                     </a>
@@ -25,7 +25,8 @@
                                             <a class="nav-link" href="{{ route('admin.clientes.index') }}">Clientes</a>
                                             <a class="nav-link" href="{{ route('admin.servicios.index') }}">Servicios</a>
                                             <a class="nav-link" href="{{ route('admin.solicitudes.solicitud') }}">Solicitudes</a>
-                                            <a class="nav-link" href="{{ route('admin.pedidos.pedido') }}">Pedidos</a>
+                                            <a class="nav-link" href="{{ route('admin.pedidos.index') }}">Pedidos</a>
+                                            <a class="nav-link" href="{{ route('admin.eventos.index') }}">Eventos</a>
                                             <a class="nav-link" href="{{ route('admin.agendas.agenda') }}">Agenda</a>
                                             <a class="nav-link" href="{{ route('admin.tareas.index') }}">Tareas</a>
                                         </nav>

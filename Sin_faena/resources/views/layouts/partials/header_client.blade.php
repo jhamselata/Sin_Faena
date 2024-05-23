@@ -13,7 +13,7 @@
         </ul>
 
         <div class="main">
-            <a href=""><i class='bx bxs-user-circle'></i></a>
+            <a href="{{ route('login') }}"><i class='bx bxs-user-circle'></i></a>
             <a href=""><i class=""></i></a>
             <div class="bx bx-menu" id="menu-icon"></div>  
         </div>   
