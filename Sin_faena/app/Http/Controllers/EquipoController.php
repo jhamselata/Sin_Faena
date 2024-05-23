@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEquipoRequest;
+use App\Http\Requests\UpdateEquipoRequest;
+use App\Models\Equipo;
+use App\Models\TipoEquipo;
+
 use Illuminate\Http\Request;
-use app\Models\Equipo;
 
 class EquipoController extends Controller
 {
@@ -14,8 +18,9 @@ class EquipoController extends Controller
     public function index()
     {
         $equipos = Equipo::all();
+        $tipoequipos = TipoEquipo::all();
 
-        return view('admin.equipo.index', compact('equipos'));
+        return view('admin.equipo.index', compact('equipos', 'tipoequipos'));
     }
 
     /**
@@ -23,9 +28,9 @@ class EquipoController extends Controller
      */
     public function create()
     {
-        $equipos = Equipo::all();
+        $tipoequipos = TipoEquipo::all();
 
-        return view('admin.equipo.create', compact('equipos'));
+        return view('admin.equipo.create', compact('tipoequipos'));
     }
 
     /**
@@ -43,7 +48,9 @@ class EquipoController extends Controller
      */
     public function show(Equipo $equipo)
     {
-        return view('admin.equipo.show', compact('equipos'));
+        $tipoequipos = TipoEquipo::all();
+
+        return view('admin.equipo.show', compact('equipos, tipoequipos'));
     }
 
     /**
@@ -51,7 +58,9 @@ class EquipoController extends Controller
      */
     public function edit(Equipo $equipo)
     {
-        return view('admin.equipo.edit', compact('equipos'));
+        $tipoequipos = TipoEquipo::all();
+        
+        return view('admin.equipo.edit', compact('equipos', 'tipoequipos'));
     }
 
     /**
@@ -60,7 +69,6 @@ class EquipoController extends Controller
     public function update(StoreEquipoRequest $request, Equipo $equipo)
     {
         $equipo->update($request->validated());
-
         return redirect()->route('admin.equipo.index')->with('success', 'Equipo actualizado exitosamente.');
     }
 

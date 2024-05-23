@@ -84,10 +84,10 @@ Route::delete('tipoequipos/{tipoequipo}', [TipoEquipoController::class,'destroy'
 Route::get('equipos', [EquipoController::class, 'index'])->name('admin.equipos.index');
 Route::get('equipos/create', [EquipoController::class, 'create'])->name('admin.equipos.create');
 Route::post('equipos', [EquipoController::class,'store'])->name('admin.equipos.store');
-Route::get('equipos/{tipoequipo}', [EquipoController::class,'show'])->name('admin.equipos.show');
-Route::get('equipos/{tipoequipo}/edit', [EquipoController::class, 'edit'])->name('admin.equipos.edit');
-Route::put('equipos/{tipoequipo}', [EquipoController::class,'update'])->name('admin.equipos.update');
-Route::delete('equipos/{tipoequipo}', [EquipoController::class,'destroy'])->name('admin.equipos.destroy');
+Route::get('equipos/{equipo}', [EquipoController::class,'show'])->name('admin.equipos.show');
+Route::get('equipos/{equipo}/edit', [EquipoController::class, 'edit'])->name('admin.equipos.edit');
+Route::put('equipos/{equipo}', [EquipoController::class,'update'])->name('admin.equipos.update');
+Route::delete('equipos/{equipo}', [EquipoController::class,'destroy'])->name('admin.equipos.destroy');
 
 //Rutas de los Usuarios
 Route::get('/users', [UsuarioController::class, 'index'])->name("admin.users.servicio");

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTipoEquipoRequest;
-use Illuminate\Http\Request;
 use App\Models\TipoEquipo;
 
 class TipoEquipoController extends Controller
@@ -23,9 +22,7 @@ class TipoEquipoController extends Controller
      */
     public function create()
     {
-        $tipoequipos = TipoEquipo::all();
-
-        return view('admin.tipoequipos.create', compact('tipoequipos'));
+        return view('admin.tipoequipos.create');
     }
 
     /**

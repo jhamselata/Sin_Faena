@@ -19,4 +19,8 @@ class TipoEquipo extends Model
         'nombre_tipoEquipo',
         'descripcion_tipoEquipo'
     ];
+
+    public function equipo(){
+        return $this->hasmany(Equipo::class)->withDefault();
+    }
 }
