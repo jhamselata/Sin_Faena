@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ asset('./css/form.css') }}" />
+    <title>Registro | Sin Faena</title>
+    <link rel="shortcut icon" href="img/logo-icon.png" type="image/x-icon">
+
+  </head>
+  <body>
+
+    <div class="container">
+
+      <div class="forms-container">
+
+        <div class="signin-signup">
+
+          <form  class="sign-in-form" action="{{ route('login') }}">
+
+                <h2 class="title">Inicio Sesión</h2>
+
+                  <div class="input-field">
+                    <input placeholder="Correo electrónico" id="email" class="form-control" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+                  </div>
+
+                  <div class="input-field">
+                    <input placeholder="Contraseña" id="password" class="form-control"
+                    type="password"
+                    name="password"
+                    required autocomplete="current-password" />
+                  </div>
+
+                  <!-- Remember Me -->
+                  <div class="form-group">
+                    <label for="remember_me" class="checkbox-label">
+                        <input id="remember_me" type="checkbox" class="checkbox-input" name="remember">
+                        <span class="remember-text">{{ __('Recuerdame') }}</span>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    @if (Route::has('password.request'))
+                        <a class="forgot-password-link" href="{{ route('password.request') }}">
+                            {{ __('¿Olvidaste tu contraseña?') }}
+                        </a>
+                    @endif
+
+                <input type="submit" value="Iniciar" class="btn solid" />
+
+          </form>
+
+
+
+          <form action="#" class="sign-up-form">
+
+            <h2 class="title">Registro</h2>
+
+              <div class="input-field">
+                <i class="fas fa-info"></i>
+                <input type="text" name="nombre" placeholder="Nombre" />
+              </div>
+
+              <div class="input-field">
+                <i class="fas fa-info"></i>
+                <input type="text" name="apellido" placeholder="Apellido" />
+              </div>
+
+              <div class="input-field">
+                <i class="fas fa-info"></i>
+                <input type="text" name="dni" placeholder="DNI" />
+              </div>
+
+              <div class="input-field">
+                <i class="fas fa-user"></i>
+                <input type="text" name="usuario" placeholder="Usuario" />
+              </div>
+
+              <div class="input-field">
+                <i class="fas fa-phone"></i>
+                <input type="text" name="telefono" placeholder="Teléfono" />
+              </div>
+
+              <div class="input-field">
+                <i class="fas fa-envelope"></i>
+                <input type="email" name="correo" placeholder="Correo electrónico" />
+              </div> 
+
+              <div class="input-field">
+                <i class="fas fa-lock"></i>
+                <input type="password" name="contrasena" placeholder="Contraseña" />
+              </div>
+
+            <input type="submit" class="btn" value="Registrar" />
+
+          </form>
+
+        </div>
+
+      </div>
+
+      <div class="panels-container">
+
+        <div class="panel left-panel">
+
+          <div class="content">
+            <h3>¿Aún no tienes una cuenta?</h3>
+              <button class="btn transparent" id="sign-up-btn"> Registrate </button>
+          </div>
+
+        </div>
+
+        <div class="panel right-panel">
+          
+          <div class="content">
+            <h3>¿Ya tienes una cuenta?</h3>
+              <button class="btn transparent" id="sign-in-btn"> Inicia sesión </button>
+          </div>
+
+        </div>
+
+      </div>
+      
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -21,6 +21,9 @@ Route::get('/inicio', function () {
     return view('layouts.index');
 })->name('inicio');
 
+Route::get('/login', function () {
+    return view('auth.login');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -100,6 +103,8 @@ Route::delete('eventos/{evento}', [EventoController::class,'destroy'])->name('ad
 
 Route::get('/users', [UsuarioController::class, 'index'])->name("admin.users.servicio");
 Route::delete('users/{user}', [ServicioController::class,'destroy'])->name('admin.users.destroy');
+Route::get('/usuarios', [UsuarioController::class, 'index'])->name("admin.usuarios.index");
+Route::delete('users/{user}', [UsuarioController::class,'destroy'])->name('admin.users.destroy');
 
 
 

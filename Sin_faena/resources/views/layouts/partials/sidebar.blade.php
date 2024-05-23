@@ -20,7 +20,7 @@
                                     <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
         
                                         <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="#">Usuarios</a>
+                                            <a class="nav-link" href="{{ route('admin.usuarios.index') }}">Usuarios</a>
                                             <a class="nav-link" href="{{ route('admin.empleados.index') }}">Empleados</a>
                                             <a class="nav-link" href="{{ route('admin.clientes.index') }}">Clientes</a>
                                             <a class="nav-link" href="{{ route('admin.servicios.index') }}">Servicios</a>

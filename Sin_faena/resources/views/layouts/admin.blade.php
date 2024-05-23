@@ -54,6 +54,11 @@
 
     @yield('scripts')
     @stack('scripts')
+
+    <form id="logoutform" action="{{ route('logout') }}" method="POST">
+            {{ csrf_field() }}
+     </form>
+
 </body>
 
 </html>

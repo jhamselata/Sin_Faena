@@ -10,11 +10,37 @@
             <li><a href="nosotros">Sobre nosotros</a></li>
             <li><a href="productos">Servicios</a></li>
             <li><a href="contacto">Contacto</a></li>
+            @if (Route::has('login'))
+                            <nav class="-mx-3 flex flex-1 justify-end">
+                                @auth
+                                    <a
+                                        href="{{ route('login') }}"
+                                        class=""
+                                    >
+                                        Dashboard
+                                    </a>
+                                @else
+                                    <a
+                                        href="{{ route('login') }}"
+                                        class="otro"
+                                    >
+                                        Iniciar sesión
+                                    </a>
+
+                                    @if (Route::has('register'))
+                                        <a
+                                            href="{{ route('register') }}"
+                                            class="otro"
+                                        >
+                                            Registrar
+                                        </a>
+                                    @endif
+                                @endauth
+                            </nav>
+                        @endif
         </ul>
 
         <div class="main">
-            <a href="{{ route('login') }}"><i class='bx bxs-user-circle'></i></a>
-            <a href=""><i class=""></i></a>
             <div class="bx bx-menu" id="menu-icon"></div>  
         </div>   
 </div>
@@ -27,6 +53,6 @@
   <div class="banner-text">
     <h5>Sin Faena | Marketing</h5>
     <h1>Con creatividad, se resuelve</h1>
-      <a href="" class="btn-neon">Síguenos</a>
+      <a href="" class="btn-neon1">Síguenos</a>
   </div>
 </section>

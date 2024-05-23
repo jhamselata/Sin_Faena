@@ -10,10 +10,6 @@
       <button type="button" class="btn btn-secondary">
         Inicio
       </button>
-      <form method="GET" action="{{ route('admin.servicios.create') }}">
-        @csrf
-        <button type="submit" class="btn btn-primary">Registrar</button>
-      </form>
 
       <button type="button" class="btn btn-warning">
         Reporte
