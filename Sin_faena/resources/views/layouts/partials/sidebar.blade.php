@@ -28,6 +28,8 @@
                                             <a class="nav-link" href="{{ route('admin.pedidos.pedido') }}">Pedidos</a>
                                             <a class="nav-link" href="{{ route('admin.agendas.agenda') }}">Agenda</a>
                                             <a class="nav-link" href="{{ route('admin.tareas.index') }}">Tareas</a>
+                                            <a class="nav-link" href="{{ route('admin.tipoequipos.index') }}">Tipo de equipos</a>
+                                            <a class="nav-link" href="{{ route('admin.equipos.index') }}">Equipos</a>
                                         </nav>
         
                                     </div>
