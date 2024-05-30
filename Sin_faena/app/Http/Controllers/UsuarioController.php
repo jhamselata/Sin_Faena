@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf as facadePdf;
 
 class UsuarioController extends Controller
 {
@@ -16,6 +17,15 @@ class UsuarioController extends Controller
         $users = User::all();
 
         return view('admin.usuarios.index', compact('users'));
+    }
+
+    public function reporte()
+    {
+        $users = User::get();
+
+        $pdf = facadePdf::loadView('admin.usuarios.reporte', compact('users'));
+
+        return $pdf->stream('reporte_users.pdf');
     }
 
     /**

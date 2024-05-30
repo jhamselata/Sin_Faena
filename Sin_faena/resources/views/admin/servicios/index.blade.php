@@ -15,9 +15,8 @@
         <button type="submit" class="btn btn-primary">Registrar</button>
       </form>
 
-      <button type="button" class="btn btn-warning">
-        Reporte
-      </button>
+      <a href="{{ route('admin.servicios.reporte') }}" class="btn btn-warning" target="_blank">Reporte</a>
+
     </div>
 
 

@@ -242,6 +242,7 @@
                       <input type="text" class="field" name="name" placeholder="Nombre" required>
                       <input type="email" class="field" name="email" placeholder="Correo electrónico" required>
                       <input type="text" class="field" name="phone" placeholder="Teléfono" required>
+                      <input type="text" class="field" name="subject" placeholder="Asunto" required>
                       <textarea name="message" placeholder="Mensaje" class="field" required></textarea>
                       
                       <button type="submit" class="btn">Enviar</button>

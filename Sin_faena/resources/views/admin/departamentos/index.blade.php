@@ -14,10 +14,6 @@
         @csrf
         <button type="submit" class="btn btn-primary">Registrar</button>
       </form>
-
-      <button type="button" class="btn btn-warning">
-        Reporte
-      </button>
     </div>
 
 

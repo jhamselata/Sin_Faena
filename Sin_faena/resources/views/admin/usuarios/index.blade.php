@@ -11,9 +11,7 @@
         Inicio
       </button>
 
-      <button type="button" class="btn btn-warning">
-        Reporte
-      </button>
+      <a href="{{ route('admin.users.reporte') }}" class="btn btn-warning" target="_blank">Reporte</a>
     </div>
 
 

@@ -4,7 +4,7 @@
     <title>Nuevo mensaje de contacto</title>
 </head>
 <body>
-    <h2>{{ $details['title'] }}</h2>
+    <h2>{{ $details['subject'] }}</h2>
     <p><strong>Nombre:</strong> {{ $details['name'] }}</p>
     <p><strong>Correo electrónico:</strong> {{ $details['email'] }}</p>
     <p><strong>Teléfono:</strong> {{ $details['phone'] }}</p>

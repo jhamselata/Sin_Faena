@@ -59,11 +59,11 @@
 
                                 </div>
 
-                                <a href="{{ route('admin.tipo_pagos.edit', $tipo_pago->id) }}" class="btn btn-primary">
+                                <a href="{{ route('admin.tipo_pago.edit', $tipo_pago->id) }}" class="btn btn-primary">
                                     <i">Editar</i>
                                 </a>
 
-                                <a href="{{ route('admin.tipo_pagos.index') }}" class="">
+                                <a href="{{ route('admin.tipo_pago.index') }}" class="">
                                     <i class="btn btn-danger">Regresar</i>
                                 </a>
                             </form>

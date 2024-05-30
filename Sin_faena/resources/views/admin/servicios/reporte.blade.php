@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reporte de Empleado</title>
+    <title>Reporte de Servicios</title>
+
 
     <style>
 
@@ -107,35 +108,36 @@
     <div class="container">
         <div class="content">
             <div class="report-title">
-                <h1>Reporte de <span>Empleados</span></h1>
+                <h1>Reporte de <span>Servicios</span></h1>
                 <p>{{ date('d/m/Y') }}</p>
             </div>
 
+            <h2>Listado</h2>
             <table>
                 <thead>
                     <tr>
-                        <th>Usuario</th>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Cedula</th>
+                      <th>Tipo de servicio</th>
+                      <th>Nombre</th>
+                      <th>Precio</th>
+                      <th>Duracion</th>
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach($empleados as $empleado)
+                  </thead>
+      
+                  <tbody>
+                    @foreach ($servicios as $servicio)
                     <tr>
-                        @foreach ($users as $user)
-                        @if ($user->id === $empleado->id_usuario)
-                        <td>{{ $user->name }}</td>
-                        @endif
-                        @endforeach
-                        <td>{{ $empleado->nombre_emp }}</td>
-                        <td>{{ $empleado->apellido_emp }}</td>
-                        <td>{{ $empleado->cedula }}</td>
+      
+      
+                      <td>{{ $servicio->id_tipoServicio }}</td>
+                      <td>{{ $servicio->nombre_servicio }}</td>
+                      <td>{{ $servicio->precio_servicio }}</td>
+                      <td>{{ $servicio->duracion_estimada }}</td>
+
                     </tr>
-                    @endforeach
+                  @endforeach
                 </tbody>
-            </table>
-            
+    
+              </table>
         </div>
     </div>
 </body>

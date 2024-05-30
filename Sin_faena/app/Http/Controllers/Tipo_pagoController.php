@@ -41,7 +41,7 @@ class Tipo_pagoController extends Controller
 
     public function update(UpdateTipo_pagoRequest $request, Tipo_pago $tipo_pago) {
         $tipo_pago->update($request->validated());
-        return redirect()->route('admin.tipo_pagos.index')->with('success', 'El tipo de pago ha sido actualizado exitosamente');
+        return redirect()->route('admin.tipo_pago.index')->with('success', 'El tipo de pago ha sido actualizado exitosamente');
     }
 
     public function destroy(Tipo_pago $tipo_pago) {

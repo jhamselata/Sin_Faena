@@ -20,7 +20,7 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <form class="form-horizontal" method="post" action="{{ route('admin.tipo_pagos.update', $tipo_pagos->id) }}">
+                            <form class="form-horizontal" method="post" action="{{ route('admin.tipo_pago.update', $tipo_pagos->id) }}">
                                 @csrf
                                 @method('PUT')
 
@@ -59,7 +59,7 @@
                                 </div>
 
                                 <button class="btn btn-primary" type="submit">Editar</button>
-                                <a href="{{ route('admin.tipo_pagos.index') }}" class="">
+                                <a href="{{ route('admin.tipo_pago.index') }}" class="">
                                     <i class="btn btn-danger">Regresar</i>
                                 </a>
                             </form>

@@ -10,14 +10,11 @@
       <button type="button" class="btn btn-secondary">
         Inicio
       </button>
-      <form method="GET" action="{{ route('admin.tipo_pagos.create') }}">
+      <form method="GET" action="{{ route('admin.tipo_pago.create') }}">
         @csrf
         <button type="submit" class="btn btn-primary">Registrar</button>
       </form>
-
-      <button type="button" class="btn btn-warning">
-        Reporte
-      </button>
+      
     </div>
 
 
@@ -62,13 +59,13 @@
                 <td>{{ $tipo_pago->descripcion_tipoPago }}</td>
                 <td>
 
-                  <a href="{{ route('admin.tipo_pagos.show', $tipo_pago->id) }}" class="btn btn-primary">
+                  <a href="{{ route('admin.tipo_pago.show', $tipo_pago->id) }}" class="btn btn-primary">
                     <i class="fas fa-solid fa-info-circle"></i>
                   </a>
 
 
 
-                  <form action="{{ route('admin.tipo_pagos.destroy', $tipo_pago->id) }}" method="post" onsubmit="return confirm('Desea eliminar el registro?')" style="display: inline-block;">
+                  <form action="{{ route('admin.tipo_pago.destroy', $tipo_pago->id) }}" method="post" onsubmit="return confirm('Desea eliminar el registro?')" style="display: inline-block;">
                     @method('DELETE')
                     @csrf
                     <button type="submit" class="btn btn-danger">

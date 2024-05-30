@@ -5,9 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reporte mensual de Eventos</title>
+
+
     <style>
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Courier New', Courier, monospace;
             margin: 0;
             padding: 0;
         }
@@ -39,7 +42,7 @@
         }
 
         .content {
-            margin-top: 100px;
+            margin-top: 150px;
             margin-bottom: 50px;
         }
 
@@ -49,13 +52,17 @@
         h4,
         h5,
         h6 {
-            margin: 0;
+            margin: 8px;
             padding: 0;
         }
 
         .report-title {
             text-align: center;
             margin-bottom: 20px;
+        }
+
+         span {
+            color: #FF751F;
         }
 
         table {
@@ -67,7 +74,7 @@
         table,
         th,
         td {
-            border: 1px solid #000;
+            border: 1px solid #d0d0d0;
         }
 
         th,
@@ -77,7 +84,8 @@
         }
 
         th {
-            background-color: #f2f2f2;
+            background-color: #000000d2;
+            color: #ff8c44
         }
 
         .page-break {
@@ -88,8 +96,9 @@
 
 <body>
     <div class="header">
-        <h2>Sin Faena</h2>
-        <p>Santiago de los Caballeros | Teléfono: (849) 450-3487</p>
+        <h1>Sin <span>Faena</span></h1>
+        <p>Santiago de los Caballeros | <strong>Teléfono:</strong> (849) 398-4871</p>
+        <p><strong>Correo electrónico:</strong> sinfaena@gmail.com</p>
     </div>
 
     <div class="footer">
@@ -99,11 +108,11 @@
     <div class="container">
         <div class="content">
             <div class="report-title">
-                <h1>Reporte mensual de Eventos</h1>
+                <h1>Reporte mensual de <span>Eventos</span></h1>
                 <p>{{ date('d/m/Y') }}</p>
             </div>
 
-            <h2>Listado de Empleados</h2>
+            <h2>Listado</h2>
             <table>
                 <thead>
                     <tr>

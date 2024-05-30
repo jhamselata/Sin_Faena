@@ -33,7 +33,7 @@
                                             <a class="nav-link" href="{{ route('admin.tareas.index') }}">Tareas</a>
                                             <a class="nav-link" href="{{ route('admin.bancos.index') }}">Bancos</a>
                                             <a class="nav-link" href="{{ route('admin.departamentos.index') }}">Departamentos</a>
-                                            <a class="nav-link" href="{{ route('admin.tipo_pagos.index') }}">Tipos de Pago</a>
+                                            <a class="nav-link" href="{{ route('admin.tipo_pago.index') }}">Tipos de Pago</a>
                                         </nav>
         
                                     </div>
