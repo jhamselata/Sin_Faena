@@ -31,16 +31,13 @@
                                             <a class="nav-link" href="#">Agenda</a>
                                             <a class="nav-link" href="{{ route('admin.tipoeventos.index') }}">Tipo Eventos</a>
                                             <a class="nav-link" href="{{ route('admin.tareas.index') }}">Tareas</a>
-<<<<<<< HEAD
                                             <a class="nav-link" href="{{ route('admin.bancos.index') }}">Bancos</a>
                                             <a class="nav-link" href="{{ route('admin.departamentos.index') }}">Departamentos</a>
                                             <a class="nav-link" href="{{ route('admin.tipo_pago.index') }}">Tipos de Pago</a>
-=======
                                             <a class="nav-link" href="{{ route('admin.tipoequipos.index') }}">Tipo de Equipos</a>
                                             <a class="nav-link" href="{{ route('admin.equipos.index') }}">Equipos</a>
                                             <a class="nav-link" href="{{ route('admin.tiposervicios.index') }}">Tipo de Servicios</a>
                                             <a class="nav-link" href="{{ route('admin.tipoclientes.index') }}">Tipo de Clientes</a>
->>>>>>> 76996943380f6704c74fcb115b6f39b887a5f674
                                         </nav>
         
                                     </div>
