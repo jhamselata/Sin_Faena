@@ -18,19 +18,21 @@ class EventoController extends Controller
     public function index()
     {
         $tipo_eventos = TipoEvento::all();
-        
-        return view('admin.eventos.index', compact('tipoEvento'));
+        $eventos = Evento::all();
+
+        return view('admin.eventos.index', compact('tipo_eventos', 'eventos'));
     }
 
     public function reporte()
     {
-        $eventos = Evento::with(['tipo_evento'])->get();
-        $tipo_eventos = TipoEvento::all();
+        $eventos = Evento::with(['tipoevento'])->get();
+        $tipoeventos = TipoEvento::all();
 
-        $pdf = facadePdf::loadView('admin.eventos.reporte', compact('eventos, tipo_eventos'));
+        $pdf = facadePdf::loadView('admin.eventos.reporte', compact('eventos', 'tipoeventos'));
 
         return $pdf->stream('reporte_eventos.pdf');
     }
+
 
     public function getAllEvents()
     {
@@ -71,23 +73,16 @@ class EventoController extends Controller
         $evento->fecha_fin = $request->fecha_fin;
 
         if ($request->hasFile('anexos')) {
-            // Obtener el archivo
             $file = $request->file('anexos');
-
-            // Generar un nombre único para el archivo
             $fileName = time() . '_' . $file->getClientOriginalName();
-
-            // Guardar el archivo en el almacenamiento
             $filePath = $file->storeAs('uploads/eventos', $fileName, 'public');
-
-            // Guardar la ruta del archivo en el modelo
             $evento->anexos = $filePath;
         }
 
-         $evento->save();
-         return redirect()->back()->with('success', 'Evento creado exitosamente.');
-
+        $evento->save();
+        return response()->json($evento);
     }
+
 
     /**
      * Display the specified resource.
@@ -106,7 +101,6 @@ class EventoController extends Controller
         $eventos = Evento::find($evento);
 
         return response()->json($eventos);
-
     }
 
     /**
@@ -121,9 +115,9 @@ class EventoController extends Controller
             $path = $file->store('anexos', 'public');
             $request->merge(['anexos' => $path]);
         }
-    
+
         $eventos->update($request->all());
-    
+
         return response()->json($eventos);
     }
 

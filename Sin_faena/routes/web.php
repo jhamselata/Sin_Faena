@@ -119,6 +119,8 @@ Route::get('eventos/{eventos}', [EventoController::class,'show'])->name('admin.e
 Route::get('eventos/{evento}/edit', [EventoController::class, 'edit'])->name('admin.eventos.edit');
 Route::put('eventos/update/{evento}', [EventoController::class,'update'])->name('admin.eventos.update');
 Route::delete('eventos/{evento}', [EventoController::class,'destroy'])->name('admin.eventos.destroy');
+//reportes
+Route::get('admin.eventos.reporte', [EventoController::class, 'reporte'])->name('admin.eventos.reporte');
 
 Route::get('/users', [UsuarioController::class, 'index'])->name("admin.users.servicio");
 Route::delete('users/{user}', [ServicioController::class,'destroy'])->name('admin.users.destroy');

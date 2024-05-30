@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reporte de Empleados</title>
+    <title>Reporte mensual de Eventos</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -89,7 +89,7 @@
 <body>
     <div class="header">
         <h2>Sin Faena</h2>
-        <p>Santiago de los Caballeros | Teléfono: (123) 456-7890</p>
+        <p>Santiago de los Caballeros | Teléfono: (849) 450-3487</p>
     </div>
 
     <div class="footer">
@@ -99,7 +99,7 @@
     <div class="container">
         <div class="content">
             <div class="report-title">
-                <h1>Reporte de Eeventos</h1>
+                <h1>Reporte mensual de Eventos</h1>
                 <p>{{ date('d/m/Y') }}</p>
             </div>
 
