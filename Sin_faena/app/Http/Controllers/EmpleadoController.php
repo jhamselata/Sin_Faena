@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Puesto;
 use App\Models\Empleado;
 use App\Models\Departamento;
+use Barryvdh\DomPDF\Facade\Pdf as facadePdf;
 
 class EmpleadoController extends Controller
 {
@@ -25,6 +26,18 @@ class EmpleadoController extends Controller
         $departamentos = Departamento::all();
 
         return view('admin.empleados.index', compact('users','empleados','puestos','departamentos'));
+    }
+
+    public function reporte()
+    {
+        $empleados = Empleado::with(['user','puesto','departamento'])->get();
+        $users = User::all();
+        $puestos = Puesto::all();
+        $departamentos = Departamento::all();
+
+        $pdf = facadePdf::loadView('admin.empleados.reporte', compact('users', 'empleados', 'puestos', 'departamentos'));
+
+        return $pdf->stream('reporte_empleados.pdf');
     }
 
     /**

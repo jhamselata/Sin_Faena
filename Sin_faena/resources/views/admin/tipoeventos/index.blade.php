@@ -5,18 +5,19 @@
 <main>
 
   <div class="container-fluid px-4">
-    <h1 class="mt-5">Empleados</h1>
+    <h1 class="mt-5">Tipo evento</h1>
     <div class="mb-4 mt-4 d-grid gap-2 d-md-flex">
       <button type="button" class="btn btn-secondary">
         Inicio
       </button>
-      <form method="GET" action="{{ route('admin.empleados.create') }}">
+      <form method="GET" action="{{ route('admin.tipoeventos.create') }}">
         @csrf
         <button type="submit" class="btn btn-primary">Registrar</button>
       </form>
 
-      <a href="{{ route('admin.empleados.reporte') }}" class="btn btn-warning" target="_blank">Reporte</a>
-
+      <button type="button" class="btn btn-warning">
+        Reporte
+      </button>
     </div>
 
 
@@ -45,36 +46,25 @@
           <table id="datatablesSimple">
             <thead>
               <tr>
-                <th>Usuario</th>
                 <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Cedula</th>
                 <th>Acciones</th>
               </tr>
             </thead>
 
             <tbody>
-              @foreach ($empleados as $empleado)
+              @foreach ($tipoeventos as $tipoevento)
               <tr>
 
-                @foreach ($users as $user)
-                @if ($user->id === $empleado->id_usuario)
-                <td>{{ $user->name }}</td>
-                @endif
-                @endforeach
-
-                <td>{{ $empleado->nombre_emp }}</td>
-                <td>{{ $empleado->apellido_emp }}</td>
-                <td>{{ $empleado->cedula }}</td>
+                <td>{{ $tipoevento->nombre_tipoEvento }}</td>
                 <td>
 
-                  <a href="{{ route('admin.empleados.show', $empleado->id) }}" class="btn btn-primary">
+                  <a href="{{ route('admin.tipoeventos.show', $tipoevento->id) }}" class="btn btn-primary">
                     <i class="fas fa-solid fa-info-circle"></i>
                   </a>
 
 
 
-                  <form action="{{ route('admin.empleados.destroy', $empleado->id) }}" method="post" onsubmit="return confirm('Desea eliminar el registro?')" style="display: inline-block;">
+                  <form action="{{ route('admin.tipoeventos.destroy', $tipoevento->id) }}" method="post" onsubmit="return confirm('Desea eliminar el registro?')" style="display: inline-block;">
                     @method('DELETE')
                     @csrf
                     <button type="submit" class="btn btn-danger">
@@ -88,10 +78,7 @@
 
             <tfoot>
               <tr>
-               <th>Usuario</th>
                 <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Cedula</th>
                 <th>Acciones</th>
               </tr>
             </tfoot>
@@ -101,7 +88,7 @@
       </div>
       <!-- FIN - CARD DE LA TABLA -->
 
-    </div>
+  </div>
 </main>
 <!-- FIN - CONTENIDO DE LAS TABLAS Y FORMULARIOS-->
 
