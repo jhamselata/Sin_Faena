@@ -40,7 +40,7 @@ class EquipoController extends Controller
     {
         Equipo::create($request->validated());
 
-        return redirect()->route('admin.equipo.index')->with('success', 'Equipo creado exitosamente.');
+        return redirect()->route('admin.equipos.index')->with('success', 'Equipo creado exitosamente.');
     }
 
     /**
@@ -50,7 +50,7 @@ class EquipoController extends Controller
     {
         $tipoequipos = TipoEquipo::all();
 
-        return view('admin.equipo.show', compact('equipos, tipoequipos'));
+        return view('admin.equipo.show', compact('equipo' ,'tipoequipos'));
     }
 
     /**
@@ -60,7 +60,7 @@ class EquipoController extends Controller
     {
         $tipoequipos = TipoEquipo::all();
         
-        return view('admin.equipo.edit', compact('equipos', 'tipoequipos'));
+        return view('admin.equipo.edit', compact('equipo', 'tipoequipos'));
     }
 
     /**
@@ -69,7 +69,7 @@ class EquipoController extends Controller
     public function update(StoreEquipoRequest $request, Equipo $equipo)
     {
         $equipo->update($request->validated());
-        return redirect()->route('admin.equipo.index')->with('success', 'Equipo actualizado exitosamente.');
+        return redirect()->route('admin.equipos.index')->with('success', 'Equipo actualizado exitosamente.');
     }
 
     /**

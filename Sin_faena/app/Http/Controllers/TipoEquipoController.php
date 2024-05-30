@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTipoEquipoRequest;
+use App\Http\Requests\UpdateTipoEquipoRequest;
 use App\Models\TipoEquipo;
 
 class TipoEquipoController extends Controller
@@ -32,7 +33,7 @@ class TipoEquipoController extends Controller
     {
         TipoEquipo::create($request->validated());
 
-        return redirect()->route('admin.tipoequipos.index')->with('success', 'Tipo equipo creado exitosamente.');
+        return redirect()->route('admin.tipoequipos.index')->with('success', 'Tipo de equipo creado exitosamente.');
     }
 
     /**
@@ -54,11 +55,11 @@ class TipoEquipoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreTipoEquipoRequest $request, TipoEquipo $tipoequipo)
+    public function update(UpdateTipoEquipoRequest $request, TipoEquipo $tipoequipo)
     {
         $tipoequipo->update($request->validated());
 
-        return redirect()->route('admin.tipoequipos.index')->with('success', 'Tipo equipo actualizado exitosamente.');
+        return redirect()->route('admin.tipoequipos.index')->with('success', 'Tipo de equipo actualizado exitosamente.');
     }
 
     /**

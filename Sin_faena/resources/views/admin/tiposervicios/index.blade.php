@@ -1,16 +1,16 @@
 @extends('layouts.admin')
 @section('content')
 
-<!-- Contenido de los formularios y su contenido en tablas -->
+<!-- Contenidos de los formularios y las tablas -->
 <main>
 
   <div class="container-fluid px-4">
-    <h1 class="mt-5">Equipo</h1>
+    <h1 class="mt-5">Tipo de servicio</h1>
     <div class="mb-4 mt-4 d-grid gap-2 d-md-flex">
       <button type="button" class="btn btn-secondary">
         Inicio
       </button>
-      <form method="GET" action="{{ route('admin.equipos.create') }}">
+      <form method="GET" action="{{ route('admin.tiposervicios.create') }}">
         @csrf
         <button type="submit" class="btn btn-primary">Registrar</button>
       </form>
@@ -19,7 +19,6 @@
         Reporte
       </button>
     </div>
-
 
     <!-- Formulario de la pantalla modal -->
 
@@ -34,8 +33,7 @@
 
       <!-- Fin del formulario de la pantalla modal -->
 
-
-      <!-- Carta de contencion de la tabla -->
+      <!-- Targeta de la tabla -->
       <div class="card mb-4">
 
         <div class="card-header">
@@ -47,31 +45,23 @@
           <table id="datatablesSimple">
             <thead>
               <tr>
-                <th>Tipo</th>
                 <th>Nombre</th>
                 <th>Acciones</th>
               </tr>
             </thead>
 
             <tbody>
-              @foreach ($equipos as $equipo)
+              @foreach ($tiposervicios as $tiposervicio)
               <tr>
 
-                @foreach ($tipoequipos as $tipoequipo)
-                @if ($tipoequipo->id === $equipo->id_tipoEquipo)
-                <td>{{ $tipoequipo->nombre_tipoEquipo }}</td>
-                @endif
-                @endforeach
-
-                <td>{{ $equipo->nombre_equipo }}</td>
-
+                <td>{{ $tiposervicio->nombre_tipoServicio}}</td>
                 <td>
 
-                  <a href="{{ route('admin.equipos.show', $equipo->id) }}" class="btn btn-primary">
+                  <a href="{{ route('admin.tiposervicios.show', $tiposervicio->id) }}" class="btn btn-primary">
                     <i class="fas fa-solid fa-info-circle"></i>
                   </a>
 
-                  <form action="{{ route('admin.equipos.destroy', $equipo->id) }}" method="post" onsubmit="return confirm('Desea eliminar el registro?')" style="display: inline-block;">
+                  <form action="{{ route('admin.tiposervicios.destroy', $tiposervicio->id) }}" method="post" onsubmit="return confirm('¿Desea eliminar el registro?')" style="display: inline-block;">
                     @method('DELETE')
                     @csrf
                     <button type="submit" class="btn btn-danger">
@@ -85,7 +75,6 @@
 
             <tfoot>
               <tr>
-                <th>Tipo</th>
                 <th>Nombre</th>
                 <th>Acciones</th>
               </tr>
@@ -98,6 +87,5 @@
 
     </div>
 </main>
-<!-- Fin del contenido de los formularios y las tablas-->
-
+<!-- Fin del contenido de los formularios y las tablas -->
 @endsection

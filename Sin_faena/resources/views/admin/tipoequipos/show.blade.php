@@ -4,15 +4,15 @@
     <div class="container-fluid">
         <div class="row mb-9">
             <div class="col-sm-6">
-                <h1 class="mb-6 mx-2 mt-3">Actualizar Cliente</h1>
+                <h1 class="mb-6 mx-2 mt-3">Actualizar tipo de servicio</h1>
             </div>
         </div>
     </div>
 </div>
-<!--CONTENIDO DE LAS TABLAS Y FORMULARIOS-->
+<!-- Contenido de los formularios y las tablas -->
 <main>
 
-    <!-- MODAL FORM -->
+    <!-- Formulario de la pantalla modal -->
     <div class="container">
         <div class="container-fluid">
             <div class="row">
@@ -25,7 +25,6 @@
                                 @method('PUT')
 
                                 <div class="row">
-
                                     <div class="col-sm">
                                         <div class="mb-3 text-dark">
                                             <label for="nombre_tipoEquipo" class="form-label required">Nombre</label>
@@ -37,13 +36,9 @@
                                             @endif
                                         </div>
                                     </div>
-
                                 </div>
 
-
-
                                 <div class="row">
-
                                     <div class="col-sm">
                                         <div class="mb-3 text-dark">
                                             <label for="descripcion_tipoEquipo" class="form-label required">Descripción</label>
@@ -71,13 +66,13 @@
                         </div>
                     </div>
                 </div>
-                <!-- FIN - MODAL FORM -->
-                <!-- FIN - CARD DE LA TABLA -->
+                  <!-- Fin del formulario de la pantalla modal -->
+                <!-- Fin de la targeta de la tabla -->
 
             </div>
 
         </div>
     </div>
 </main>
-<!-- FIN - CONTENIDO DE LAS TABLAS Y FORMULARIOS-->
+<!-- Fin del contenido de los formularios y las tablas -->
 @endsection

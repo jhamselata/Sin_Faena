@@ -12,7 +12,7 @@
 <!-- Contenido de la pantalla modal y los formularios -->
 <main>
 
-    <!-- Contenido de la pantalla modal -->
+    <!-- MODAL FORM -->
     <div class="container">
         <div class="container-fluid">
             <div class="row">
@@ -28,10 +28,10 @@
                                     <div class="col-sm">
                                         <div class="mb-3 text-dark">
                                             <label for="nombre_tipoEquipo" class="form-label required">Nombre</label>
-                                            <input type="text" class="form-control {{$errors->has('nombre_tipoEquipo') ? 'is-invalid' : ''}}" id="nombre_tipoEquipo" placeholder="Nombre del tipo de equipo" name="nombre_tipoEquipo" autofocus value="{{old('nombre_tipoEquipo', '')}}" />
+                                            <input type="text" class="form-control {{$errors->has('nombre_tipoequipo') ? 'is-invalid' : ''}}" id="nombre_tipoEquipo" placeholder="Nombre del tipo de equipo" name="nombre_tipoEquipo" autofocus value="{{old('nombre_tipoEquipo', '')}}" />
                                             @if ($errors->has('nombre_tipoEquipo'))
                                             <span class="text-danger">
-                                                <strong>{{ $errors->first('nombre_tipoEquipo') }}</strong>
+                                                <strong>{{ $errors->first('nombre_tipoequipo') }}</strong>
                                             </span>
                                             @endif
                                         </div>
@@ -56,7 +56,7 @@
                                 </div>
 
                                 <button class="btn btn-primary" type="submit">Guardar</button>
-                                <a href="{{ route('admin.tiposervicios.index') }}" class="">
+                                <a href="{{ route('admin.tipoequipos.index') }}" class="">
                                     <i class="btn btn-danger">Regresar</i>
                                 </a>
 

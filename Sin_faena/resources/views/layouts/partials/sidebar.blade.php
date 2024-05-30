@@ -24,13 +24,15 @@
                                             <a class="nav-link" href="{{ route('admin.empleados.index') }}">Empleados</a>
                                             <a class="nav-link" href="{{ route('admin.clientes.index') }}">Clientes</a>
                                             <a class="nav-link" href="{{ route('admin.servicios.index') }}">Servicios</a>
-                                            <a class="nav-link" href="{{ route('admin.solicitudes.solicitud') }}">Solicitudes</a>
+                                            <a class="nav-link" href="#">Solicitudes</a>
                                             <a class="nav-link" href="{{ route('admin.pedidos.index') }}">Pedidos</a>
                                             <a class="nav-link" href="{{ route('admin.eventos.index') }}">Eventos</a>
-                                            <a class="nav-link" href="{{ route('admin.agendas.agenda') }}">Agenda</a>
+                                            <a class="nav-link" href="#">Agenda</a>
                                             <a class="nav-link" href="{{ route('admin.tareas.index') }}">Tareas</a>
-                                            <a class="nav-link" href="{{ route('admin.tipoequipos.index') }}">Tipo de equipos</a>
+                                            <a class="nav-link" href="{{ route('admin.tipoequipos.index') }}">Tipo de Equipos</a>
                                             <a class="nav-link" href="{{ route('admin.equipos.index') }}">Equipos</a>
+                                            <a class="nav-link" href="{{ route('admin.tiposervicios.index') }}">Tipo de Servicios</a>
+                                            <a class="nav-link" href="#">Tipo de Clientes</a>
                                         </nav>
         
                                     </div>

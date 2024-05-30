@@ -12,8 +12,8 @@ use App\Http\Controllers\TipoEquipoController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EquipoController;
+use App\Http\Controllers\TipoServicioController;
 use Illuminate\Support\Facades\Route;
-
 
 Route::get('/', function () {
     return view('welcome');
@@ -75,6 +75,15 @@ Route::get('servicios/{servicios}/edit', [ServicioController::class, 'edit'])->n
 Route::put('servicios/{servicio}', [ServicioController::class,'update'])->name('admin.servicios.update');
 Route::delete('servicios/{servicio}', [ServicioController::class,'destroy'])->name('admin.servicios.destroy');
 
+//Ruta de los tipos de servicios
+Route::get('tiposervicios', [TipoServicioController::class, 'index'])->name('admin.tiposervicios.index');
+Route::get('tiposervicios/create', [TipoServicioController::class, 'create'])->name('admin.tiposervicios.create');
+Route::post('tiposervicios', [TipoServicioController::class,'store'])->name('admin.tiposervicios.store');
+Route::get('tiposervicios/{tiposervicios}', [TipoServicioController::class,'show'])->name('admin.tiposervicios.show');
+Route::get('tiposervicios/{tiposervicios}/edit', [TipoServicioController::class, 'edit'])->name('admin.tiposervicios.edit');
+Route::put('tiposervicios/{tiposervicios}', [TipoServicioController::class,'update'])->name('admin.tiposervicios.update');
+Route::delete('tiposervicios/{tiposervicios}', [TipoServicioController::class,'destroy'])->name('admin.tiposervicios.destroy');
+
 //Ruta de los Pedidos
 Route::get('pedidos', [PedidoController::class, 'index'])->name('admin.pedidos.index');
 Route::get('pedidos/create', [PedidoController::class, 'create'])->name('admin.pedidos.create');
@@ -93,6 +102,26 @@ Route::get('eventos/{evento}', [EventoController::class,'show'])->name('admin.ev
 Route::get('eventos/{evento}/edit', [EventoController::class, 'edit'])->name('admin.eventos.edit');
 Route::put('eventos/{evento}', [EventoController::class,'update'])->name('admin.eventos.update');
 Route::delete('eventos/{evento}', [EventoController::class,'destroy'])->name('admin.eventos.destroy');
+
+//Ruta de los Equipos
+Route::get('equipos', [EquipoController::class, 'index'])->name('admin.equipos.index');
+Route::get('/equipos/all', [EquipoController::class, 'getAllEvents'])->name('admin.equipos.all');
+Route::get('equipos/create', [EquipoController::class, 'create'])->name('admin.equipos.create');
+Route::post('equipos', [EquipoController::class,'store'])->name('admin.equipos.store');
+Route::get('equipos/{equipo}', [EquipoController::class,'show'])->name('admin.equipos.show');
+Route::get('equipos/{equipo}/edit', [EquipoController::class, 'edit'])->name('admin.equipos.edit');
+Route::put('equipos/{equipo}', [EquipoController::class,'update'])->name('admin.equipos.update');
+Route::delete('equipos/{equipo}', [EquipoController::class,'destroy'])->name('admin.equipos.destroy');
+
+//Ruta de tipos de equipos
+Route::get('tipoequipos', [TipoEquipoController::class, 'index'])->name('admin.tipoequipos.index');
+Route::get('/tipoequipos/all', [TipoEquipoController::class, 'getAllEvents'])->name('admin.tipoequipos.all');
+Route::get('tipoequipos/create', [TipoEquipoController::class, 'create'])->name('admin.tipoequipos.create');
+Route::post('tipoequipos', [TipoEquipoController::class,'store'])->name('admin.tipoequipos.store');
+Route::get('tipoequipos/{tipoequipo}', [TipoEquipoController::class,'show'])->name('admin.tipoequipos.show');
+Route::get('tipoequipos/{tipoequipo}/edit', [TipoEquipoController::class, 'edit'])->name('admin.tipoequipos.edit');
+Route::put('tipoequipos/{tipoequipo}', [TipoEquipoController::class,'update'])->name('admin.tipoequipos.update');
+Route::delete('tipoequipos/{tipoequipo}', [TipoEquipoController::class,'destroy'])->name('admin.tipoequipos.destroy');
 
 //Ruta de los Usuarios
 Route::get('/users', [UsuarioController::class, 'index'])->name("admin.users.servicio");

@@ -33,8 +33,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Evento</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                         </button>
 
                     </div>
@@ -95,7 +94,7 @@
                         <button type="submit" class="btn btn-success" id="btnGuardar"><i class="fa fa-fw fa-lg fa-check-circle"></i> Guardar</button>
                         <button type="button" class="btn btn-warning" id="btnEditar"><i class="fas fa-pen"></i> Editar</button>
                         <button type="button" class="btn btn-danger" id="btnEliminar"><i class="fas fa-trash"></i> Eliminar</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-fw fa-lg fa-arrow-left"></i> Regresar</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa fa-fw fa-lg fa-arrow-left"></i> Regresar</button>
                     </div>
                 </div>
             </div>

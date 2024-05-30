@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row mb-9">
             <div class="col-sm-6">
-                <h1 class="mb-6 mx-2 mt-3">Nuevo Equipo</h1>
+                <h1 class="mb-6 mx-2 mt-3">Nuevo equipo</h1>
             </div>
         </div>
     </div>
@@ -27,7 +27,7 @@
                                     <div class="col-sm">
                                         <div class="mb-3 text-dark">
                                             <label for="id_tipoEquipo" class="form-label">Tipo de Equipo</label>
-                                            <select class="form-control select" name="id_tipoEquipo" style="width: 100%;" autofocus>
+                                            <select class="form-control select2" name="id_tipoEquipo" style="width: 100%;" autofocus>
                                                 <option value="">Seleccione un tipo</option>
                                                 @foreach ($tipoequipos as $tipoequipo)
                                                 <option value="{{ $tipoequipo->id }}" {{ old('id_tipoEquipo') == $tipoequipo->id ? 'selected' : '' }}>
@@ -75,5 +75,5 @@
         </div>
     </div>
 </main>
-<!-- FIN - CONTENIDO DE LAS TABLAS Y FORMULARIOS-->
+<!-- Fin del contenido de los formularios y las tablas -->
 @endsection

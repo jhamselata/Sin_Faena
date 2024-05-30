@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row mb-9">
             <div class="col-sm-6">
-                <h1 class="mb-6 mx-2 mt-3">Nuevo tipo de equipo</h1>
+                <h1 class="mb-6 mx-2 mt-3">Nuevo tipo de servicio</h1>
             </div>
         </div>
     </div>
@@ -12,7 +12,7 @@
 <!-- Contenido de la pantalla modal y los formularios -->
 <main>
 
-    <!-- Contenido de la pantalla modal -->
+    <!-- Formulario de la pantalla modal -->
     <div class="container">
         <div class="container-fluid">
             <div class="row">
@@ -20,18 +20,18 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <form class="form-horizontal" method="post" action="{{ route('admin.tipoequipos.store') }}">
+                            <form class="form-horizontal" method="post" action="{{ route('admin.tiposervicios.store') }}">
                                 @csrf
 
                                 <div class="row">
 
                                     <div class="col-sm">
                                         <div class="mb-3 text-dark">
-                                            <label for="nombre_tipoEquipo" class="form-label required">Nombre</label>
-                                            <input type="text" class="form-control {{$errors->has('nombre_tipoEquipo') ? 'is-invalid' : ''}}" id="nombre_tipoEquipo" placeholder="Nombre del tipo de equipo" name="nombre_tipoEquipo" autofocus value="{{old('nombre_tipoEquipo', '')}}" />
-                                            @if ($errors->has('nombre_tipoEquipo'))
+                                            <label for="nombre_tipoServicio" class="form-label required">Nombre</label>
+                                            <input type="text" class="form-control {{$errors->has('nombre_tipoServicio') ? 'is-invalid' : ''}}" id="nombre_tipoServicio" placeholder="Nombre del tipo de servicio" name="nombre_tipoServicio" autofocus value="{{old('nombre_tipoServicio', '')}}" />
+                                            @if ($errors->has('nombre_tipoServicio'))
                                             <span class="text-danger">
-                                                <strong>{{ $errors->first('nombre_tipoEquipo') }}</strong>
+                                                <strong>{{ $errors->first('nombre_tipoServicio') }}</strong>
                                             </span>
                                             @endif
                                         </div>
@@ -43,11 +43,11 @@
 
                                     <div class="col-sm">
                                         <div class="mb-3 text-dark">
-                                            <label for="descripcion_tipoEquipo" class="form-label required">Descripción</label>
-                                            <textarea type="text" class="form-control {{$errors->has('descripcion_tipoEquipo') ? 'is-invalid' : ''}}" id="descripcion_tipoEquipo" placeholder="Descripción de las funciones y características del tipo de equipo" name="descripcion_tipoEquipo" autofocus value="{{old('descripcion_tipoEquipo', '')}}"></textarea>
-                                            @if ($errors->has('descripcion_tipoEquipo'))
+                                            <label for="descripcion_tipoServicio" class="form-label required">Descripción</label>
+                                            <textarea type="text" class="form-control {{$errors->has('descripcion_tipoServicio') ? 'is-invalid' : ''}}" id="descripcion_tipoServicio" placeholder="Descripción de las funciones y características del tipo de servicio" name="descripcion_tipoServicio" autofocus value="{{old('descripcion_tipoServicio', '')}}"></textarea>
+                                            @if ($errors->has('descripcion_tipoServicio'))
                                             <span class="text-danger">
-                                                <strong>{{ $errors->first('descripcion_tipoEquipo') }}</strong>
+                                                <strong>{{ $errors->first('descripcion_tipoServicio') }}</strong>
                                             </span>
                                             @endif
                                         </div>
