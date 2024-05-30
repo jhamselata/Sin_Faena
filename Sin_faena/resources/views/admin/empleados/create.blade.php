@@ -102,7 +102,7 @@
 
                                 <div class="col-sm">
                                     <div class="mb-3 text-dark">
-                                        <label for="id_usuario" class="form-label">Departamento</label>
+                                        <label for="id_depto" class="form-label">Departamento</label>
                                         <select class="form-control select2" name="id_depto" style="width: 100%;" autofocus>
                                             <option value="">Seleccione un departamento</option>
                                             @foreach ($departamentos as $departamento)

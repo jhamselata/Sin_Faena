@@ -108,11 +108,23 @@
     <div class="container">
         <div class="content">
             <div class="report-title">
+<<<<<<< HEAD
                 <h1>Reporte mensual de <span>Eventos</span></h1>
                 <p>{{ date('d/m/Y') }}</p>
             </div>
 
             <h2>Listado</h2>
+=======
+<<<<<<< HEAD
+                <h1>Reporte de Eventos</h1>
+=======
+                <h1>Reporte mensual de Eventos</h1>
+>>>>>>> dfc9fceea6f03e891cd8638596b7fe82f921721b
+                <p>{{ date('d/m/Y') }}</p>
+            </div>
+
+            <h2>Listado de Eventos</h2>
+>>>>>>> 76996943380f6704c74fcb115b6f39b887a5f674
             <table>
                 <thead>
                     <tr>
