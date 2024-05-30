@@ -5,12 +5,12 @@
 <main>
 
   <div class="container-fluid px-4">
-    <h1 class="mt-5">Servicios</h1>
+    <h1 class="mt-5">Tipo evento</h1>
     <div class="mb-4 mt-4 d-grid gap-2 d-md-flex">
       <button type="button" class="btn btn-secondary">
         Inicio
       </button>
-      <form method="GET" action="{{ route('admin.servicios.create') }}">
+      <form method="GET" action="{{ route('admin.tipoeventos.create') }}">
         @csrf
         <button type="submit" class="btn btn-primary">Registrar</button>
       </form>
@@ -19,6 +19,7 @@
         Reporte
       </button>
     </div>
+
 
     <!-- MODAL FORM -->
 
@@ -34,6 +35,7 @@
 
     <!-- FIN - MODAL FORM -->
 
+
     <!-- CARD DE LA TABLA -->
     <div class="card mb-4">
 
@@ -46,33 +48,25 @@
         <table id="datatablesSimple">
           <thead>
             <tr>
-              <th>Tipo de servicio</th>
               <th>Nombre</th>
-              <th>Descripcion</th>
-              <th>Precio</th>
-              <th>Duracion</th>
               <th>Acciones</th>
             </tr>
           </thead>
 
           <tbody>
-            @foreach ($servicios as $servicio)
+            @foreach ($tipoeventos as $tipoevento)
             <tr>
 
-              <td>{{ $servicio->id_tipoServicio }}</td>
-              <td>{{ $servicio->nombre_servicio }}</td>
-              <td>{{ $servicio->descripcion_servicio }}</td>
-              <td>{{ $servicio->precio_servicio }}</td>
-              <td>{{ $servicio->duracion_estimada }}</td>
+              <td>{{ $tipoevento->nombre_tipoEvento }}</td>
               <td>
 
-                <a href="{{ route('admin.servicios.show', $servicio->id) }}" class="btn btn-primary">
+                <a href="{{ route('admin.tipoeventos.show', $tipoevento->id) }}" class="btn btn-primary">
                   <i class="fas fa-solid fa-info-circle"></i>
                 </a>
 
 
 
-                <form action="{{ route('admin.servicios.destroy', $servicio->id) }}" method="post" onsubmit="return confirm('Desea eliminar el registro?')" style="display: inline-block;">
+                <form action="{{ route('admin.tipoeventos.destroy', $tipoevento->id) }}" method="post" onsubmit="return confirm('Desea eliminar el registro?')" style="display: inline-block;">
                   @method('DELETE')
                   @csrf
                   <button type="submit" class="btn btn-danger">
@@ -86,11 +80,7 @@
 
           <tfoot>
             <tr>
-              <th>Tipo de servicio</th>
               <th>Nombre</th>
-              <th>Descripcion</th>
-              <th>Precio</th>
-              <th>Duracion</th>
               <th>Acciones</th>
             </tr>
           </tfoot>

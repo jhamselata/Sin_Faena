@@ -26,7 +26,7 @@ class StoreEventoRequest extends FormRequest
             'id_tipoEvento'=>['required'],
             'titulo_evento'=>['required'],
             'descripcion_evento'=>['required'],
-            'anexos'=>['required'],
+            'anexos'=>['nullable'],
             'fecha_inicio'=>['required'],
             'fecha_fin'=>['required']
         ];

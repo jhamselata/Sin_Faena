@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TipoEquipo;
 use App\Http\Requests\StoreTipoEquipoRequest;
 use App\Http\Requests\UpdateTipoEquipoRequest;
-use App\Models\TipoEquipo;
 
 class TipoEquipoController extends Controller
 {

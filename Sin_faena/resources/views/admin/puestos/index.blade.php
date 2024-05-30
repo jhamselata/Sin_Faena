@@ -1,16 +1,16 @@
 @extends('layouts.admin')
 @section('content')
 
-<!-- Contenidos de los formularios y las tablas -->
+<!--CONTENIDO DE LAS TABLAS Y FORMULARIOS-->
 <main>
 
   <div class="container-fluid px-4">
-    <h1 class="mt-5">Tipos de cliente</h1>
+    <h1 class="mt-5">Puestos</h1>
     <div class="mb-4 mt-4 d-grid gap-2 d-md-flex">
       <button type="button" class="btn btn-secondary">
         Inicio
       </button>
-      <form method="GET" action="{{ route('admin.tipoclientes.create') }}">
+      <form method="GET" action="{{ route('admin.puestos.create') }}">
         @csrf
         <button type="submit" class="btn btn-primary">Registrar</button>
       </form>
@@ -20,21 +20,21 @@
       </button>
     </div>
 
-    <!-- Formulario de la pantalla modal -->
+
+    <!-- MODAL FORM -->
 
     <div class="container-fluid">
       @if (session('success'))
-      <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <div id="successAlert" class="alert alert-success alert-bs-dismissible fade show" role="alert">
         {{ session('success') }}
-        <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true"></span>
       </div>
       @endif
+    </div>
 
-      <!-- Fin de la pantalla modal -->
+      <!-- FIN - MODAL FORM -->
 
 
-      <!-- Targeta de la tabla -->
+      <!-- CARD DE LA TABLA -->
       <div class="card mb-4">
 
         <div class="card-header">
@@ -52,17 +52,19 @@
             </thead>
 
             <tbody>
-              @foreach ($tipoclientes as $tipocliente)
+              @foreach ($puestos as $puesto)
               <tr>
 
-                <td>{{ $tipocliente->nombre_tipoCli }}</td>
+                <td>{{ $puesto->nombre_puesto }}</td>
                 <td>
 
-                  <a href="{{ route('admin.tipoclientes.show', $tipocliente->id) }}" class="btn btn-primary">
+                  <a href="{{ route('admin.puestos.show', $puesto->id) }}" class="btn btn-primary">
                     <i class="fas fa-solid fa-info-circle"></i>
                   </a>
 
-                  <form action="{{ route('admin.tipoclientes.destroy', $tipocliente->id) }}" method="post" onsubmit="return confirm('¿Desea eliminar el registro?')" style="display: inline-block;">
+
+
+                  <form action="{{ route('admin.puestos.destroy', $puesto->id) }}" method="post" onsubmit="return confirm('Desea eliminar el registro?')" style="display: inline-block;">
                     @method('DELETE')
                     @csrf
                     <button type="submit" class="btn btn-danger">
@@ -84,10 +86,10 @@
           </table>
         </div>
       </div>
-      <!-- Fin de la targeta de la tabla -->
+      <!-- FIN - CARD DE LA TABLA -->
 
-    </div>
+  </div>
 </main>
-<!-- Fin del contenido de los formularios y las tablas -->
+<!-- FIN - CONTENIDO DE LAS TABLAS Y FORMULARIOS-->
 
 @endsection

@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row mb-9">
             <div class="col-sm-6">
-                <h1 class="mb-6 mx-2 mt-3">Actualizar tipo de servicio</h1>
+                <h1 class="mb-6 mx-2 mt-3">Actualizar tipo de equipo</h1>
             </div>
         </div>
     </div>
