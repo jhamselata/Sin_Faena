@@ -136,6 +136,8 @@ Route::get('eventos/{eventos}', [EventoController::class,'show'])->name('admin.e
 Route::get('eventos/{evento}/edit', [EventoController::class, 'edit'])->name('admin.eventos.edit');
 Route::put('eventos/update/{evento}', [EventoController::class,'update'])->name('admin.eventos.update');
 Route::delete('eventos/{evento}', [EventoController::class,'destroy'])->name('admin.eventos.destroy');
+//reportes
+Route::get('admin.eventos.reporte', [EventoController::class, 'reporte'])->name('admin.eventos.reporte');
 
 //Ruta de los Equipos
 Route::get('equipos', [EquipoController::class, 'index'])->name('admin.equipos.index');
