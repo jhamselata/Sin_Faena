@@ -22,11 +22,13 @@
                                         <nav class="sb-sidenav-menu-nested nav">
                                             <a class="nav-link" href="{{ route('admin.usuarios.index') }}">Usuarios</a>
                                             <a class="nav-link" href="{{ route('admin.empleados.index') }}">Empleados</a>
+                                            <a class="nav-link" href="{{ route('admin.puestos.index') }}">Puestos</a>
                                             <a class="nav-link" href="{{ route('admin.clientes.index') }}">Clientes</a>
                                             <a class="nav-link" href="{{ route('admin.servicios.index') }}">Servicios</a>
                                             <a class="nav-link" href="{{ route('admin.solicitudes.solicitud') }}">Solicitudes</a>
                                             <a class="nav-link" href="{{ route('admin.pedidos.index') }}">Pedidos</a>
                                             <a class="nav-link" href="{{ route('admin.eventos.index') }}">Eventos</a>
+                                            <a class="nav-link" href="{{ route('admin.tipoeventos.index') }}">Tipo Eventos</a>
                                             <a class="nav-link" href="{{ route('admin.agendas.agenda') }}">Agenda</a>
                                             <a class="nav-link" href="{{ route('admin.tareas.index') }}">Tareas</a>
                                         </nav>

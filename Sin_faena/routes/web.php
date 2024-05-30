@@ -10,6 +10,8 @@ use App\Http\Controllers\SolicitudController;
 use App\Http\Controllers\TareaController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PuestoController;
+use App\Http\Controllers\TipoEventoController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -66,6 +68,24 @@ Route::get('empleados/{empleado}', [EmpleadoController::class,'show'])->name('ad
 Route::get('empleados/{empleado}/edit', [EmpleadoController::class, 'edit'])->name('admin.empleados.edit');
 Route::put('empleados/{empleado}', [EmpleadoController::class,'update'])->name('admin.empleados.update');
 Route::delete('empleados/{empleado}', [EmpleadoController::class,'destroy'])->name('admin.empleados.destroy');
+//reporte
+Route::get('admin.empleados.reporte', [EmpleadoController::class, 'reporte'])->name('admin.empleados.reporte');
+
+Route::get('tipoeventos', [TipoEventoController::class, 'index'])->name('admin.tipoeventos.index');
+Route::get('tipoeventos/create', [TipoEventoController::class, 'create'])->name('admin.tipoeventos.create');
+Route::post('tipoeventos', [TipoEventoController::class,'store'])->name('admin.tipoeventos.store');
+Route::get('tipoeventos/{tipoeventos}', [TipoEventoController::class,'show'])->name('admin.tipoeventos.show');
+Route::get('tipoeventos/{tipoeventos}/edit', [TipoEventoController::class, 'edit'])->name('admin.tipoeventos.edit');
+Route::put('tipoeventos/{tipoeventos}', [TipoEventoController::class,'update'])->name('admin.tipoeventos.update');
+Route::delete('tipoeventos/{tipoeventos}', [TipoEventoController::class,'destroy'])->name('admin.tipoeventos.destroy');
+
+Route::get('puestos', [PuestoController::class, 'index'])->name('admin.puestos.index');
+Route::get('puestos/create', [PuestoController::class, 'create'])->name('admin.puestos.create');
+Route::post('puestos', [PuestoController::class,'store'])->name('admin.puestos.store');
+Route::get('puestos/{puestos}', [PuestoController::class,'show'])->name('admin.puestos.show');
+Route::get('puestos/{puestos}/edit', [PuestoController::class, 'edit'])->name('admin.puestos.edit');
+Route::put('puestos/{puestos}', [PuestoController::class,'update'])->name('admin.puestos.update');
+Route::delete('puestos/{puestos}', [PuestoController::class,'destroy'])->name('admin.puestos.destroy');
 
 Route::get('clientes', [ClientController::class, 'index'])->name('admin.clientes.index');
 Route::get('clientes/create', [ClientController::class, 'create'])->name('admin.clientes.create');
@@ -95,11 +115,10 @@ Route::get('eventos', [EventoController::class, 'index'])->name('admin.eventos.i
 Route::get('/eventos/all', [EventoController::class, 'getAllEvents'])->name('admin.eventos.all');
 Route::get('eventos/create', [EventoController::class, 'create'])->name('admin.eventos.create');
 Route::post('eventos', [EventoController::class,'store'])->name('admin.eventos.store');
-Route::get('eventos/{evento}', [EventoController::class,'show'])->name('admin.eventos.show');
+Route::get('eventos/{eventos}', [EventoController::class,'show'])->name('admin.eventos.show');
 Route::get('eventos/{evento}/edit', [EventoController::class, 'edit'])->name('admin.eventos.edit');
-Route::put('eventos/{evento}', [EventoController::class,'update'])->name('admin.eventos.update');
+Route::put('eventos/update/{evento}', [EventoController::class,'update'])->name('admin.eventos.update');
 Route::delete('eventos/{evento}', [EventoController::class,'destroy'])->name('admin.eventos.destroy');
-
 
 Route::get('/users', [UsuarioController::class, 'index'])->name("admin.users.servicio");
 Route::delete('users/{user}', [ServicioController::class,'destroy'])->name('admin.users.destroy');
