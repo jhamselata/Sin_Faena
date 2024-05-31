@@ -23,6 +23,47 @@ class PedidoController extends Controller
         return view('admin.pedidos.index', compact('pedidos', 'users'));
     }
 
+    public function dashboard()
+    {
+        $pedidosPendientes = Pedido::where('estado_pedido', 'pendiente')->get();
+        $pedidosEnprogresos = Pedido::where('estado_pedido', 'En progreso')->get();
+        return view('dashboard', compact('pedidosPendientes','pedidosEnprogresos'));
+    }
+
+    public function completado($id)
+{
+    $pedido = Pedido::find($id);
+    $pedido->estado_pedido = 'Completado';
+    $pedido->save();
+
+    $users = User::all(); // Obtén todos los usuarios
+
+    // Redirige a una vista que contiene el formulario para enviar el correo
+    return view('admin.correos.complete', compact('pedido', 'users'));
+}
+
+
+
+
+    public function aceptar($id)
+    {
+        $pedido = Pedido::find($id);
+        $pedido->estado_pedido = 'En progreso';
+        $pedido->save();
+
+        return redirect()->route('dashboard')->with('success', 'Pedido aceptado exitosamente');
+    }
+
+    public function cancelar($id)
+    {
+        $pedido = Pedido::find($id);
+        $pedido->estado_pedido = 'Cancelado';
+        $pedido->save();
+
+        return redirect()->route('dashboard')->with('success', 'Pedido cancelado exitosamente');
+    }
+
+
     /**
      * Show the form for creating a new resource.
      */
@@ -44,7 +85,7 @@ class PedidoController extends Controller
         $pedido->id_usuario = $request->input('id_usuario');
         $pedido->descripcion_pedido = $request->input('descripcion_pedido');
         $pedido->fecha_pedido = $request->input('fecha_pedido');
-        $pedido->estado_pedido = $request->input('estado_pedido');
+        $pedido->estado_pedido = $request->input('estado_pedido', 'pendiente');
 
         $pedido->save();
 
@@ -63,10 +104,10 @@ class PedidoController extends Controller
         $servicios = Servicio::all(); // Obtener todos los servicios disponibles
         $serviciosSeleccionados = $pedido->servicios->pluck('id')->toArray(); // Convertir la colección de servicios seleccionados a un array de IDs
         $users = User::all();
-    
+
         return view('admin.pedidos.show', compact('pedido', 'servicios', 'serviciosSeleccionados', 'users'));
     }
-    
+
 
 
 
@@ -90,36 +131,35 @@ class PedidoController extends Controller
      * Update the specified resource in storage.
      */
     public function update(UpdatePedidoRequest $request, $id)
-{
-    $pedido = Pedido::findOrFail($id);
-    
-    // Actualizar otros campos del pedido
-    $pedido->id_usuario = $request->input('id_usuario');
-    $pedido->descripcion_pedido = $request->input('descripcion_pedido');
-    $pedido->fecha_pedido = $request->input('fecha_pedido');
-    $pedido->estado_pedido = $request->input('estado_pedido');
+    {
+        $pedido = Pedido::findOrFail($id);
 
-    $pedido->save();
+        // Actualizar otros campos del pedido
+        $pedido->id_usuario = $request->input('id_usuario');
+        $pedido->descripcion_pedido = $request->input('descripcion_pedido');
+        $pedido->fecha_pedido = $request->input('fecha_pedido');
+        $pedido->estado_pedido = $request->input('estado_pedido');
 
-    // Actualizar los servicios seleccionados en la tabla intermedia
-    $pedido->servicios()->sync($request->input('servicios'));
+        $pedido->save();
 
-    return redirect()->route('admin.pedidos.index')->with('success', 'Pedido actualizado exitosamente');
-}
+        // Actualizar los servicios seleccionados en la tabla intermedia
+        $pedido->servicios()->sync($request->input('servicios'));
+
+        return redirect()->route('admin.pedidos.index')->with('success', 'Pedido actualizado exitosamente');
+    }
 
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Pedido $pedido)
-{
-    // Eliminar los servicios asociados en la tabla intermedia
-    $pedido->servicios()->detach();
+    {
+        // Eliminar los servicios asociados en la tabla intermedia
+        $pedido->servicios()->detach();
 
-    // Eliminar el pedido
-    $pedido->delete();
+        // Eliminar el pedido
+        $pedido->delete();
 
-    return back();
-}
-
+        return back();
+    }
 }
