@@ -8,7 +8,6 @@ use App\Http\Requests\UpdateEventoRequest;
 use App\Models\Evento;
 use App\Models\TipoEvento;
 use Barryvdh\DomPDF\Facade\Pdf as facadePdf;
-use Illuminate\Http\Request;
 
 class EventoController extends Controller
 {

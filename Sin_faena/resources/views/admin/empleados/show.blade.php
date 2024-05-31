@@ -180,9 +180,6 @@
 
         </div>
     </div>
-    </div>
-    </div>
-    </div>
 </main>
 <!-- FIN - CONTENIDO DE LAS TABLAS Y FORMULARIOS-->
 @endsection

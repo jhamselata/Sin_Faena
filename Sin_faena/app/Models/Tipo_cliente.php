@@ -9,11 +9,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Tipo_cliente extends Model
 {
     use HasFactory;
-
     use SoftDeletes;
 
     protected $table = 'tipo_cliente';
-
 
     protected $fillable = [
         'id',
@@ -21,7 +19,7 @@ class Tipo_cliente extends Model
         'descripcion_tipoCli',
     ];
 
-    public function cliente(){
+    public function tipo_cliente(){
         return $this->hasmany(Cliente::class)->withDefault();
     }   
 

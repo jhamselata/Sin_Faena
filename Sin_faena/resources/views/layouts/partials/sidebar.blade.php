@@ -25,15 +25,21 @@
                                             <a class="nav-link" href="{{ route('admin.puestos.index') }}">Puestos</a>
                                             <a class="nav-link" href="{{ route('admin.clientes.index') }}">Clientes</a>
                                             <a class="nav-link" href="{{ route('admin.servicios.index') }}">Servicios</a>
-                                            <a class="nav-link" href="{{ route('admin.solicitudes.solicitud') }}">Solicitudes</a>
+                                            <a class="nav-link" href="#">Solicitudes</a>
                                             <a class="nav-link" href="{{ route('admin.pedidos.index') }}">Pedidos</a>
                                             <a class="nav-link" href="{{ route('admin.eventos.index') }}">Eventos</a>
+                                            <a class="nav-link" href="#">Agenda</a>
                                             <a class="nav-link" href="{{ route('admin.tipoeventos.index') }}">Tipo Eventos</a>
-                                            <a class="nav-link" href="{{ route('admin.agendas.agenda') }}">Agenda</a>
                                             <a class="nav-link" href="{{ route('admin.tareas.index') }}">Tareas</a>
                                             <a class="nav-link" href="{{ route('admin.bancos.index') }}">Bancos</a>
                                             <a class="nav-link" href="{{ route('admin.departamentos.index') }}">Departamentos</a>
                                             <a class="nav-link" href="{{ route('admin.tipo_pago.index') }}">Tipos de Pago</a>
+                                            <a class="nav-link" href="{{ route('admin.tipoequipos.index') }}">Tipo de Equipos</a>
+                                            <a class="nav-link" href="{{ route('admin.equipos.index') }}">Equipos</a>
+                                            <a class="nav-link" href="{{ route('admin.tiposervicios.index') }}">Tipo de Servicios</a>
+                                            <a class="nav-link" href="{{ route('admin.tipoclientes.index') }}">Tipo de Clientes</a>
+                                            <a class="nav-link" href="{{ route('admin.informes.index') }}">Informe</a>
+                                            <a class="nav-link" href="{{ route('admin.tipoinformes.index') }}">Tipo de informe</a>
                                         </nav>
         
                                     </div>
