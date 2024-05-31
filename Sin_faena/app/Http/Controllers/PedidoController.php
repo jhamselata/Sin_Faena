@@ -20,6 +20,43 @@ class PedidoController extends Controller
         return view('admin.pedidos.index', compact('pedidos', 'users'));
     }
 
+    public function dashboard()
+    {
+        $pedidosPendientes = Pedido::where('estado_pedido', 'pendiente')->get();
+        $pedidosEnprogresos = Pedido::where('estado_pedido', 'En progreso')->get();
+        return view('dashboard', compact('pedidosPendientes','pedidosEnprogresos'));
+    }
+
+    public function completado($id)
+{
+    $pedido = Pedido::find($id);
+    $pedido->estado_pedido = 'Completado';
+    $pedido->save();
+
+    $users = User::all(); // Obtén todos los usuarios
+
+    // Redirige a una vista que contiene el formulario para enviar el correo
+    return view('admin.correos.complete', compact('pedido', 'users'));
+}
+
+    public function aceptar($id)
+    {
+        $pedido = Pedido::find($id);
+        $pedido->estado_pedido = 'En progreso';
+        $pedido->save();
+
+        return redirect()->route('dashboard')->with('success', 'Pedido aceptado exitosamente');
+    }
+
+    public function cancelar($id)
+    {
+        $pedido = Pedido::find($id);
+        $pedido->estado_pedido = 'Cancelado';
+        $pedido->save();
+
+        return redirect()->route('dashboard')->with('success', 'Pedido cancelado exitosamente');
+    }
+
     public function reporte($id)
     {
         $pedido = Pedido::findOrFail($id);
@@ -46,7 +83,7 @@ class PedidoController extends Controller
         $pedido->id_usuario = $request->input('id_usuario');
         $pedido->descripcion_pedido = $request->input('descripcion_pedido');
         $pedido->fecha_pedido = $request->input('fecha_pedido');
-        $pedido->estado_pedido = $request->input('estado_pedido');
+        $pedido->estado_pedido = $request->input('estado_pedido', 'pendiente');
 
         $pedido->save();
 
@@ -65,7 +102,14 @@ class PedidoController extends Controller
 
         return view('admin.pedidos.show', compact('pedido', 'servicios', 'serviciosSeleccionados', 'users'));
     }
+    
 
+
+
+
+    /**
+     * Show the form for editing the specified resource.
+     */
     public function edit($id)
     {
         $pedido = Pedido::findOrFail($id);
@@ -77,25 +121,30 @@ class PedidoController extends Controller
     }
 
     public function update(UpdatePedidoRequest $request, $id)
-    {
-        $pedido = Pedido::findOrFail($id);
-
-        $pedido->id_usuario = $request->input('id_usuario');
-        $pedido->descripcion_pedido = $request->input('descripcion_pedido');
-        $pedido->fecha_pedido = $request->input('fecha_pedido');
-        $pedido->estado_pedido = $request->input('estado_pedido');
+{
+    $pedido = Pedido::findOrFail($id);
+    
+    // Actualizar otros campos del pedido
+    $pedido->id_usuario = $request->input('id_usuario');
+    $pedido->descripcion_pedido = $request->input('descripcion_pedido');
+    $pedido->fecha_pedido = $request->input('fecha_pedido');
+    $pedido->estado_pedido = $request->input('estado_pedido');
 
         $pedido->save();
 
-        $pedido->servicios()->sync($request->input('servicios'));
+    // Actualizar los servicios seleccionados en la tabla intermedia
+    $pedido->servicios()->sync($request->input('servicios'));
 
         return redirect()->route('admin.pedidos.index')->with('success', 'Pedido actualizado exitosamente');
     }
 
     public function destroy(Pedido $pedido)
-    {
-        $pedido->servicios()->detach();
-        $pedido->delete();
+{
+    // Eliminar los servicios asociados en la tabla intermedia
+    $pedido->servicios()->detach();
+
+    // Eliminar el pedido
+    $pedido->delete();
 
         return back();
     }

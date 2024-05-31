@@ -17,7 +17,6 @@
 
     </div>
 
-
     <!-- MODAL FORM -->
 
     <div class="container-fluid">
@@ -29,7 +28,6 @@
     </div>
 
     <!-- FIN - MODAL FORM -->
-
 
     <!-- CARD DE LA TABLA -->
     <div class="card mb-4">

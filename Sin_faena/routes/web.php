@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ClientController;
-use App\Http\Controllers\TipoClienteController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\EmpleadoController;
@@ -21,6 +20,8 @@ use App\Http\Controllers\TipoEquipoController;
 use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\TipoEventoController;
+use App\Http\Controllers\TipoClienteController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\InformeController;
 use App\Http\Controllers\TipoInformeController;
 
@@ -28,11 +29,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\ContactController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
+Route::get('/', [UserController::class, 'index'])->name('inicio');
 
 Route::get('/inicio', function () {
     return view('layouts.index');
@@ -54,27 +51,9 @@ Route::middleware('auth')->group(function () {
     //Route::resource('clientes', ClientController::class);
 });
 
-Route::get('/clientes', [ClientController::class, 'index'])->name("admin.clientes.cliente");
-
-Route::get('/users', [UsuarioController::class, 'index'])->name("admin.users.servicio");
-
-Route::get('/agendas', [AgendaController::class, 'index'])->name("admin.agendas.agenda");
-
-Route::get('/empleados', [EmpleadoController::class, 'index'])->name("admin.empleados.empleado");
-
-Route::get('/pedidos', [PedidoController::class, 'index'])->name("admin.pedidos.pedido");
-
-Route::get('/servicios', [ServicioController::class, 'index'])->name("admin.servicios.servicio");
-
-Route::get('/solicitudes', [SolicitudController::class, 'index'])->name("admin.solicitudes.solicitud");
-
-Route::get('/bancos', [BancoController::class, 'index'])->name("admin.bancos.banco");
-
-Route::get('/departamentos', [DepartamentoController::class, 'index'])->name("admin.departamentos.departamento");
-
-Route::get('/tipo_pagos', [Tipo_pagoController::class, 'index'])->name("admin.tipo_pagos.tipo_pago");
-
 Route::post('/send-email', [ContactController::class, 'sendEmail'])->name('send.email');
+Route::post('/send-email', [ContactController::class, 'sendCompleteEmail'])->name('send.complete.email');
+Route::post('admin.correos.complete', [ContactController::class, 'completeEmail'])->name('admin.correos.complete');
 
 //Rutas de las tareas
 Route::get('tareas', [TareaController::class, 'index'])->name('admin.tareas.index');
@@ -152,7 +131,7 @@ Route::get('tiposervicios/{tiposervicios}/edit', [TipoServicioController::class,
 Route::put('tiposervicios/{tiposervicios}', [TipoServicioController::class,'update'])->name('admin.tiposervicios.update');
 Route::delete('tiposervicios/{tiposervicios}', [TipoServicioController::class,'destroy'])->name('admin.tiposervicios.destroy');
 
-//Ruta de los Pedidos
+//Ruta de los Pedidos (Empleado)
 Route::get('pedidos', [PedidoController::class, 'index'])->name('admin.pedidos.index');
 Route::get('pedidos/create', [PedidoController::class, 'create'])->name('admin.pedidos.create');
 Route::post('pedidos', [PedidoController::class,'store'])->name('admin.pedidos.store');
@@ -160,8 +139,20 @@ Route::get('pedidos/{pedido}', [PedidoController::class,'show'])->name('admin.pe
 Route::get('pedidos/{id}/edit', [PedidoController::class, 'edit'])->name('admin.pedidos.edit');
 Route::put('pedidos/{id}', [PedidoController::class,'update'])->name('admin.pedidos.update');
 Route::delete('pedidos/{pedido}', [PedidoController::class,'destroy'])->name('admin.pedidos.destroy');
+Route::get('/dashboard', [PedidoController::class, 'dashboard'])->name('dashboard');
+Route::get('/pedidos/aceptar/{id}', [PedidoController::class, 'aceptar'])->name('pedidos.aceptar');
+Route::post('/pedidos/cancelar/{id}', [PedidoController::class, 'cancelar'])->name('pedidos.cancelar');
+Route::post('/pedidos/completado/{id}', [PedidoController::class, 'completado'])->name('pedidos.completado');
+
+//Rutas de los Pedidos (Cliente)
+Route::get('user.pedidos.espera', [UserController::class, 'espera'])->name('user.pedidos.espera');
+Route::get('user.pedidos.create', [UserController::class, 'create'])->name('user.pedidos.create');
+Route::post('user.pedidos.store', [UserController::class,'store'])->name('user.pedidos.clientStore');
 //Reporte
 Route::get('admin/pedidos/{id}/reporte', [PedidoController::class, 'reporte'])->name('admin.pedidos.reporte');
+
+//Ruta para los clientes
+Route::post('index/{id}/marcar-como-leida', [UserController::class, 'marcarComoLeida'])->name('notificaciones.marcarComoLeida');
 
 //Ruta de los Eventos
 Route::get('eventos', [EventoController::class, 'index'])->name('admin.eventos.index');

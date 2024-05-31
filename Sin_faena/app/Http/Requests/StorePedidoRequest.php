@@ -26,7 +26,7 @@ class StorePedidoRequest extends FormRequest
             'id_usuario' => ['required'],
             'descripcion_pedido' => ['required'],
             'fecha_pedido' => ['required'],
-            'estado_pedido' => ['required'],
+            'estado_pedido' => ['nullable'],
             ];
     }
 }
