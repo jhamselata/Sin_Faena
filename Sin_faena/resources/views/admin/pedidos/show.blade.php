@@ -41,12 +41,7 @@
 
                             <div class="mb-3 text-dark">
                                 <label for="servicios" class="form-label">Servicios</label>
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Servicios</th>
-                                        </tr>
-                                    </thead>
+                                <table class="table table-bordered">
                                     <tbody>
                                         @foreach ($pedido->servicios as $servicio)
                                         <tr>
@@ -62,11 +57,9 @@
                                 <input type="text" class="form-control" value="{{ $pedido->estado_pedido }}" readonly>
                             </div>
 
-                            <a href="{{ route('admin.pedidos.edit', $pedido->id) }}" class="btn btn-primary">Editar</a>
                             <a href="{{ route('admin.pedidos.index') }}" class="btn btn-danger">Regresar</a>
-
-
-
+                            <a href="{{ route('admin.pedidos.edit', $pedido->id) }}" class="btn btn-primary">Editar</a>
+                            <a href="{{ route('admin.pedidos.reporte', ['id' => $pedido->id]) }}" class="btn btn-warning" target="_blank">Reporte</a>
 
                         </div>
                     </div>
@@ -78,9 +71,7 @@
 
         </div>
     </div>
-    </div>
-    </div>
-    </div>
+
 </main>
 <!-- FIN - CONTENIDO DE LAS TABLAS Y FORMULARIOS-->
 @endsection

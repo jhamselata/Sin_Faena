@@ -44,7 +44,6 @@
                                         </div>
                                     </div>
 
-
                                     <div class="col-sm">
                                         <div class="mb-3 text-dark">
                                             <label for="descripcion" class="form-label">Descripcion</label>
@@ -64,12 +63,9 @@
                                         </div>
                                     </div>
 
-
                                 </div>
 
-
                                 <div class="row">
-
 
                                     <div class="col-sm">
                                         <div class="mb-3 text-dark">
@@ -118,9 +114,7 @@
 
         </div>
     </div>
-    </div>
-    </div>
-    </div>
+
 </main>
 <!-- FIN - CONTENIDO DE LAS TABLAS Y FORMULARIOS-->
 @endsection

@@ -7,8 +7,7 @@ use App\Http\Requests\StoreEquipoRequest;
 use App\Http\Requests\UpdateEquipoRequest;
 use App\Models\Equipo;
 use App\Models\TipoEquipo;
-
-use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf as facadePdf;
 
 class EquipoController extends Controller
 {
@@ -21,6 +20,16 @@ class EquipoController extends Controller
         $tipoequipos = TipoEquipo::all();
 
         return view('admin.equipo.index', compact('equipos', 'tipoequipos'));
+    }
+
+    public function reporte()
+    {
+        $equipos = Equipo::all();
+        $tipoequipos = TipoEquipo::all();
+  
+        $pdf = facadePdf::loadView('admin.equipo.reporte', compact('tipoequipos', 'equipos'));
+
+        return $pdf->stream('reporte_equipos.pdf');
     }
 
     /**
@@ -66,7 +75,7 @@ class EquipoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreEquipoRequest $request, Equipo $equipo)
+    public function update(UpdateEquipoRequest $request, Equipo $equipo)
     {
         $equipo->update($request->validated());
         return redirect()->route('admin.equipos.index')->with('success', 'Equipo actualizado exitosamente.');

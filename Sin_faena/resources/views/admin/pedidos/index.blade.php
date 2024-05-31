@@ -15,9 +15,6 @@
         <button type="submit" class="btn btn-primary">Registrar</button>
       </form>
 
-      <button type="button" class="btn btn-warning">
-        Reporte
-      </button>
     </div>
 
 
@@ -30,8 +27,6 @@
       </div>
       @endif
     </div>
-
-
 
     <!-- FIN - MODAL FORM -->
 
@@ -73,8 +68,6 @@
                   <i class="fas fa-solid fa-info-circle"></i>
                 </a>
 
-
-
                 <form action="{{ route('admin.pedidos.destroy', $pedido->id) }}" method="post" onsubmit="return confirm('Desea eliminar el registro?')" style="display: inline-block;">
                   @method('DELETE')
                   @csrf
@@ -82,6 +75,11 @@
                     <i class="fas fa-solid fa-trash"></i>
                   </button>
                 </form>
+
+                <a href="{{ route('admin.pedidos.reporte', ['id' => $pedido->id]) }}" class="btn btn-warning" target="_blank">
+                  <i class="fas fa-solid fa-print"></i>
+                </a>
+
               </td>
             </tr>
             @endforeach
