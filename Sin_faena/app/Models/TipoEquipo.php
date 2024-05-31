@@ -20,7 +20,7 @@ class TipoEquipo extends Model
         'descripcion_tipoEquipo'
     ];
 
-    public function equipo(){
+    public function tipo_equipo(){
         return $this->hasmany(Equipo::class)->withDefault();
     }
 }

@@ -11,7 +11,7 @@ class UpdateTipoInformeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class UpdateTipoInformeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'id' => ['nullable'],
+            'nombre_tipoInforme' => ['required'],
+            'descripcion_tipoInforme' => ['required'],
         ];
     }
 }

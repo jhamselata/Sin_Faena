@@ -13,14 +13,13 @@ class Tipo_cliente extends Model
 
     protected $table = 'tipo_cliente';
 
-
     protected $fillable = [
         'id',
         'nombre_tipoCli',
         'descripcion_tipoCli',
     ];
 
-    public function cliente(){
+    public function tipo_cliente(){
         return $this->hasmany(Cliente::class)->withDefault();
     }   
 

@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreInformeRequest;
+use App\Http\Requests\UpdateInformeRequest;
+use App\Models\Informe;
+use App\Models\Tipo_informe;
+use Barryvdh\DomPDF\Facade\Pdf as facadePdf;
 
 class InformeController extends Controller
 {
@@ -11,7 +15,20 @@ class InformeController extends Controller
      */
     public function index()
     {
-        //
+        $informes = Informe::all();
+        $tipoinformes = Tipo_informe::all();
+
+        return view('admin.informes.index', compact('tipoinformes', 'informes'));
+    }
+
+    public function reporte()
+    {
+        $informes = Informe::all();
+        $tipoinformes = Tipo_Informe::all();
+  
+        $pdf = facadePdf::loadView('admin.informes.reporte', compact('tipoinformes, informes'));
+
+        return $pdf->stream('reporte_informes.pdf');
     }
 
     /**
@@ -19,46 +36,56 @@ class InformeController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.informes.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreInformeRequest $request)
     {
-        //
+        Informe::create($request->validated());
+
+        return redirect()->route('admin.informes.index')->with('success', 'Informe creado exitosamente.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Informe $informe)
     {
-        //
+        $tipoinformes = Tipo_informe::all();
+
+        return view('admin.informes.show', compact('tipoinformes', 'informe'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Informe $informe)
     {
-        //
+        $tipoinformes = Tipo_informe::all();
+
+        return view('admin.informes.edit', compact('tipoinformes', 'informe'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateInformeRequest $request, Informe $informe)
     {
-        //
+        $informe->update($request->validated());
+
+        return redirect()->route('admin.informes.index')->with('success', 'Informe actualizado exitosamente.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Informe $informe)
     {
-        //
+        $informe->delete();
+
+        return back();
     }
 }

@@ -1,27 +1,30 @@
 <?php
 
+use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\EmpleadoController;
-use App\Http\Controllers\EventoController;
-use App\Http\Controllers\PedidoController;
-use App\Http\Controllers\ServicioController;
-use App\Http\Controllers\SolicitudController;
+use App\Http\Controllers\PuestoController;
 use App\Http\Controllers\TareaController;
+use App\Http\Controllers\ServicioController;
+use App\Http\Controllers\TipoServicioController;
+use App\Http\Controllers\SolicitudController;
 use App\Http\Controllers\BancoController;
 use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\Tipo_pagoController;
-use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ProfileController;
 use App\Mail\ContactMail;
 use App\Models\Tipo_pago;
 use App\Http\Controllers\TipoEquipoController;
 use App\Http\Controllers\EquipoController;
-use App\Http\Controllers\TipoServicioController;
-use App\Http\Controllers\PuestoController;
+use App\Http\Controllers\EventoController;
 use App\Http\Controllers\TipoEventoController;
 use App\Http\Controllers\TipoClienteController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\InformeController;
+use App\Http\Controllers\TipoInformeController;
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\ContactController;
@@ -200,7 +203,7 @@ Route::get('equipos/{equipo}/edit', [EquipoController::class, 'edit'])->name('ad
 Route::put('equipos/{equipo}', [EquipoController::class,'update'])->name('admin.equipos.update');
 Route::delete('equipos/{equipo}', [EquipoController::class,'destroy'])->name('admin.equipos.destroy');
 //Reporte
-
+Route::get('admin.equipos.reporte', [EquipoController::class, 'reporte'])->name('admin.equipos.reporte');
 
 //Ruta de tipos de equipos
 Route::get('tipoequipos', [TipoEquipoController::class, 'index'])->name('admin.tipoequipos.index');
@@ -211,6 +214,28 @@ Route::get('tipoequipos/{tipoequipo}', [TipoEquipoController::class,'show'])->na
 Route::get('tipoequipos/{tipoequipo}/edit', [TipoEquipoController::class, 'edit'])->name('admin.tipoequipos.edit');
 Route::put('tipoequipos/{tipoequipo}', [TipoEquipoController::class,'update'])->name('admin.tipoequipos.update');
 Route::delete('tipoequipos/{tipoequipo}', [TipoEquipoController::class,'destroy'])->name('admin.tipoequipos.destroy');
+
+//Ruta de los informes
+Route::get('informes', [InformeController::class, 'index'])->name('admin.informes.index');
+Route::get('/informes/all', [InformeController::class, 'getAllEvents'])->name('admin.informes.all');
+Route::get('informes/create', [InformeController::class, 'create'])->name('admin.informes.create');
+Route::post('informes', [InformeController::class,'store'])->name('admin.informes.store');
+Route::get('informes/{informe}', [InformeController::class,'show'])->name('admin.informes.show');
+Route::get('informes/{informe}/edit', [InformeController::class, 'edit'])->name('admin.informes.edit');
+Route::put('informes/{informe}', [InformeController::class,'update'])->name('admin.informes.update');
+Route::delete('informes/{informe}', [InformeController::class,'destroy'])->name('admin.informes.destroy');
+//Reporte
+Route::get('admin.informes.reporte', [InformeController::class, 'reporte'])->name('admin.informes.reporte');
+
+//Ruta de los Tipos de Informe
+Route::get('tipoinformes', [TipoInformeController::class, 'index'])->name('admin.tipoinformes.index');
+Route::get('/tipoinformes/all', [TipoInformeController::class, 'getAllEvents'])->name('admin.tipoinformes.all');
+Route::get('tipoinformes/create', [TipoInformeController::class, 'create'])->name('admin.tipoinformes.create');
+Route::post('tipoinformes', [TipoInformeController::class,'store'])->name('admin.tipoinformes.store');
+Route::get('tipoinformes/{tipoinforme}', [TipoInformeController::class,'show'])->name('admin.tipoinformes.show');
+Route::get('tipoinformes/{tipoinforme}/edit', [TipoInformeController::class, 'edit'])->name('admin.tipoinformes.edit');
+Route::put('tipoinformes/{tipoinforme}', [TipoInformeController::class,'update'])->name('admin.tipoinformes.update');
+Route::delete('tipoinformes/{tipoinforme}', [TipoInformeController::class,'destroy'])->name('admin.tipoinformes.destroy');
 
 //Ruta de los Usuarios
 Route::get('/users', [UsuarioController::class, 'index'])->name("admin.users.servicio");

@@ -38,6 +38,8 @@
                                             <a class="nav-link" href="{{ route('admin.equipos.index') }}">Equipos</a>
                                             <a class="nav-link" href="{{ route('admin.tiposervicios.index') }}">Tipo de Servicios</a>
                                             <a class="nav-link" href="{{ route('admin.tipoclientes.index') }}">Tipo de Clientes</a>
+                                            <a class="nav-link" href="{{ route('admin.informes.index') }}">Informe</a>
+                                            <a class="nav-link" href="{{ route('admin.tipoinformes.index') }}">Tipo de informe</a>
                                         </nav>
         
                                     </div>
