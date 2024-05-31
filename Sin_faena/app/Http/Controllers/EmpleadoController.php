@@ -37,6 +37,7 @@ class EmpleadoController extends Controller
         $pdf = facadePdf::loadView('admin.empleados.reporte', compact('users', 'empleados', 'puestos', 'departamentos'));
 
         return $pdf->stream('reporte_empleados.pdf');
+        
     }
 
     /**

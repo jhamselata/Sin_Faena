@@ -11,19 +11,28 @@ use App\Http\Controllers\TareaController;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\TipoServicioController;
 use App\Http\Controllers\SolicitudController;
-use App\Http\Controllers\EquipoController;
+use App\Http\Controllers\BancoController;
+use App\Http\Controllers\DepartamentoController;
+use App\Http\Controllers\Tipo_pagoController;
+use App\Http\Controllers\ProfileController;
+use App\Mail\ContactMail;
+use App\Models\Tipo_pago;
 use App\Http\Controllers\TipoEquipoController;
+use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\TipoEventoController;
 use App\Http\Controllers\InformeController;
 use App\Http\Controllers\TipoInformeController;
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\ContactController;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+
 
 Route::get('/inicio', function () {
     return view('layouts.index');
@@ -45,7 +54,31 @@ Route::middleware('auth')->group(function () {
     //Route::resource('clientes', ClientController::class);
 });
 
-//Rutas de las tareas
+Route::get('/clientes', [ClientController::class, 'index'])->name("admin.clientes.cliente");
+
+Route::get('/users', [UsuarioController::class, 'index'])->name("admin.users.servicio");
+
+Route::get('/agendas', [AgendaController::class, 'index'])->name("admin.agendas.agenda");
+
+Route::get('/empleados', [EmpleadoController::class, 'index'])->name("admin.empleados.empleado");
+
+Route::get('/pedidos', [PedidoController::class, 'index'])->name("admin.pedidos.pedido");
+
+Route::get('/servicios', [ServicioController::class, 'index'])->name("admin.servicios.servicio");
+
+Route::get('/solicitudes', [SolicitudController::class, 'index'])->name("admin.solicitudes.solicitud");
+
+Route::get('/bancos', [BancoController::class, 'index'])->name("admin.bancos.banco");
+
+Route::get('/departamentos', [DepartamentoController::class, 'index'])->name("admin.departamentos.departamento");
+
+Route::get('/tipo_pagos', [Tipo_pagoController::class, 'index'])->name("admin.tipo_pagos.tipo_pago");
+
+Route::post('/send-email', [ContactController::class, 'sendEmail'])->name('send.email');
+
+
+
+
 Route::get('tareas', [TareaController::class, 'index'])->name('admin.tareas.index');
 Route::get('tareas/create', [TareaController::class, 'create'])->name('admin.tareas.create');
 Route::post('tareas', [TareaController::class,'store'])->name('admin.tareas.store');
@@ -91,6 +124,7 @@ Route::get('clientes/{cliente}', [ClientController::class,'show'])->name('admin.
 Route::get('clientes/{clientes}/edit', [ClientController::class, 'edit'])->name('admin.clientes.edit');
 Route::put('clientes/{cliente}', [ClientController::class,'update'])->name('admin.clientes.update');
 Route::delete('clientes/{cliente}', [ClientController::class,'destroy'])->name('admin.clientes.destroy');
+Route::get('admin.clientes.reporte', [ClientController::class, 'reporte'])->name('admin.clientes.reporte');
 
 //Rutas de los tipos de clientes
 Route::get('tipoclientes', [TipoClienteController::class, 'index'])->name('admin.tipoclientes.index');
@@ -109,6 +143,7 @@ Route::get('servicios/{servicio}', [ServicioController::class,'show'])->name('ad
 Route::get('servicios/{servicios}/edit', [ServicioController::class, 'edit'])->name('admin.servicios.edit');
 Route::put('servicios/{servicio}', [ServicioController::class,'update'])->name('admin.servicios.update');
 Route::delete('servicios/{servicio}', [ServicioController::class,'destroy'])->name('admin.servicios.destroy');
+Route::get('admin.servicios.reporte', [ServicioController::class, 'reporte'])->name('admin.servicios.reporte');
 
 //Ruta de los tipos de servicios
 Route::get('tiposervicios', [TipoServicioController::class, 'index'])->name('admin.tiposervicios.index');
@@ -139,6 +174,30 @@ Route::get('eventos/{eventos}', [EventoController::class,'show'])->name('admin.e
 Route::get('eventos/{evento}/edit', [EventoController::class, 'edit'])->name('admin.eventos.edit');
 Route::put('eventos/update/{evento}', [EventoController::class,'update'])->name('admin.eventos.update');
 Route::delete('eventos/{evento}', [EventoController::class,'destroy'])->name('admin.eventos.destroy');
+
+Route::get('bancos', [BancoController::class, 'index'])->name('admin.bancos.index');
+Route::get('bancos/create', [BancoController::class, 'create'])->name('admin.bancos.create');
+Route::post('bancos', [BancoController::class,'store'])->name('admin.bancos.store');
+Route::get('bancos/{banco}', [BancoController::class,'show'])->name('admin.bancos.show');
+Route::get('bancos/{bancos}/edit', [BancoController::class, 'edit'])->name('admin.bancos.edit');
+Route::put('bancos/{banco}', [BancoController::class,'update'])->name('admin.bancos.update');
+Route::delete('bancos/{banco}', [BancoController::class,'destroy'])->name('admin.bancos.destroy');
+
+Route::get('departamentos', [DepartamentoController::class, 'index'])->name('admin.departamentos.index');
+Route::get('departamentos/create', [DepartamentoController::class, 'create'])->name('admin.departamentos.create');
+Route::post('departamentos', [DepartamentoController::class,'store'])->name('admin.departamentos.store');
+Route::get('departamentos/{departamento}', [DepartamentoController::class,'show'])->name('admin.departamentos.show');
+Route::get('departamentos/{departamentos}/edit', [DepartamentoController::class, 'edit'])->name('admin.departamentos.edit');
+Route::put('departamentos/{departamento}', [DepartamentoController::class,'update'])->name('admin.departamentos.update');
+Route::delete('departamentos/{departamento}', [DepartamentoController::class,'destroy'])->name('admin.departamentos.destroy');
+
+Route::get('tipo_pagos', [Tipo_pagoController::class, 'index'])->name('admin.tipo_pago.index');
+Route::get('tipo_pagos/create', [Tipo_pagoController::class, 'create'])->name('admin.tipo_pago.create');
+Route::post('tipo_pagos', [Tipo_pagoController::class,'store'])->name('admin.tipo_pago.store');
+Route::get('tipo_pagos/{tipo_pago}', [Tipo_pagoController::class,'show'])->name('admin.tipo_pago.show');
+Route::get('tipo_pagos/{tipo_pagos}/edit', [Tipo_pagoController::class, 'edit'])->name('admin.tipo_pago.edit');
+Route::put('tipo_pagos/{tipo_pago}', [Tipo_pagoController::class,'update'])->name('admin.tipo_pago.update');
+Route::delete('tipo_pagos/{tipo_pago}', [Tipo_pagoController::class,'destroy'])->name('admin.tipo_pago.destroy');
 //reportes
 Route::get('admin.eventos.reporte', [EventoController::class, 'reporte'])->name('admin.eventos.reporte');
 
@@ -191,6 +250,7 @@ Route::get('/users', [UsuarioController::class, 'index'])->name("admin.users.ser
 Route::delete('users/{user}', [ServicioController::class,'destroy'])->name('admin.users.destroy');
 Route::get('/usuarios', [UsuarioController::class, 'index'])->name("admin.usuarios.index");
 Route::delete('users/{user}', [UsuarioController::class,'destroy'])->name('admin.users.destroy');
+Route::get('admin.users.reporte', [UsuarioController::class, 'reporte'])->name('admin.users.reporte');
 
 //Route::get('/index', [UsuarioController::class, 'index'])->name("admin.clientes.cliente");
 

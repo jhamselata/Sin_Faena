@@ -7,6 +7,7 @@ use App\Http\Requests\StoreServicioRequest;
 use App\Http\Requests\UpdateServicioRequest;
 use App\Models\Servicio;
 use App\Models\Tipo_servicio;
+use Barryvdh\DomPDF\Facade\Pdf as facadePdf;
 
 
 use Illuminate\Http\Request;
@@ -19,6 +20,16 @@ class ServicioController extends Controller
         $tipo_servicios = Tipo_servicio::all();
 
         return view('admin.servicios.index', compact('servicios', 'tipo_servicios'));
+    }
+
+    public function reporte()
+    {
+        $servicios = Servicio::get();
+        $tipo_servicios = Tipo_servicio::all();
+
+        $pdf = facadePdf::loadView('admin.servicios.reporte', compact('tipo_servicios','servicios'));
+
+        return $pdf->stream('reporte_servicios.pdf');
     }
 
     public function create()

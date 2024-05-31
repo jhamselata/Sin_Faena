@@ -5,17 +5,16 @@
 <main>
 
   <div class="container-fluid px-4">
-    <h1 class="mt-5">Clientes</h1>
+    <h1 class="mt-5">Tipos de Pago</h1>
     <div class="mb-4 mt-4 d-grid gap-2 d-md-flex">
       <button type="button" class="btn btn-secondary">
         Inicio
       </button>
-      <form method="GET" action="{{ route('admin.clientes.create') }}">
+      <form method="GET" action="{{ route('admin.tipo_pago.create') }}">
         @csrf
         <button type="submit" class="btn btn-primary">Registrar</button>
       </form>
-
-      <a href="{{ route('admin.clientes.reporte') }}" class="btn btn-warning" target="_blank">Reporte</a>
+      
     </div>
 
 
@@ -44,38 +43,29 @@
           <table id="datatablesSimple">
             <thead>
               <tr>
-                <th>Usuario</th>
+                <th>ID</th>
                 <th>Nombre</th>
-                <th>RNC</th>
-                <th>Teléfono</th>
-                <th>Estado</th>
+                <th>Descripción</th>
                 <th>Acciones</th>
               </tr>
             </thead>
 
             <tbody>
-              @foreach ($clientes as $cliente)
-              <tr>
 
-                @foreach ($users as $user)
-                @if ($user->id === $cliente->id_usuario)
-                <td>{{ $user->name }}</td>
-                @endif
-                @endforeach
+              @foreach ($tipo_pagos as $tipo_pago)
 
-                <td>{{ $cliente->nombre_cli }}</td>
-                <td>{{ $cliente->rnc_cli }}</td>
-                <td>{{ $cliente->telefono_cli }}</td>
-                <td>{{ $cliente->estado_cli }}</td>
+                <td>{{ $tipo_pago->id }}</td>
+                <td>{{ $tipo_pago->nombre_tipoPago }}</td>
+                <td>{{ $tipo_pago->descripcion_tipoPago }}</td>
                 <td>
 
-                  <a href="{{ route('admin.clientes.show', $cliente->id) }}" class="btn btn-primary">
+                  <a href="{{ route('admin.tipo_pago.show', $tipo_pago->id) }}" class="btn btn-primary">
                     <i class="fas fa-solid fa-info-circle"></i>
                   </a>
 
 
 
-                  <form action="{{ route('admin.clientes.destroy', $cliente->id) }}" method="post" onsubmit="return confirm('Desea eliminar el registro?')" style="display: inline-block;">
+                  <form action="{{ route('admin.tipo_pago.destroy', $tipo_pago->id) }}" method="post" onsubmit="return confirm('Desea eliminar el registro?')" style="display: inline-block;">
                     @method('DELETE')
                     @csrf
                     <button type="submit" class="btn btn-danger">
@@ -89,11 +79,9 @@
 
             <tfoot>
               <tr>
-                <th>Usuario</th>
+                <th>ID</th>
                 <th>Nombre</th>
-                <th>RNC</th>
-                <th>Teléfono</th>
-                <th>Estado</th>
+                <th>Descripción</th>
                 <th>Acciones</th>
               </tr>
             </tfoot>

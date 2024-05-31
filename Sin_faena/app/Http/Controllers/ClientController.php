@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateClienteRequest;
 use App\Models\Cliente;
 use App\Models\Tipo_cliente;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf as facadePdf;
 
 use Illuminate\Http\Request;
 
@@ -20,6 +21,17 @@ class ClientController extends Controller
         $users = User::all();
 
         return view('admin.clientes.index', compact('clientes', 'tipo_clientes', 'users'));
+    }
+
+    public function reporte()
+    {
+        $clientes = Cliente::with(['user','tipo_cliente'])->get();
+        $tipo_clientes = Tipo_cliente::all();
+        $users = User::all();
+
+        $pdf = facadePdf::loadView('admin.clientes.reporte', compact('users','clientes', 'tipo_clientes'));
+
+        return $pdf->stream('reporte_clientes.pdf');
     }
 
     public function create()

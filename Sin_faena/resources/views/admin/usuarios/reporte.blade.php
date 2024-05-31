@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reporte de Empleado</title>
+    <title>Reporte de Usuarios</title>
+
 
     <style>
 
@@ -107,35 +108,37 @@
     <div class="container">
         <div class="content">
             <div class="report-title">
-                <h1>Reporte de <span>Empleados</span></h1>
+                <h1>Reporte de <span>Usuarios</span></h1>
                 <p>{{ date('d/m/Y') }}</p>
             </div>
 
+            <h2>Listado</h2>
             <table>
                 <thead>
                     <tr>
-                        <th>Usuario</th>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Cedula</th>
+                      <th>Nombre</th>
+                      <th>Correo electrónico</th>
                     </tr>
                 </thead>
+    
                 <tbody>
-                    @foreach($empleados as $empleado)
+                    @foreach ($users as $user)
                     <tr>
-                        @foreach ($users as $user)
-                        @if ($user->id === $empleado->id_usuario)
-                        <td>{{ $user->name }}</td>
-                        @endif
-                        @endforeach
-                        <td>{{ $empleado->nombre_emp }}</td>
-                        <td>{{ $empleado->apellido_emp }}</td>
-                        <td>{{ $empleado->cedula }}</td>
+      
+                      @foreach ($users as $user)
+                      @if ($user->id === $user->id_usuario)
+                      <td>{{ $user->name }}</td>
+                      @endif
+                      @endforeach
+      
+                      <td>{{ $user->name }}</td>
+                      <td>{{ $user->email }}</td>
+      
                     </tr>
                     @endforeach
-                </tbody>
-            </table>
-            
+                  </tbody>
+    
+              </table>
         </div>
     </div>
 </body>
