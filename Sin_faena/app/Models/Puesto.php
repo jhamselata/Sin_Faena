@@ -19,7 +19,7 @@ class Puesto extends Model
         'descripcion_puesto',
     ];
 
-    public function empleado(){
+    public function puesto(){
         return $this->hasmany(Empleado::class)->withDefault();
     }
 }

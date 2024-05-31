@@ -11,7 +11,7 @@ class UpdateInformeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,13 @@ class UpdateInformeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'id' => ['nullable'],
+            'fecha_informe' => ['required'],
+            'id_remitente' => ['required'],
+            'id_destinatario' => ['required'],
+            'id_tipoInforme' => ['required'],
+            'titulo_informe' => ['required'],
+            'descripcion_informe' => ['required']
         ];
     }
 }
