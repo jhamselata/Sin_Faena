@@ -12,7 +12,7 @@
             <nav class="-mx-3 flex flex-1 justify-end">
                 @auth
                 <li class="nav-item dropdown">
-                    <a class="nav-link notification-bell bx bxs-bell" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link notification-bell bx bxs-bell dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fas fa-bell"></i>
                         @if($notificaciones->whereNull('read_at')->count() > 0)
                         <span class="notification-count">{{ $notificaciones->whereNull('read_at')->count() }}</span>
@@ -21,7 +21,7 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         @forelse($notificaciones as $notificacion)
                         <li>
-                            <a class="dropdown-item" href="#">
+                            <div class="dropdown-item">
                                 {{ $notificacion->mensaje }}
                                 @if(is_null($notificacion->read_at))
                                 <form action="{{ route('notificaciones.marcarComoLeida', $notificacion->id) }}" method="POST" style="display: inline;">
@@ -29,7 +29,7 @@
                                     <button type="submit" class="btn btn-link">Marcar como leída</button>
                                 </form>
                                 @endif
-                            </a>
+                            </div>
                         </li>
                         @empty
                         <li><a class="dropdown-item" href="#">No hay nuevas notificaciones</a></li>

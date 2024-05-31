@@ -8,6 +8,7 @@ use App\Models\Pedido;
 use App\Models\Servicio;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -16,10 +17,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = auth()->user();
-        $notificaciones = $user->notificacion; // Asume que tienes una relación 'notificaciones' en el modelo User
+        $user = Auth::user();
+        $notificaciones = $user->notificaciones()->whereNull('read_at')->get();
+    
         return view('layouts.index', compact('notificaciones'));
     }
+
 
     public function marcarComoLeida($id)
     {

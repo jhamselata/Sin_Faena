@@ -48,7 +48,7 @@
                             <p class="card-text">En 24 horas se le enviará una respuesta. Por favor, esté atento a su correo electrónico.</p>
                         </div>
                         <div class="card-footer text-muted">
-                            <a href="/" class="btn btn-primary">Volver al inicio</a>
+                            <a href="/inicio" class="btn btn-primary">Volver al inicio</a>
                         </div>
                     </div>
                 </div>
