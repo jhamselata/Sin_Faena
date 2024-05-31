@@ -41,7 +41,7 @@ class TipoInformeController extends Controller
      */
     public function show(Tipo_informe $tipoinforme)
     {
-        return view('admin.tipoinformes.show', compact('tipoinformes'));
+        return view('admin.tipoinformes.show', compact('tipoinforme'));
     }
 
     /**
@@ -49,7 +49,7 @@ class TipoInformeController extends Controller
      */
     public function edit(Tipo_informe $tipoinforme)
     {
-        return view('admin.tipoinformes.edit', compact('tipoinformes'));
+        return view('admin.tipoinformes.edit', compact('tipoinforme'));
     }
 
     /**
@@ -59,7 +59,7 @@ class TipoInformeController extends Controller
     {
         $tipoinforme->update($request->validated());
 
-        return redirect()->route('admin.tipoinforme.index')->with('success', 'Tipo de informe actualizado exitosamente.');
+        return redirect()->route('admin.tipoinformes.index')->with('success', 'Tipo de informe actualizado exitosamente.');
     }
 
     /**

@@ -26,7 +26,7 @@ class InformeController extends Controller
         $informes = Informe::all();
         $tipoinformes = Tipo_Informe::all();
   
-        $pdf = facadePdf::loadView('admin.empleados.reporte', compact('tipoinformes, informes'));
+        $pdf = facadePdf::loadView('admin.informes.reporte', compact('tipoinformes, informes'));
 
         return $pdf->stream('reporte_informes.pdf');
     }
@@ -56,7 +56,7 @@ class InformeController extends Controller
     {
         $tipoinformes = Tipo_informe::all();
 
-        return view('admin.informes.show', compact('tipoinformes', 'informes'));
+        return view('admin.informes.show', compact('tipoinformes', 'informe'));
     }
 
     /**
@@ -66,7 +66,7 @@ class InformeController extends Controller
     {
         $tipoinformes = Tipo_informe::all();
 
-        return view('admin.informes.edit', compact('tipoinformes', 'informes'));
+        return view('admin.informes.edit', compact('tipoinformes', 'informe'));
     }
 
     /**
@@ -76,7 +76,7 @@ class InformeController extends Controller
     {
         $informe->update($request->validated());
 
-        return redirect()->route('admin.informe.index')->with('success', 'Informe actualizado exitosamente.');
+        return redirect()->route('admin.informes.index')->with('success', 'Informe actualizado exitosamente.');
     }
 
     /**

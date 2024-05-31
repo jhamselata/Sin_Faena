@@ -236,14 +236,14 @@ Route::delete('informes/{informe}', [InformeController::class,'destroy'])->name(
 Route::get('admin.informes.reporte', [InformeController::class, 'reporte'])->name('admin.informes.reporte');
 
 //Ruta de los Tipos de Informe
-Route::get('tipoinformes', [EquipoController::class, 'index'])->name('admin.tipoinformes.index');
-Route::get('/tipoinformes/all', [EquipoController::class, 'getAllEvents'])->name('admin.tipoinformes.all');
-Route::get('tipoinformes/create', [EquipoController::class, 'create'])->name('admin.tipoinformes.create');
-Route::post('tipoinformes', [EquipoController::class,'store'])->name('admin.tipoinformes.store');
-Route::get('tipoinformes/{tipoinforme}', [EquipoController::class,'show'])->name('admin.tipoinformes.show');
-Route::get('tipoinformes/{tipoinforme}/edit', [EquipoController::class, 'edit'])->name('admin.tipoinformes.edit');
-Route::put('tipoinformes/{tipoinforme}', [EquipoController::class,'update'])->name('admin.tipoinformes.update');
-Route::delete('tipoinformes/{tipoinforme}', [EquipoController::class,'destroy'])->name('admin.tipoinformes.destroy');
+Route::get('tipoinformes', [TipoInformeController::class, 'index'])->name('admin.tipoinformes.index');
+Route::get('/tipoinformes/all', [TipoInformeController::class, 'getAllEvents'])->name('admin.tipoinformes.all');
+Route::get('tipoinformes/create', [TipoInformeController::class, 'create'])->name('admin.tipoinformes.create');
+Route::post('tipoinformes', [TipoInformeController::class,'store'])->name('admin.tipoinformes.store');
+Route::get('tipoinformes/{tipoinforme}', [TipoInformeController::class,'show'])->name('admin.tipoinformes.show');
+Route::get('tipoinformes/{tipoinforme}/edit', [TipoInformeController::class, 'edit'])->name('admin.tipoinformes.edit');
+Route::put('tipoinformes/{tipoinforme}', [TipoInformeController::class,'update'])->name('admin.tipoinformes.update');
+Route::delete('tipoinformes/{tipoinforme}', [TipoInformeController::class,'destroy'])->name('admin.tipoinformes.destroy');
 
 //Ruta de los Usuarios
 Route::get('/users', [UsuarioController::class, 'index'])->name("admin.users.servicio");
