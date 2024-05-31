@@ -41,11 +41,10 @@ class ContactController extends Controller
             'phone' => 'required',
             'subject' => 'required',
             'message' => 'required',
-            'attachments.*' => 'file|mimes:jpg,jpeg,png,pdf,doc,docx|max:2048',
         ]);
 
         $details = [
-            'title' => 'Nuevo mensaje acerca de su pedido',
+            'title' => 'Nuevo mensaje relacionado a pedidos',
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
@@ -53,12 +52,12 @@ class ContactController extends Controller
             'message' => $request->message
         ];
 
-        $attachments = $request->file('attachments') ?? [];
+        Mail::to('sinfaena@gmail.com')->send(new \App\Mail\CompleteMail($details));
 
-        Mail::to('sinfaena@gmail.com')->send(new CompleteMail($details, $attachments));
-
-        return back()->with('success', 'Tu mensaje ha sido enviado correctamente.');
+        return redirect()->route('dashboard')->with('success', 'Correo enviado exitosamente');
     }
+
+
 
     public function completeEmail()
     {

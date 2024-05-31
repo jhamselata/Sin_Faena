@@ -29,15 +29,19 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\ContactController;
 
-Route::get('/', [UserController::class, 'index'])->name('inicio');
-
-Route::get('/inicio', function () {
-    return view('layouts.index');
-})->name('inicio');
+//Route::get('/', [UserController::class, 'index'])->name('inicio');
 
 Route::get('/login', function () {
     return view('auth.login');
 });
+
+Route::get('/inicio', [UserController::class, 'index'])->name('inicio');
+
+
+/**  Route::get('/inicio', function() {
+    return view('layouts.index');
+})->name('inicio'); 
+*/
 
 Route::get('/dashboard', function () {
     return view('dashboard');

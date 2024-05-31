@@ -9,6 +9,8 @@
     <p><strong>Email:</strong> {{ $details['email'] }}</p>
     <p><strong>Teléfono:</strong> {{ $details['phone'] }}</p>
     <p><strong>Asunto:</strong> {{ $details['subject'] }}</p>
-    <p><strong>Mensaje:</strong></p><p>{{ $details['message'] }}</p>
+    <p><strong>Mensaje:</strong></p>
+    <p>{{ $details['message'] }}</p>
 </body>
 </html>
+
