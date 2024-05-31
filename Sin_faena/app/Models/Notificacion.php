@@ -19,4 +19,9 @@ class Notificacion extends Model
         'mensaje',
         'read_at',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_usuario');
+    }
 }

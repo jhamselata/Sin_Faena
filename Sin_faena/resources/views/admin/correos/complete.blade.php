@@ -21,7 +21,7 @@
                         <div class="card-body">
                             <form action="{{ route('send.complete.email') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                <h2 class="contacto-title mb-4">Envia el correo</h2>
+                                <h2 class="contacto-title mb-4">Informar al cliente de la finalización de su pedido</h2>
 
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Nombre</label>
@@ -52,14 +52,10 @@
                                     <textarea class="form-control" id="message" name="message" placeholder="Mensaje" rows="4" required></textarea>
                                 </div>
 
-                                <div class="mb-3">
-                                    <label for="attachments" class="form-label">Archivos adjuntos</label>
-                                    <input type="file" class="form-control" id="attachments" name="attachments[]" multiple>
-                                </div>
-
                                 <button type="submit" class="btn btn-primary">Enviar</button>
                             </form>
                         </div>
+
                     </div>
                 </div>
                 <!-- FIN - MODAL FORM -->
