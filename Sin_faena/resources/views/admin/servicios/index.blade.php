@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends($layout)
 @section('content')
 
 <!--CONTENIDO DE LAS TABLAS Y FORMULARIOS-->
@@ -10,10 +10,12 @@
       <button type="button" class="btn btn-secondary">
         Inicio
       </button>
-      <form method="GET" action="{{ route('admin.servicios.create') }}">
-        @csrf
-        <button type="submit" class="btn btn-primary">Registrar</button>
-      </form>
+      @if(auth()->user()->hasRole('admin'))
+            <form method="GET" action="{{ route('admin.servicios.create') }}">
+                @csrf
+                <button type="submit" class="btn btn-primary">Registrar</button>
+            </form>
+        @endif
 
       <a href="{{ route('admin.servicios.reporte') }}" class="btn btn-warning" target="_blank">Reporte</a>
 
@@ -70,7 +72,7 @@
                 </a>
 
 
-
+                @if(auth()->user()->hasRole('admin'))
                 <form action="{{ route('admin.servicios.destroy', $servicio->id) }}" method="post" onsubmit="return confirm('Desea eliminar el registro?')" style="display: inline-block;">
                   @method('DELETE')
                   @csrf
@@ -78,6 +80,7 @@
                     <i class="fas fa-solid fa-trash"></i>
                   </button>
                 </form>
+                @endif
               </td>
             </tr>
             @endforeach

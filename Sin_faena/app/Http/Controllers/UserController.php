@@ -16,12 +16,17 @@ class UserController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        $user = Auth::user();
+{
+    $user = Auth::user();
+    $notificaciones = collect();
+
+    if ($user) {
         $notificaciones = $user->notificaciones()->whereNull('read_at')->get();
-    
-        return view('layouts.index', compact('notificaciones'));
     }
+
+    return view('layouts.index', compact('notificaciones'));
+}
+
 
 
     public function marcarComoLeida($id)

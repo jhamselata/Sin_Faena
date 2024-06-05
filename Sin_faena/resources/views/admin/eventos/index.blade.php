@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends($layout)
 @section('content')
 
 <!--CONTENIDO DE LAS TABLAS Y FORMULARIOS-->
@@ -118,9 +118,11 @@
                     </div>
 
                     <div class="modal-footer">
+                        @if(auth()->user()->hasRole('supervisor') || auth()->user()->hasRole('admin'))
                         <button type="submit" class="btn btn-success" id="btnGuardar"><i class="fa fa-fw fa-lg fa-check-circle"></i> Guardar</button>
                         <button type="button" class="btn btn-warning" id="btnEditar"><i class="fas fa-pen"></i> Editar</button>
                         <button type="button" class="btn btn-danger" id="btnEliminar"><i class="fas fa-trash"></i> Eliminar</button>
+                        @endif
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa fa-fw fa-lg fa-arrow-left"></i> Regresar</button>
                     </div>
 

@@ -16,7 +16,7 @@ class CreateTriggerActualizacionEstadoPedido extends Migration
             BEGIN
                 IF NEW.estado_pedido != OLD.estado_pedido THEN
                     INSERT INTO notificacion (id_usuario, mensaje)
-                    VALUES (NEW.id_usuario, CONCAT("El estado de tu pedido ha cambiado a ", NEW.estado_pedido));
+                    VALUES (NEW.id_usuario, CONCAT("Revise su correo. El estado de su pedido ha cambiado a ", NEW.estado_pedido));
                 END IF;
             END;
         ');

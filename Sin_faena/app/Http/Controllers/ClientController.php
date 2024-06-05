@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateClienteRequest;
 use App\Models\Cliente;
 use App\Models\Tipo_cliente;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\Pdf as facadePdf;
 
 use Illuminate\Http\Request;
@@ -20,7 +21,18 @@ class ClientController extends Controller
         $tipo_clientes = Tipo_cliente::all();
         $users = User::all();
 
-        return view('admin.clientes.index', compact('clientes', 'tipo_clientes', 'users'));
+        $user = Auth::user();
+        $layout = 'layouts.app'; // Default view
+
+        if ($user->hasRole('admin')) {
+            $layout = 'layouts.admin';
+        } elseif ($user->hasRole('empleado')) {
+            $layout = 'layouts.empleado';
+        } elseif ($user->hasRole('supervisor')) {
+            $layout = 'layouts.supervisor';
+        }
+
+        return view('admin.clientes.index', compact('clientes', 'tipo_clientes', 'users', 'layout'));
     }
 
     public function reporte()

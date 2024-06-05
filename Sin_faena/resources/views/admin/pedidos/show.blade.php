@@ -62,7 +62,9 @@
                                 <input type="text" class="form-control" value="{{ $pedido->estado_pedido }}" readonly>
                             </div>
 
+                            @if(auth()->user()->hasRole('supervisor') || auth()->user()->hasRole('admin'))
                             <a href="{{ route('admin.pedidos.edit', $pedido->id) }}" class="btn btn-primary">Editar</a>
+                            @endif
                             <a href="{{ route('admin.pedidos.index') }}" class="btn btn-danger">Regresar</a>
 
 

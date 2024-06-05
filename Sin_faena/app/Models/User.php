@@ -2,14 +2,15 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -21,7 +22,6 @@ class User extends Authenticatable
         'email',
         'password',
     ];
-    
 
     /**
      * The attributes that should be hidden for serialization.
@@ -34,33 +34,33 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the attributes that should be cast.
+     * The attributes that should be cast.
      *
      * @return array<string, string>
      */
-    protected function casts(): array
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+    ];
+
+    public function tareas()
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return $this->hasMany(Tarea::class)->withDefault();
     }
 
-    public function user(){
-        return $this->hasmany(Tarea::class)->withDefault();
+    public function empleados()
+    {
+        return $this->hasMany(Empleado::class)->withDefault();
     }
 
-    public function empleado(){
-        return $this->hasmany(Empleado::class)->withDefault();
-    }   
-
-    public function pedido(){
-        return $this->hasmany(Pedido::class)->withDefault();
+    public function pedidos()
+    {
+        return $this->hasMany(Pedido::class)->withDefault();
     }
 
     public function notificaciones()
     {
-        return $this->hasMany(Notificacion::class,'id_usuario');
+        return $this->hasMany(Notificacion::class, 'id_usuario');
     }
-    
 }
+

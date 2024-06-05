@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends($layout)
 @section('content')
 
 <!--CONTENIDO DE LAS TABLAS Y FORMULARIOS-->
@@ -74,7 +74,7 @@
                 </a>
 
 
-
+                @if(auth()->user()->hasRole('supervisor') || auth()->user()->hasRole('admin'))
                 <form action="{{ route('admin.pedidos.destroy', $pedido->id) }}" method="post" onsubmit="return confirm('Desea eliminar el registro?')" style="display: inline-block;">
                   @method('DELETE')
                   @csrf
@@ -82,6 +82,7 @@
                     <i class="fas fa-solid fa-trash"></i>
                   </button>
                 </form>
+                @endif
               </td>
             </tr>
             @endforeach

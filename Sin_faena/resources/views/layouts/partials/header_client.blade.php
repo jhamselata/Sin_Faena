@@ -1,5 +1,4 @@
 <header>
-
     <div class="menu-nav">
         <div class="logo"><i></i><span>SinFaena</span></div>
 
@@ -14,11 +13,12 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link notification-bell bx bxs-bell dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fas fa-bell"></i>
-                        @if($notificaciones->whereNull('read_at')->count() > 0)
+                        @if(isset($notificaciones) && $notificaciones->whereNull('read_at')->count() > 0)
                         <span class="notification-count">{{ $notificaciones->whereNull('read_at')->count() }}</span>
                         @endif
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        @isset($notificaciones)
                         @forelse($notificaciones as $notificacion)
                         <li>
                             <div class="dropdown-item">
@@ -34,16 +34,36 @@
                         @empty
                         <li><a class="dropdown-item" href="#">No hay nuevas notificaciones</a></li>
                         @endforelse
+                        @else
+                        <li><a class="dropdown-item" href="#">No hay nuevas notificaciones</a></li>
+                        @endisset
                     </ul>
                 </li>
-                <a href="{{ route('login') }}" class="otro">
-                    Dashboard
-                </a>
+                @if(auth()->user()->hasRole('admin'))
+                <a href="{{ route('dashboard') }}" class="otro">Dashboard</a>
+                @elseif(auth()->user()->hasRole('empleado'))
+                <a href="{{ route('dashboardEmpleado') }}" class="otro">Dashboard</a>
+                @elseif(auth()->user()->hasRole('supervisor'))
+                <a href="{{ route('dashboardSupervisor') }}" class="otro">Dashboard</a>
+                @else
+                <a href="{{ route('') }}" class="otro"></a>
+                @endif
+                <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user fa-fw"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li>
+                                <a class="dropdown-item" href="#!" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">Cerrar sesión</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
                 @else
                 <a href="{{ route('login') }}" class="otro">
                     Iniciar sesión
                 </a>
-
                 @if (Route::has('register'))
                 <a href="{{ route('register') }}" class="otro">
                     Registrar
@@ -53,14 +73,16 @@
             </nav>
             @endif
 
-        </ul>
+            <form id="logoutform" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
 
-        <div class="main">
-            <div class="bx bx-menu" id="menu-icon"></div>
-        </div>
+            <div class="main">
+                <div class="bx bx-menu" id="menu-icon"></div>
+            </div>
     </div>
-
 </header>
+
 
 
 <section class="banner">
