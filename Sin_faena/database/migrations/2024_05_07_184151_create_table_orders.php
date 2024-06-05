@@ -17,6 +17,10 @@ return new class extends Migration
             $table->string('descripcion_pedido', 2500);
             $table->timestamp('fecha_pedido');
             $table->string('estado_pedido', 49)->default('Pendiente');
+            $table->string('plataformas', 49)->nullable();
+            $table->string('estilo_diseno', 49)->nullable();
+            $table->string('frecuencia_publicacion', 49)->nullable();
+            $table->string('formato_entrega', 49)->nullable();
 
             $table->timestamps();
             $table->softDeletes();

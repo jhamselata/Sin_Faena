@@ -7,9 +7,11 @@
     <div class="container-fluid px-4">
         <h1 class="mt-5">Eventos</h1>
         <div class="mb-4 mt-4 d-grid gap-2 d-md-flex">
-            <button type="button" class="btn btn-secondary">
-                Inicio
-            </button>
+
+            <a href="{{ route('inicio')}}" class="btn btn-secondary">
+                <i class="fas fa-solid fa-house"></i>
+            </a>
+
             <a href="{{ route('admin.eventos.reporte') }}" class="btn btn-warning" target="_blank">Reporte</a>
         </div>
 

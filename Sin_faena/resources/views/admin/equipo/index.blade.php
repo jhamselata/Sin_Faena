@@ -6,7 +6,7 @@
 
   <div class="container-fluid px-4">
     <h1 class="mt-5">Equipo</h1>
-    
+
     <div class="mb-4 mt-4 d-grid gap-2 d-md-flex">
       <a href="{{ route('inicio')}}" class="btn btn-secondary">
         <i class="fas fa-solid fa-house"></i>
@@ -17,7 +17,7 @@
         <button type="submit" class="btn btn-primary">Registrar</button>
       </form>
 
-      <a href="{{ route('admin.equipo.reporte') }}" class="btn btn-warning" target="_blank">Reporte</a>
+      <a href="{{ route('admin.equipos.reporte') }}" class="btn btn-warning" target="_blank">Reporte</a>
 
     </div>
 

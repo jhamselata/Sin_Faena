@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row mb-9">
             <div class="col-sm-6">
-                <h1 class="mb-6 mx-2 mt-3">Nuevo Tipo de Pago</h1>
+                <h1 class="mb-6 mx-2 mt-3">Nuevo tipo de pago</h1>
             </div>
         </div>
     </div>
@@ -20,7 +20,7 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <form class="form-horizontal" method="post" action="{{ route('admin.tipo_pagos.store') }}">
+                            <form class="form-horizontal" method="post" action="{{ route('admin.tipo_pago.store') }}">
                                 @csrf
 
                                 <div class="row">
@@ -57,7 +57,7 @@
 
 
                                 <button class="btn btn-primary" type="submit">Guardar</button>
-                                <a href="{{ route('admin.tipo_pagos.index') }}" class="">
+                                <a href="{{ route('admin.tipo_pago.index') }}" class="">
                                     <i class="btn btn-danger">Regresar</i>
                                 </a>
 
@@ -72,9 +72,6 @@
             </div>
 
         </div>
-    </div>
-    </div>
-    </div>
     </div>
 </main>
 <!-- FIN - CONTENIDO DE LAS TABLAS Y FORMULARIOS-->

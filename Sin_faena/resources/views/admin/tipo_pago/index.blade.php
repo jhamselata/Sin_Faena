@@ -8,15 +8,14 @@
     <h1 class="mt-5">Tipos de Pago</h1>
     <div class="mb-4 mt-4 d-grid gap-2 d-md-flex">
 
-      <a href="{{ route('admin.tipo_pago.show', $tipo_pago->id) }}" class="btn btn-primary">
-        <i class="fas fa-solid fa-info-circle"></i>
+      <a href="{{ route('inicio')}}" class="btn btn-secondary">
+        <i class="fas fa-solid fa-house"></i>
       </a>
 
       <form method="GET" action="{{ route('admin.tipo_pago.create') }}">
         @csrf
         <button type="submit" class="btn btn-primary">Registrar</button>
       </form>
-
     </div>
 
 
@@ -26,6 +25,8 @@
       @if (session('success'))
       <div id="successAlert" class="alert alert-success alert-dismissible fade show" role="alert">
         {{ session('success') }}
+        <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true"></span>
       </div>
       @endif
     </div>
@@ -64,6 +65,8 @@
               <a href="{{ route('admin.tipo_pago.show', $tipo_pago->id) }}" class="btn btn-primary">
                 <i class="fas fa-solid fa-info-circle"></i>
               </a>
+
+
 
               <form action="{{ route('admin.tipo_pago.destroy', $tipo_pago->id) }}" method="post" onsubmit="return confirm('Desea eliminar el registro?')" style="display: inline-block;">
                 @method('DELETE')

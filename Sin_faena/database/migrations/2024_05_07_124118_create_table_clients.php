@@ -24,11 +24,13 @@ return new class extends Migration
             $table->id();
             $table->foreignId('id_usuario')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('id_tipoCliente')->references('id')->on('tipo_cliente')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('nombre_cli');
-            $table->string('apellido_cli')->nullable();
-            $table->string('rnc_cli')->nullable();
-            $table->string('telefono_cli');
-            $table->string('estado_cli')->default('Activo');
+            $table->string('nombre_cli', 49);
+            $table->string('apellido_cli', 49)->nullable();
+            $table->string('rnc_cli', 13)->nullable();
+            $table->string('telefono_cli', 12);
+            $table->string('preferencia_comunicacioon', 75);
+            $table->string('otra_via_comunicacion', 100);
+            $table->string('estado_cli', 49)->default('Activo');
 
             $table->timestamps();
             $table->softDeletes();
@@ -41,7 +43,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('TIPO_CLIENTE');
-
         Schema::dropIfExists('CLIENTE');
     }
 };

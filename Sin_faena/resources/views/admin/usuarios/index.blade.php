@@ -7,13 +7,12 @@
   <div class="container-fluid px-4">
     <h1 class="mt-5">Usuarios</h1>
     <div class="mb-4 mt-4 d-grid gap-2 d-md-flex">
-      <button type="button" class="btn btn-secondary">
-        Inicio
-      </button>
+    <a href="{{ route('inicio')}}" class="btn btn-secondary">
+        <i class="fas fa-solid fa-house"></i>
+      </a>
 
       <a href="{{ route('admin.users.reporte') }}" class="btn btn-warning" target="_blank">Reporte</a>
     </div>
-
 
     <!-- MODAL FORM -->
 
@@ -21,13 +20,12 @@
       @if (session('success'))
       <div class="alert alert-success alert-dismissible fade show" role="alert">
         {{ session('success') }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+        <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true"></span>
       </div>
       @endif
 
       <!-- FIN - MODAL FORM -->
-
 
       <!-- CARD DE LA TABLA -->
       <div class="card mb-4">
