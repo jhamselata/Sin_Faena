@@ -28,27 +28,27 @@
 
                                         <div class="col-sm">
                                             <div class="mb-3 text-dark">
-                                                <label for="fecha_pedido" class="form-label">Fecha pedido: </label>
-                                                <input type="date" class="form-control date" name="fecha_pedido" id="fecha_pedido" value="{{ old('fecha_pedido', $pedido->fecha_pedido)}}" required autofocus />
+                                                <label for="fecha_informe" class="form-label">Fecha: </label>
+                                                <input type="date" class="form-control date" name="fecha_informe" id="fecha_informe" value="{{ old('fecha_informe', $informe->fecha_informe)}}" required autofocus />
                                             </div>
                                         </div>
 
                                         <div class="col-sm">
                                             <div class="mb-3 text-dark">
-                                                <label for="id_usuario" class="form-label">Usuario</label>
-                                                <select class="form-control select2" name="id_usuario" style="width: 100%;" autofocus>
+                                                <label for="id_remitente" class="form-label">Remitente</label>
+                                                <select class="form-control select2" name="id_remitente" style="width: 100%;" autofocus>
                                                     <option value=""></option>
                                                     @foreach ($users as $user)
-                                                    <option value="{{ $user->id }}" {{ (old('id_usuario') ? old('id_usuario') : ($empleado->id_usuario ?? '')) == $user->id ? 'selected' : '' }}>
+                                                    <option value="{{ $user->id }}" {{ (old('id_remitente') ? old('id_remitente') : ($informe->id_remitente ?? '')) == $user->id ? 'selected' : '' }}>
                                                         {{ $user->name }}
                                                     </option>
                                                     @endforeach
                                                 </select>
     
     
-                                                @if ($errors->has('id_usuario'))
+                                                @if ($errors->has('id_remitente'))
                                                 <span class="text-danger">
-                                                    <strong>{{ $errors->first('id_usuario') }}</strong>
+                                                    <strong>{{ $errors->first('id_remitente') }}</strong>
                                                 </span>
                                                 @endif
     
@@ -61,11 +61,11 @@
 
                                     <div class="col-sm">
                                         <div class="mb-3 text-dark">
-                                            <label for="id_usuario" class="form-label">Usuario</label>
-                                            <select class="form-control select2" name="id_usuario" style="width: 100%;" autofocus>
+                                            <label for="id_usuario" class="form-label">Destinatario</label>
+                                            <select class="form-control select2" name="id_destinatario" style="width: 100%;" autofocus>
                                                 <option value=""></option>
                                                 @foreach ($users as $user)
-                                                <option value="{{ $user->id }}" {{ (old('id_usuario') ? old('id_usuario') : ($empleado->id_usuario ?? '')) == $user->id ? 'selected' : '' }}>
+                                                <option value="{{ $user->id }}" {{ (old('id_destinatario') ? old('id_destinatario') : ($informe->id_destinatario ?? '')) == $user->id ? 'selected' : '' }}>
                                                     {{ $user->name }}
                                                 </option>
                                                 @endforeach

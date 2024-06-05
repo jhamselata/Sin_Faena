@@ -16,9 +16,9 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('send.complete.email') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('send.final.email') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                <h2 class="contacto-title mb-4">Enviar correo de <strong>pago</strong> y <strong>vista previa</strong> al cliente</h2>
+                                <h2 class="contacto-title mb-4">Enviar correo de <strong>entrega final</strong> al cliente</h2>
 
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Correo electrónico</label>
@@ -30,13 +30,8 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="cuenta" class="form-label">Cuenta bancaria</label>
-                                    <input type="text" class="form-control" id="cuenta" name="cuenta" value="BanReservas: #9603719290 | A nombre de: Sin Faena" required>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="message" class="form-label">Mensaje</label>
-                                    <textarea class="form-control" id="message" name="message" placeholder="Link del drive - Vista previa de la entrega" rows="4" required></textarea>
+                                    <label for="link" class="form-label">Link de la entrega final:</label>
+                                    <input type="text" class="form-control" id="link" name="link" placeholder="Link de Drive" required>
                                 </div>
 
                                 <button type="submit" class="btn btn-primary">Enviar</button>

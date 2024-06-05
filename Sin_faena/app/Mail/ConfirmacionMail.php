@@ -20,7 +20,7 @@ class CompleteMail extends Mailable
 
     public function build()
     {
-        return $this->subject('Solicitud de pago y pre-view de entrega')
-                    ->view('emails.complete');
+        return $this->subject('Confirmación de pedido - Sin Faena')
+                    ->view('emails.confirmacion');
     }
 }

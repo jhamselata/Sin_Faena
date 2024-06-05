@@ -80,7 +80,7 @@
                                         <div class="mb-3 text-dark">
                                             <label for="id_tipoInforme" class="form-label">Tipo de Informe</label>
                                             <select class="form-control select2" name="id_tipoInforme" style="width: 100%;" autofocus>
-                                                <option value="">Seleccione un tipo de servicio</option>
+                                                <option value="">Seleccione un tipo de informe</option>
                                                 @foreach ($tipo_informes as $tipo_informe)
                                                 <option value="{{ $tipo_informe->id }}" {{ old('id_tipoInforme') == $tipo_informe->id ? 'selected' : '' }}>
                                                     {{ $tipo_informe->nombre_tipoInforme }}
