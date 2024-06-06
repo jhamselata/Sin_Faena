@@ -122,7 +122,7 @@
 
                                     <div class="col-sm">
                                         <div class="mb-3 text-dark">
-                                            <label for="code" class="form-label required">Telefono</label>
+                                            <label for="code" class="form-label required">Teléfono</label>
                                             <input type="text" class="form-control {{$errors->has('telefono_cli') ? 'is-invalid' : ''}}" id="telefono_cli" placeholder="Telefono del cliente" name="telefono_cli" autofocus value="{{old('telefono_cli', $clientes->telefono_cli)}}" />
                                             @if ($errors->has('telefono_cli'))
                                             <span class="text-danger">
@@ -149,6 +149,40 @@
                                         </div>
                                     </div>
                                 </div>
+
+
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <div class="mb-3 text-dark">
+                                            <label for="preferencia_comunicacion" class="form-label">Comunicación</label>
+                                            <select class="form-control {{ $errors->has('preferencia_comunicacion') ? 'is-invalid' : '' }}" name="preferencia_comunicacion" id="preferencia_comunicacion" required autofocus>
+                                                <option value="">Seleccione el medio de su preferencia</option>
+                                                @foreach(App\Models\Cliente::COMUNICATION as $comunications)
+                                                <option value="{{ $comunications }}" {{ (old('preferencia_comunicacion') ? old('preferencia_comunicacion') : $clientes->preferencia_comunicacion ?? '') == $comunications ? 'selected' : '' }}>{{ $comunications }}</option>
+                                                @endforeach
+                                            </select>
+                                            @if($errors->has('preferencia_comunicacion'))
+                                            <div class="text-danger">
+                                                {{ $errors->first('preferencia_comunicacion') }}
+                                            </div>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm">
+                                        <div class="mb-3 text-dark">
+                                            <label for="code" class="form-label required">Otro medio</label>
+                                            <input type="text" class="form-control {{$errors->has('otra_via_comunicacion') ? 'is-invalid' : ''}}" id="otra_via_comunicacion" placeholder="En caso de otro medio" name="otra_via_comunicacion" autofocus value="{{old('otra_via_comunicacion', $clientes->otra_via_comunicacion)}}" />
+                                            @if ($errors->has('otra_via_comunicacion'))
+                                            <span class="text-danger">
+                                                <strong>{{ $errors->first('otra_via_comunicacion') }}</strong>
+                                            </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+
+
                                 <button class="btn btn-primary" type="submit">Editar</button>
                                 <a href="{{ route('admin.clientes.index') }}" class="">
                                     <i class="btn btn-danger">Regresar</i>

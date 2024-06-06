@@ -24,7 +24,7 @@
                                     <label for="email" class="form-label">Correo electrónico</label>
                                     @foreach ($users as $user)
                                     @if ($user->id === $pedido->id_usuario)
-                                    <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}" required readonly>
+                                    <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}" required readonly disabled>
                                     @endif
                                     @endforeach
                                 </div>

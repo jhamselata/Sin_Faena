@@ -23,10 +23,10 @@
                             <div class="mb-3 text-dark">
                                 <label for="id_usuario" class="form-label">Usuario</label>
                                 @foreach ($users as $user)
-                                            @if ($user->id === $pedido->id_usuario)
-                                            <input type="text" class="form-control" value="{{ $user->name }}" disabled>
-                                            @endif
-                                            @endforeach
+                                @if ($user->id === $pedido->id_usuario)
+                                <input type="text" class="form-control" value="{{ $user->name }}" disabled>
+                                @endif
+                                @endforeach
                             </div>
 
                             <div class="mb-3 text-dark">
@@ -57,14 +57,44 @@
                                 <input type="text" class="form-control" value="{{ $pedido->estado_pedido }}" readonly>
                             </div>
 
+                            <div class="mb-3 text-dark">
+                                <label for="plataformas" class="form-label">Plataformas</label>
+                                <input type="text" class="form-control" value="{{ $pedido->plataformas }}" readonly>
+                            </div>
+
+                            <div class="mb-3 text-dark">
+                                <label for="estilo_diseno" class="form-label">Estilo de diseño</label>
+                                <input type="text" class="form-control" value="{{ $pedido->estilo_diseno }}" readonly>
+                            </div>
+
+                            <div class="mb-3 text-dark">
+                                <label for="frecuencia_publicacion" class="form-label">Frecuencia de publicación</label>
+                                <input type="text" class="form-control" value="{{ $pedido->frecuencia_publicacion }}" readonly>
+                            </div>
+
+                            <div class="mb-3 text-dark">
+                                <label for="formato_entrega" class="form-label">Formato de entrega</label>
+                                <input type="text" class="form-control" value="{{ $pedido->formato_entrega }}" readonly>
+                            </div>
+
+                            <div class="mb-3 text-dark">
+                                <label for="descripcion" class="form-label">Colores</label>
+                                <input type="text" class="form-control" value="{{ $pedido->colores }}" readonly>
+                            </div>
+
+                            <div class="mb-3 text-dark">
+                                <label for="descripcion" class="form-label">Credenciales</label>
+                                <input type="text" class="form-control" value="{{ $pedido->credenciales }}" readonly>
+                            </div>
+
                             @if(auth()->user()->hasRole('supervisor') || auth()->user()->hasRole('admin'))
                             <a href="{{ route('admin.pedidos.edit', $pedido->id) }}" class="btn btn-primary">Editar</a>
                             @endif
                             <a href="{{ route('admin.pedidos.index') }}" class="btn btn-danger">Regresar</a>
 
-
-
-
+                            <a href="{{ route('admin.pedidos.reporte', $pedido->id) }}" class="btn btn-warning" target="_blank">
+                                <i class="fas fa-solid fa-print"></i>
+                            </a>
                         </div>
                     </div>
                 </div>

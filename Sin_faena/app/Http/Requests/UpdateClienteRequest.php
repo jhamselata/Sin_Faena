@@ -29,7 +29,9 @@ class UpdateClienteRequest extends FormRequest
             'apellido_cli'=> ['nullable'],
             'rnc_cli' => ['nullable'],
             'telefono_cli' => ['required'],
-            'estado_cli' => ['required']
+            'estado_cli' => ['nullable'],
+            'preferencia_comunicacion'=> ['nullable'],
+            'otra_via_comunicacion' => ['nullable']
         ];
     }
 }

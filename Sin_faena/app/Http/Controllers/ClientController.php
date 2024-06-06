@@ -22,7 +22,7 @@ class ClientController extends Controller
         $users = User::all();
 
         $user = Auth::user();
-        $layout = 'layouts.app'; // Default view
+        $layout = 'layouts.app';
 
         if ($user->hasRole('admin')) {
             $layout = 'layouts.admin';
@@ -57,7 +57,7 @@ class ClientController extends Controller
     
     public function store(StoreClienteRequest $request) {
         Cliente::create($request->validated());
-        return redirect()->route('admin.clientes.index')->with('success', 'Cliente actualizado exitosamente');
+        return redirect()->route('admin.clientes.index')->with('success', 'Cliente registrado exitosamente');
     }
 
     public function show(Cliente $cliente) {

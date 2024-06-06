@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
             // Crea el usuario administrador
             $admin = User::create([
                 'name' => 'Admin',
-                'email' => 'admin@gmail.com',
+                'email' => 'sinfaena@gmail.com',
                 'password' => Hash::make('admin1235'), // Cambia 'password' por la contraseña que desees
             ]);
     
@@ -34,19 +34,7 @@ class DatabaseSeeder extends Seeder
             $adminRole = Role::where('name', 'admin')->first();
             $admin->assignRole($adminRole);
 
-            DB::table('tipo_pago')->insert([
-                [
-                    'id' => 1,
-                    'nombre_tipoPago' => 'Efectivo',
-                    'descripcion_tipoPago' => 'Pago en efectivo'
-                ],
-                [
-                    'id' => 2,
-                    'nombre_tipoPago' => 'Tarjeta',
-                    'descripcion_tipoPago' => 'Pago con tarjeta de crédito o débito'
-                ],
-                // Agrega más registros según sea necesario
-            ]);
+           
     
             // Insert data into tipo_informe table
             DB::table('tipo_informe')->insert([
@@ -155,7 +143,7 @@ class DatabaseSeeder extends Seeder
                 [
                     'id' => 1,
                     'id_tipoServicio' => 1, // Asegúrate de que el tipo de servicio exista en la tabla tipo_servicio
-                    'nombre_servicio' => 'Branding, redes sociales y logos',
+                    'nombre_servicio' => 'Branding',
                     'descripcion_servicio' => 'Administracion y manejo de la imagen corporativa de la empresa',
                     'precio_servicio' => 500.00,
                     'duracion_estimada' => '2 horas'
@@ -163,7 +151,7 @@ class DatabaseSeeder extends Seeder
                 [
                     'id' => 2,
                     'id_tipoServicio' => 2, // Asegúrate de que el tipo de servicio exista en la tabla tipo_servicio
-                    'nombre_servicio' => 'Marketing',
+                    'nombre_servicio' => 'Logo',
                     'descripcion_servicio' => 'Publicidad de buena calidad para su empresa',
                     'precio_servicio' => 150.00,
                     'duracion_estimada' => '4 horas'

@@ -26,7 +26,6 @@
 
                                 <div class="row">
 
-
                                     <div class="col-sm">
                                         <div class="mb-3 text-dark">
                                             <label for="id_usuario" class="form-label">Usuario</label>
@@ -51,21 +50,7 @@
 
                                     <div class="col-sm">
                                         <div class="mb-3 text-dark">
-                                            <label for="descripcion" class="form-label">Descripcion </label>
-                                            <textarea name="descripcion_pedido" class="form-control" autofocus>{{old('descripcion_pedido', $pedido->descripcion_pedido)}}</textarea>
-                                            @if ($errors->has('descripcion_pedido'))
-                                            <span class="text-danger">
-                                                <strong>{{ $errors->first('descripcion_pedido') }}</strong>
-                                            </span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <div class="mb-3 text-dark">
-                                            <label for="fecha_pedido" class="form-label">Fecha pedido: </label>
+                                            <label for="fecha_pedido" class="form-label">Fecha pedido </label>
 
                                             @php
                                             $fechaPedido = old('fecha_pedido', isset($pedido) ? $pedido->fecha_pedido : null);
@@ -78,18 +63,37 @@
                                             <input type="date" class="form-control date" name="fecha_pedido" id="fecha_pedido" value="{{ $fechaPedido }}" required autofocus />
                                         </div>
                                     </div>
+
                                 </div>
 
                                 <div class="row">
+                                    <div class="col-sm">
+                                        <div class="mb-3 text-dark">
+                                        <label for="servicios">Servicios</label>
+                                        <select name="servicios[]" id="servicios" multiple>
+                                            @foreach ($servicios as $servicio)
+                                            <option value="{{ $servicio->id }}" {{ in_array($servicio->id, $pedido->servicios->pluck('id')->toArray()) ? 'selected' : '' }}>
+                                                {{ $servicio->nombre_servicio }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                        </div>
+                                    </div>
 
-                                    <label for="servicios">Servicios:</label>
-                                    <select name="servicios[]" id="servicios" multiple>
-                                        @foreach ($servicios as $servicio)
-                                        <option value="{{ $servicio->id }}" {{ in_array($servicio->id, $pedido->servicios->pluck('id')->toArray()) ? 'selected' : '' }}>
-                                            {{ $servicio->nombre_servicio }}
-                                        </option>
-                                        @endforeach
-                                    </select>
+                                    <div class="col-sm">
+                                        <div class="mb-3 text-dark">
+                                            <label for="descripcion" class="form-label">Descripcion </label>
+                                            <textarea name="descripcion_pedido" class="form-control" autofocus>{{old('descripcion_pedido', $pedido->descripcion_pedido)}}</textarea>
+                                            @if ($errors->has('descripcion_pedido'))
+                                            <span class="text-danger">
+                                                <strong>{{ $errors->first('descripcion_pedido') }}</strong>
+                                            </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
 
                                     <div class="col-sm">
                                         <div class="mb-3 text-dark">
@@ -108,6 +112,110 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="row">
+
+                                    <div class="col-sm">
+                                        <div class="mb-3 text-dark">
+                                            <label for="plataformas" class="form-label">Plataformas</label>
+                                            <select class="form-control {{ $errors->has('plataformas') ? 'is-invalid' : '' }}" name="plataformas" id="plataformas" required autofocus>
+                                                <option value="">Seleccione una plataforma</option>
+                                                @foreach(App\Models\Pedido::PLATFORM as $platforms)
+                                                <option value="{{ $platforms }}" {{ (old('plataformas') ? old('plataformas') : $pedido->platforms ?? '') == $platforms ? 'selected' : '' }}>{{ $platforms }}</option>
+                                                @endforeach
+                                            </select>
+                                            @if($errors->has('plataformas'))
+                                            <div class="text-danger">
+                                                {{ $errors->first('plataformas') }}
+                                            </div>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm">
+                                        <div class="mb-3 text-dark">
+                                            <label for="estilo_diseno" class="form-label">Estilo de diseño</label>
+                                            <select class="form-control {{ $errors->has('estilo_diseno') ? 'is-invalid' : '' }}" name="estilo_diseno" id="estilo_diseno" required autofocus>
+                                                <option value="">Seleccione un estilo</option>
+                                                @foreach(App\Models\Pedido::DESING as $desings)
+                                                <option value="{{ $desings }}" {{ (old('estilo_diseno') ? old('estilo_diseno') : $pedido->estilo_diseno ?? '') == $desings ? 'selected' : '' }}>{{ $desings }}</option>
+                                                @endforeach
+                                            </select>
+                                            @if($errors->has('estilo_diseno'))
+                                            <div class="text-danger">
+                                                {{ $errors->first('estilo_diseno') }}
+                                            </div>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-sm">
+                                        <div class="mb-3 text-dark">
+                                            <label for="frecuencia_publicacion" class="form-label">Frecuencia de publicación</label>
+                                            <select class="form-control {{ $errors->has('frecuencia_publicacion') ? 'is-invalid' : '' }}" name="frecuencia_publicacion" id="frecuencia_publicacion" required autofocus>
+                                                <option value="">Seleccione la frecuencia de publicación</option>
+                                                @foreach(App\Models\Pedido::FRECUENCY as $frecuencys)
+                                                <option value="{{ $frecuencys }}" {{ (old('frecuencia_publicacion') ? old('frecuencia_publicacion') : $pedido->platforms ?? '') == $frecuencys ? 'selected' : '' }}>{{ $frecuencys }}</option>
+                                                @endforeach
+                                            </select>
+                                            @if($errors->has('frecuencia_publicacion'))
+                                            <div class="text-danger">
+                                                {{ $errors->first('frecuencia_publicacion') }}
+                                            </div>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm">
+                                        <div class="mb-3 text-dark">
+                                            <label for="formato_entrega" class="form-label">Formato de entrega</label>
+                                            <select class="form-control {{ $errors->has('formato_entrega') ? 'is-invalid' : '' }}" name="formato_entrega" id="formato_entrega" required autofocus>
+                                                <option value="">Seleccione un formato</option>
+                                                @foreach(App\Models\Pedido::FORMAT as $formats)
+                                                <option value="{{ $formats }}" {{ (old('formato_entrega') ? old('formato_entrega') : $pedido->formato_entrega ?? '') == $formats ? 'selected' : '' }}>{{ $formats }}</option>
+                                                @endforeach
+                                            </select>
+                                            @if($errors->has('formato_entrega'))
+                                            <div class="text-danger">
+                                                {{ $errors->first('formato_entrega') }}
+                                            </div>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <div class="mb-3 text-dark">
+                                            <label for="code" class="form-label required">Colores</label>
+                                            <input type="text" class="form-control {{$errors->has('colores') ? 'is-invalid' : ''}}" id="colores" placeholder="Colores de preferencia" name="colores" autofocus value="{{old('colores', $pedido->colores)}}"/>
+                                            @if ($errors->has('colores'))
+                                            <span class="text-danger">
+                                                <strong>{{ $errors->first('colores') }}</strong>
+                                            </span>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm">
+                                        <div class="mb-3 text-dark">
+                                            <label for="credenciales" class="form-label">Credenciales </label>
+                                            <textarea name="credenciales" class="form-control" autofocus>{{old('credenciales', $pedido->credenciales)}}</textarea>
+                                            @if ($errors->has('credenciales'))
+                                            <span class="text-danger">
+                                                <strong>{{ $errors->first('credenciales') }}</strong>
+                                            </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+
+
                                 <button class="btn btn-primary" type="submit">Editar</button>
                                 <a href="{{ route('admin.pedidos.index') }}" class="">
                                     <i class="btn btn-danger">Regresar</i>

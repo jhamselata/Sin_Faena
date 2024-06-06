@@ -3,18 +3,14 @@
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\PedidoController;
-use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\PuestoController;
 use App\Http\Controllers\TareaController;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\TipoServicioController;
-use App\Http\Controllers\SolicitudController;
-use App\Http\Controllers\BancoController;
 use App\Http\Controllers\DepartamentoController;
-use App\Http\Controllers\Tipo_pagoController;
 use App\Http\Controllers\ProfileController;
-use App\Models\Tipo_pago;
+use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\TipoEquipoController;
 use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\EventoController;
@@ -71,8 +67,7 @@ Route::post('/send', [ContactController::class, 'sendCompleteEmail'])->name('sen
 
 Route::post('admin.correos.complete', [ContactController::class, 'completeEmail'])->name('admin.correos.complete');
 
-
-
+//Ruta de las tareas
 Route::get('tareas', [TareaController::class, 'index'])->name('admin.tareas.index');
 Route::get('tareas/create', [TareaController::class, 'create'])->name('admin.tareas.create');
 Route::post('tareas', [TareaController::class,'store'])->name('admin.tareas.store');
@@ -178,21 +173,23 @@ Route::get('user.pedidos.espera', [UserController::class, 'espera'])->name('user
 Route::get('user.pedidos', [UserController::class, 'show'])->name('user.pedidos.index');
 Route::post('user.pedidos.index', [UserController::class, 'registrar'])->name('user.pedidos.store');
 Route::get('user.pedidos.create', [UserController::class, 'create'])->name('user.pedidos.create');
+Route::get('user.cliente.create', [UserController::class, 'create'])->name('user.cliente.create');
+Route::post('user.cliente.store', [UserController::class,'store'])->name('user.cliente.clientStore');
 Route::post('user.pedidos.store', [UserController::class,'store'])->name('user.pedidos.clientStore');
 //Reporte
 Route::get('admin/pedidos/{id}/reporte', [PedidoController::class, 'reporte'])->name('admin.pedidos.reporte');
 
+//Ruta de las Facturas
+Route::get('facturas', [FacturaController::class, 'index'])->name('admin.facturas.index');
+Route::get('facturas/create', [FacturaController::class, 'create'])->name('admin.facturas.create');
+Route::post('facturas', [FacturaController::class,'store'])->name('admin.facturas.store');
+Route::get('facturas/{factura}', [FacturaController::class,'show'])->name('admin.facturas.show');
+Route::delete('facturas/{factura}', [FacturaController::class,'destroy'])->name('admin.facturas.destroy');
+//Reporte
+Route::get('admin/facturas/{factura}/reporte', [FacturaController::class, 'reporte'])->name('admin.factura.reporte');
+
 //Ruta para los clientes
 Route::post('index/{id}/marcar-como-leida', [UserController::class, 'marcarComoLeida'])->name('notificaciones.marcarComoLeida');
-
-//Rutas de los bancos
-Route::get('bancos', [BancoController::class, 'index'])->name('admin.bancos.index');
-Route::get('bancos/create', [BancoController::class, 'create'])->name('admin.bancos.create');
-Route::post('bancos', [BancoController::class,'store'])->name('admin.bancos.store');
-Route::get('bancos/{banco}', [BancoController::class,'show'])->name('admin.bancos.show');
-Route::get('bancos/{bancos}/edit', [BancoController::class, 'edit'])->name('admin.bancos.edit');
-Route::put('bancos/{banco}', [BancoController::class,'update'])->name('admin.bancos.update');
-Route::delete('bancos/{banco}', [BancoController::class,'destroy'])->name('admin.bancos.destroy');
 
 //Rutas de los departamentos
 Route::get('departamentos', [DepartamentoController::class, 'index'])->name('admin.departamentos.index');
@@ -202,15 +199,6 @@ Route::get('departamentos/{departamento}', [DepartamentoController::class,'show'
 Route::get('departamentos/{departamentos}/edit', [DepartamentoController::class, 'edit'])->name('admin.departamentos.edit');
 Route::put('departamentos/{departamento}', [DepartamentoController::class,'update'])->name('admin.departamentos.update');
 Route::delete('departamentos/{departamento}', [DepartamentoController::class,'destroy'])->name('admin.departamentos.destroy');
-
-//Rutas de los tipo de pago
-Route::get('tipo_pagos', [Tipo_pagoController::class, 'index'])->name('admin.tipo_pago.index');
-Route::get('tipo_pagos/create', [Tipo_pagoController::class, 'create'])->name('admin.tipo_pago.create');
-Route::post('tipo_pagos', [Tipo_pagoController::class,'store'])->name('admin.tipo_pago.store');
-Route::get('tipo_pagos/{tipo_pago}', [Tipo_pagoController::class,'show'])->name('admin.tipo_pago.show');
-Route::get('tipo_pagos/{tipo_pagos}/edit', [Tipo_pagoController::class, 'edit'])->name('admin.tipo_pago.edit');
-Route::put('tipo_pagos/{tipo_pago}', [Tipo_pagoController::class,'update'])->name('admin.tipo_pago.update');
-Route::delete('tipo_pagos/{tipo_pago}', [Tipo_pagoController::class,'destroy'])->name('admin.tipo_pago.destroy');
 
 //Ruta de los Equipos
 Route::get('equipos', [EquipoController::class, 'index'])->name('admin.equipos.index');

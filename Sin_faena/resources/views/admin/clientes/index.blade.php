@@ -53,6 +53,7 @@
               <th>RNC</th>
               <th>Teléfono</th>
               <th>Estado</th>
+              <th>Comunicación</th>
               <th>Acciones</th>
             </tr>
           </thead>
@@ -71,6 +72,7 @@
               <td>{{ $cliente->rnc_cli }}</td>
               <td>{{ $cliente->telefono_cli }}</td>
               <td>{{ $cliente->estado_cli }}</td>
+              <td>{{ $cliente->preferencia_comunicacion }}</td>
               <td>
                 <a href="{{ route('admin.clientes.show', $cliente->id) }}" class="btn btn-primary">
                   <i class="fas fa-solid fa-info-circle"></i>
@@ -97,6 +99,7 @@
               <th>RNC</th>
               <th>Teléfono</th>
               <th>Estado</th>
+              <th>Comunicación</th>
               <th>Acciones</th>
             </tr>
           </tfoot>

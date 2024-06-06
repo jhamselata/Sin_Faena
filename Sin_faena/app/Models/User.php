@@ -49,6 +49,11 @@ class User extends Authenticatable
         return $this->hasMany(Tarea::class)->withDefault();
     }
 
+    public function clientes()
+    {
+        return $this->hasMany(Cliente::class)->withDefault();
+    }
+
     public function empleados()
     {
         return $this->hasMany(Empleado::class)->withDefault();
