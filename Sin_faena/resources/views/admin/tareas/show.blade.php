@@ -120,9 +120,11 @@
                                     </div>
                                 </div>
 
+                                @if(auth()->user()->hasRole('supervisor') || auth()->user()->hasRole('admin'))
                                 <a href="{{ route('admin.tareas.edit', $tarea->id) }}" class="btn btn-primary">
                                     <i">Editar</i>
                                 </a>
+                                @endif
 
                                 <a href="{{ route('admin.tareas.index') }}" class="">
                                     <i class="btn btn-danger">Regresar</i>

@@ -23,6 +23,7 @@ use App\Http\Controllers\TipoClienteController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\InformeController;
 use App\Http\Controllers\TipoInformeController;
+use Spatie\Permission\Traits\HasRoles;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
@@ -34,17 +35,28 @@ Route::get('/login', function () {
     return view('auth.login');
 });
 
+Route::middleware(['auth', 'role:cliente'])->group(function () {
+    //
+});
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    
+    Route::get('/dashboard', [PedidoController::class, 'dashboard'])->name('dashboard');
+   
+});
+
+Route::middleware(['auth', 'role:empleado'])->group(function () {
+    
+    Route::get('/dashboardEmpleado', [PedidoController::class, 'dashboardEmpleado'])->name('dashboardEmpleado');
+   
+});
+
+Route::middleware(['auth', 'role:supervisor'])->group(function () {
+    
+    Route::get('/dashboardSupervisor', [PedidoController::class, 'dashboardSupervisor'])->name('dashboardSupervisor');
+});
+
 Route::get('/', [UserController::class, 'index'])->name('inicio');
-
-
-/*  Route::get('/inicio', function() {
-    return view('layouts.index');
-})->name('inicio'); 
-*/
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -61,9 +73,6 @@ Route::post('admin.correos.complete', [ContactController::class, 'completeEmail'
 
 
 
-
-
-//Rutas de las tareas
 Route::get('tareas', [TareaController::class, 'index'])->name('admin.tareas.index');
 Route::get('tareas/create', [TareaController::class, 'create'])->name('admin.tareas.create');
 Route::post('tareas', [TareaController::class,'store'])->name('admin.tareas.store');
@@ -82,6 +91,18 @@ Route::put('empleados/{empleado}', [EmpleadoController::class,'update'])->name('
 Route::delete('empleados/{empleado}', [EmpleadoController::class,'destroy'])->name('admin.empleados.destroy');
 //Reporte
 Route::get('admin.empleados.reporte', [EmpleadoController::class, 'reporte'])->name('admin.empleados.reporte');
+
+//Ruta de los Eventos
+Route::get('eventos', [EventoController::class, 'index'])->name('admin.eventos.index');
+Route::get('/eventos/all', [EventoController::class, 'getAllEvents'])->name('admin.eventos.all');
+Route::get('eventos/create', [EventoController::class, 'create'])->name('admin.eventos.create');
+Route::post('eventos', [EventoController::class,'store'])->name('admin.eventos.store');
+Route::get('eventos/{eventos}', [EventoController::class,'show'])->name('admin.eventos.show');
+Route::get('eventos/{evento}/edit', [EventoController::class, 'edit'])->name('admin.eventos.edit');
+Route::put('eventos/update/{evento}', [EventoController::class,'update'])->name('admin.eventos.update');
+Route::delete('eventos/{evento}', [EventoController::class,'destroy'])->name('admin.eventos.destroy');
+//Reporte
+Route::get('admin.eventos.reporte', [EventoController::class, 'reporte'])->name('admin.eventos.reporte');
 
 //Rutas de los tipos de eventos
 Route::get('tipoeventos', [TipoEventoController::class, 'index'])->name('admin.tipoeventos.index');
@@ -147,10 +168,10 @@ Route::get('pedidos/{pedido}', [PedidoController::class,'show'])->name('admin.pe
 Route::get('pedidos/{id}/edit', [PedidoController::class, 'edit'])->name('admin.pedidos.edit');
 Route::put('pedidos/{id}', [PedidoController::class,'update'])->name('admin.pedidos.update');
 Route::delete('pedidos/{pedido}', [PedidoController::class,'destroy'])->name('admin.pedidos.destroy');
-Route::get('/dashboard', [PedidoController::class, 'dashboard'])->name('dashboard');
+
 Route::get('/pedidos/aceptar/{id}', [PedidoController::class, 'aceptar'])->name('pedidos.aceptar');
-Route::post('/pedidos/cancelar/{id}', [PedidoController::class, 'cancelar'])->name('pedidos.cancelar');
-Route::post('/pedidos/completado/{id}', [PedidoController::class, 'completado'])->name('pedidos.completado');
+Route::match(['get', 'post'],'/pedidos/cancelar/{id}', [PedidoController::class, 'cancelar'])->name('pedidos.cancelar');
+Route::match(['get', 'post'],'/pedidos/completado/{id}', [PedidoController::class, 'completado'])->name('pedidos.completado');
 
 //Rutas de los Pedidos (Cliente)
 Route::get('user.pedidos.espera', [UserController::class, 'espera'])->name('user.pedidos.espera');
@@ -161,16 +182,6 @@ Route::get('admin/pedidos/{id}/reporte', [PedidoController::class, 'reporte'])->
 
 //Ruta para los clientes
 Route::post('index/{id}/marcar-como-leida', [UserController::class, 'marcarComoLeida'])->name('notificaciones.marcarComoLeida');
-
-//Ruta de los Eventos
-Route::get('eventos', [EventoController::class, 'index'])->name('admin.eventos.index');
-Route::get('/eventos/all', [EventoController::class, 'getAllEvents'])->name('admin.eventos.all');
-Route::get('eventos/create', [EventoController::class, 'create'])->name('admin.eventos.create');
-Route::post('eventos', [EventoController::class,'store'])->name('admin.eventos.store');
-Route::get('eventos/{eventos}', [EventoController::class,'show'])->name('admin.eventos.show');
-Route::get('eventos/{evento}/edit', [EventoController::class, 'edit'])->name('admin.eventos.edit');
-Route::put('eventos/update/{evento}', [EventoController::class,'update'])->name('admin.eventos.update');
-Route::delete('eventos/{evento}', [EventoController::class,'destroy'])->name('admin.eventos.destroy');
 
 //Rutas de los bancos
 Route::get('bancos', [BancoController::class, 'index'])->name('admin.bancos.index');
@@ -198,8 +209,6 @@ Route::get('tipo_pagos/{tipo_pago}', [Tipo_pagoController::class,'show'])->name(
 Route::get('tipo_pagos/{tipo_pagos}/edit', [Tipo_pagoController::class, 'edit'])->name('admin.tipo_pago.edit');
 Route::put('tipo_pagos/{tipo_pago}', [Tipo_pagoController::class,'update'])->name('admin.tipo_pago.update');
 Route::delete('tipo_pagos/{tipo_pago}', [Tipo_pagoController::class,'destroy'])->name('admin.tipo_pago.destroy');
-//reportes
-Route::get('admin.tipo_pagos.reporte', [Tipo_pagoController::class, 'reporte'])->name('admin.tipo_pagos.reporte');
 
 //Ruta de los Equipos
 Route::get('equipos', [EquipoController::class, 'index'])->name('admin.equipos.index');

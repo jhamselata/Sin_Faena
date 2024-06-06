@@ -20,28 +20,23 @@
                                     <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
         
                                         <nav class="sb-sidenav-menu-nested nav">
-
-                                        <!-- Pantallas principales de la parte del administrador -->
-                                            <a class="nav-link" href="{{ route('admin.clientes.index') }}">Clientes</a>
-                                            <a class="nav-link" href="{{ route('admin.departamentos.index') }}">Departamentos</a>
                                             <a class="nav-link" href="{{ route('admin.empleados.index') }}">Empleados</a>
-                                            <a class="nav-link" href="{{ route('admin.equipos.index') }}">Equipos</a>
-                                            <a class="nav-link" href="{{ route('admin.eventos.index') }}">Eventos</a>
-                                            <a class="nav-link" href="{{ route('admin.informes.index') }}">Informe</a>
-                                            <a class="nav-link" href="{{ route('admin.pedidos.index') }}">Pedidos</a>
                                             <a class="nav-link" href="{{ route('admin.puestos.index') }}">Puestos</a>
+                                            <a class="nav-link" href="{{ route('admin.clientes.index') }}">Clientes</a>
                                             <a class="nav-link" href="{{ route('admin.servicios.index') }}">Servicios</a>
+                                            <a class="nav-link" href="#">Solicitudes</a>
+                                            <a class="nav-link" href="{{ route('admin.pedidos.index') }}">Pedidos</a>
+                                            <a class="nav-link" href="{{ route('admin.eventos.index') }}">Eventos</a>
+                                            <a class="nav-link" href="#">Agenda</a>
                                             <a class="nav-link" href="{{ route('admin.tareas.index') }}">Tareas</a>
-                                            <a class="nav-link" href="{{ route('admin.usuarios.index') }}">Usuarios</a>
-
-                                            <!-- Pantallas de los tipos -->
-                                            <a class="nav-link" href="{{ route('admin.tipoclientes.index') }}">Tipo de Clientes</a>
+                                            <a class="nav-link" href="{{ route('admin.departamentos.index') }}">Departamentos</a>
+                                            <a class="nav-link" href="{{ route('admin.tipo_pago.index') }}">Tipos de Pago</a>
                                             <a class="nav-link" href="{{ route('admin.tipoequipos.index') }}">Tipo de Equipos</a>
-                                            <a class="nav-link" href="{{ route('admin.tipoeventos.index') }}">Tipo Eventos</a>
-                                            <a class="nav-link" href="{{ route('admin.tipoinformes.index') }}">Tipo de Informes</a>
-                                            <a class="nav-link" href="{{ route('admin.tipo_pago.index') }}">Tipo de Pagos</a>
+                                            <a class="nav-link" href="{{ route('admin.equipos.index') }}">Equipos</a>
                                             <a class="nav-link" href="{{ route('admin.tiposervicios.index') }}">Tipo de Servicios</a>
-                                            
+                                            <a class="nav-link" href="{{ route('admin.tipoclientes.index') }}">Tipo de Clientes</a>
+                                            <a class="nav-link" href="{{ route('admin.informes.index') }}">Informe</a>
+                                            <a class="nav-link" href="{{ route('admin.tipoinformes.index') }}">Tipo de informe</a>
                                         </nav>
         
                                     </div>

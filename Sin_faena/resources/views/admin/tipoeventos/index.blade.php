@@ -7,17 +7,16 @@
   <div class="container-fluid px-4">
     <h1 class="mt-5">Tipo evento</h1>
     <div class="mb-4 mt-4 d-grid gap-2 d-md-flex">
-      <button type="button" class="btn btn-secondary">
-        Inicio
-      </button>
+
+      <a href="{{ route('inicio')}}" class="btn btn-secondary">
+        <i class="fas fa-solid fa-house"></i>
+      </a>
+
       <form method="GET" action="{{ route('admin.tipoeventos.create') }}">
         @csrf
         <button type="submit" class="btn btn-primary">Registrar</button>
       </form>
 
-      <button type="button" class="btn btn-warning">
-        Reporte
-      </button>
     </div>
 
 

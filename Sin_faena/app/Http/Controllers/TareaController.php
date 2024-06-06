@@ -8,6 +8,7 @@ use App\Http\Requests\StoreTareaRequest;
 use App\Http\Requests\UpdateTareaRequest;
 use App\Models\Tarea;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class TareaController extends Controller
 {
@@ -21,7 +22,18 @@ class TareaController extends Controller
 
         $users = User::all();
 
-        return view('admin.tareas.index', compact('tareas','users'));
+        $user = Auth::user();
+        $layout = 'layouts.app'; // Default view
+
+        if ($user->hasRole('admin')) {
+            $layout = 'layouts.admin';
+        } elseif ($user->hasRole('empleado')) {
+            $layout = 'layouts.empleado';
+        } elseif ($user->hasRole('supervisor')) {
+            $layout = 'layouts.supervisor';
+        }
+
+        return view('admin.tareas.index', compact('tareas','users','layout'));
         
     }
 

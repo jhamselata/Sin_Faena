@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends($layout)
 @section('content')
 
 <!--CONTENIDO DE LAS TABLAS Y FORMULARIOS-->
@@ -7,9 +7,11 @@
     <div class="container-fluid px-4">
         <h1 class="mt-5">Eventos</h1>
         <div class="mb-4 mt-4 d-grid gap-2 d-md-flex">
-            <button type="button" class="btn btn-secondary">
-                Inicio
-            </button>
+
+            <a href="{{ route('inicio')}}" class="btn btn-secondary">
+                <i class="fas fa-solid fa-house"></i>
+            </a>
+
             <a href="{{ route('admin.eventos.reporte') }}" class="btn btn-warning" target="_blank">Reporte</a>
         </div>
 
@@ -118,9 +120,11 @@
                     </div>
 
                     <div class="modal-footer">
+                        @if(auth()->user()->hasRole('supervisor') || auth()->user()->hasRole('admin'))
                         <button type="submit" class="btn btn-success" id="btnGuardar"><i class="fa fa-fw fa-lg fa-check-circle"></i> Guardar</button>
                         <button type="button" class="btn btn-warning" id="btnEditar"><i class="fas fa-pen"></i> Editar</button>
                         <button type="button" class="btn btn-danger" id="btnEliminar"><i class="fas fa-trash"></i> Eliminar</button>
+                        @endif
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa fa-fw fa-lg fa-arrow-left"></i> Regresar</button>
                     </div>
 

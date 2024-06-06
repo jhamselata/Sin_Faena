@@ -57,9 +57,33 @@
                                 <input type="text" class="form-control" value="{{ $pedido->estado_pedido }}" readonly>
                             </div>
 
-                            <a href="{{ route('admin.pedidos.index') }}" class="btn btn-danger">Regresar</a>
+                            <div class="mb-3 text-dark">
+                                <label for="plataformas" class="form-label">Plataformas</label>
+                                <input type="text" class="form-control" value="{{ $pedido->plataformas }}" readonly>
+                            </div>
+
+                            <div class="mb-3 text-dark">
+                                <label for="estilo_diseno" class="form-label">Estilo de diseño</label>
+                                <input type="text" class="form-control" value="{{ $pedido->estilo_diseno }}" readonly>
+                            </div>
+
+                            <div class="mb-3 text-dark">
+                                <label for="frecuencia_publicacion" class="form-label">Frecuencia de publicación</label>
+                                <input type="text" class="form-control" value="{{ $pedido->frecuencia_publicacion }}" readonly>
+                            </div>
+
+                            <div class="mb-3 text-dark">
+                                <label for="formato_entrega" class="form-label">Formato de entrega</label>
+                                <input type="text" class="form-control" value="{{ $pedido->formato_entrega }}" readonly>
+                            </div>
+
+                            @if(auth()->user()->hasRole('supervisor') || auth()->user()->hasRole('admin'))
                             <a href="{{ route('admin.pedidos.edit', $pedido->id) }}" class="btn btn-primary">Editar</a>
-                            <a href="{{ route('admin.pedidos.reporte', ['id' => $pedido->id]) }}" class="btn btn-warning" target="_blank">Reporte</a>
+                            @endif
+                            <a href="{{ route('admin.pedidos.index') }}" class="btn btn-danger">Regresar</a>
+
+
+
 
                         </div>
                     </div>

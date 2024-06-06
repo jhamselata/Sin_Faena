@@ -16,7 +16,7 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link href="{{ asset('css/styles.css')}}" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
 
     <!--Favicon-->
     <!-- <link rel="shortcut icon" href="img/logo-icon.png" type="image/x-icon"> -->
@@ -61,25 +61,7 @@
                                             @csrf
 
                                             <div class="row">
-                                                <div class="col-sm">
-                                                    <div class="mb-3 text-dark">
-                                                        <label for="id_usuario" class="form-label">Usuario</label>
-                                                        <select class="form-control select2" name="id_usuario" style="width: 100%;" autofocus readonly>
-                                                            @foreach ($users as $user)
-                                                            <option value="{{ $user->id }}" {{ old('id_usuario') == $user->id ? 'selected' : '' }}>
-                                                                {{ $user->name }}
-                                                            </option>
-                                                            @endforeach
-                                                        </select>
-                                                        @if ($errors->has('id_usuario'))
-                                                        <span class="text-danger">
-                                                            <strong>{{ $errors->first('id_usuario') }}</strong>
-                                                        </span>
-                                                        @endif
-
-                                                    </div>
-                                                </div>
-
+            
                                                 <div class="col-sm">
                                                     <div class="mb-3 text-dark">
                                                         <label for="fecha_pedido" class="form-label">Fecha entrega: </label>
@@ -87,13 +69,27 @@
                                                     </div>
                                                 </div>
 
-
+                                                <div class="col-sm">
+                                                    <div class="mb-3 text-dark">
+                                                        <label for="estado_pedido" class="form-label">Estado</label>
+                                                        <select class="form-control {{ $errors->has('estado_pedido') ? 'is-invalid' : '' }}" name="estado_pedido" id="estado_pedido" required autofocus>
+                                                            <option value="">Seleccione un estado</option>
+                                                            @foreach(App\Models\Pedido::STATUS as $status)
+                                                            <option value="{{ $status }}" {{ old('estado_pedido') == $status ? 'selected' : '' }}>{{ $status }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        @if($errors->has('estado_pedido'))
+                                                        <div class="text-danger">
+                                                            {{ $errors->first('estado_pedido') }}
+                                                        </div>
+                                                        @endif
+                                                    </div>
+                                                </div>
+            
                                             </div>
-
-
+            
                                             <div class="row">
-
-
+            
                                                 <div class="col-sm">
                                                     <div class="mb-3 text-dark">
                                                         <label for="servicios" class="form-label">Servicios:</label>
@@ -104,7 +100,7 @@
                                                         </select>
                                                     </div>
                                                 </div>
-
+            
                                                 <div class="col-sm">
                                                     <div class="mb-3 text-dark">
                                                         <label for="descripcion" class="form-label">Descripcion</label>
@@ -116,7 +112,83 @@
                                                         @endif
                                                     </div>
                                                 </div>
-
+            
+                                            </div>
+            
+                                            <div class="row">
+            
+                                                <div class="col-sm" id="plataformas-container">
+                                                    <div class="mb-3 text-dark">
+                                                        <label for="plataformas" class="form-label">Plataformas</label>
+                                                        <select class="form-control {{ $errors->has('plataformas') ? 'is-invalid' : '' }}" name="plataformas" id="plataformas" required autofocus>
+                                                            <option value="">Seleccione una plataforma</option>
+                                                            @foreach(App\Models\Pedido::PLATFORM as $platforms)
+                                                            <option value="{{ $platforms }}" {{ old('plataformas') == $platforms ? 'selected' : '' }}>{{ $platforms }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        @if($errors->has('plataformas'))
+                                                        <div class="text-danger">
+                                                            {{ $errors->first('plataformas') }}
+                                                        </div>
+                                                        @endif
+                                                    </div>
+                                                </div>
+            
+                                                <div class="col-sm">
+                                                    <div class="mb-3 text-dark">
+                                                        <label for="estilo_diseno" class="form-label">Estilo de diseño</label>
+                                                        <select class="form-control {{ $errors->has('estilo_diseno') ? 'is-invalid' : '' }}" name="estilo_diseno" id="estilo_diseno" required autofocus>
+                                                            <option value="">Seleccione un estilo</option>
+                                                            @foreach(App\Models\Pedido::DESING as $desings)
+                                                            <option value="{{ $desings }}" {{ old('estilo_diseno') == $desings ? 'selected' : '' }}>{{ $desings }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        @if($errors->has('estilo_diseno'))
+                                                        <div class="text-danger">
+                                                            {{ $errors->first('estilo_diseno') }}
+                                                        </div>
+                                                        @endif
+                                                    </div>
+                                                </div>
+            
+                                            </div>
+            
+                                            <div class="row">
+            
+                                                <div class="col-sm">
+                                                    <div class="mb-3 text-dark">
+                                                        <label for="frecuencia_publicacion" class="form-label">Frecuencia de publicación</label>
+                                                        <select class="form-control {{ $errors->has('frecuencia_publicacion') ? 'is-invalid' : '' }}" name="frecuencia_publicacion" id="frecuencia_publicacion" required autofocus>
+                                                            <option value="">Seleccione la frecuencia de publicación</option>
+                                                            @foreach(App\Models\Pedido::FRECUENCY as $frecuencys)
+                                                            <option value="{{ $frecuencys }}" {{ old('frecuencia_publicacion') == $frecuencys ? 'selected' : '' }}>{{ $frecuencys }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        @if($errors->has('frecuencia_publicacion'))
+                                                        <div class="text-danger">
+                                                            {{ $errors->first('frecuencia_publicacion') }}
+                                                        </div>
+                                                        @endif
+                                                    </div>
+                                                </div>
+            
+                                                <div class="col-sm">
+                                                    <div class="mb-3 text-dark">
+                                                        <label for="formato_entrega" class="form-label">Formato de entrega</label>
+                                                        <select class="form-control {{ $errors->has('formato_entrega') ? 'is-invalid' : '' }}" name="formato_entrega" id="formato_entrega" required autofocus>
+                                                            <option value="">Seleccione el formato</option>
+                                                            @foreach(App\Models\Pedido::FORMAT as $formats)
+                                                            <option value="{{ $formats }}" {{ old('formato_entrega') == $formats ? 'selected' : '' }}>{{ $formats }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        @if($errors->has('formato_entrega'))
+                                                        <div class="text-danger">
+                                                            {{ $errors->first('formato_entrega') }}
+                                                        </div>
+                                                        @endif
+                                                    </div>
+                                                </div>
+            
                                             </div>
 
                                             <button class="btn btn-primary" type="submit">Guardar</button>
@@ -144,6 +216,45 @@
 
     <script src="{{ asset('js/script.js') }}"></script>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownToggle = document.querySelector('.dropdown-toggle');
+
+            dropdownToggle.addEventListener('click', function() {
+                const dropdownMenu = this.nextElementSibling;
+                dropdownMenu.classList.toggle('show');
+            });
+
+            // Función para mostrar/ocultar elementos
+            function toggleElements() {
+                const selectedServices = document.getElementById('servicios').selectedOptions;
+                const selectedValues = Array.from(selectedServices).map(option => option.value);
+
+                // Mostrar u ocultar el contenedor de plataformas basado en los servicios seleccionados
+                const plataformasContainer = document.getElementById('plataformas-container');
+                if (selectedValues.includes('1')) { // Cambia '1' por el ID del servicio que deseas verificar
+                    plataformasContainer.style.display = 'block';
+                } else {
+                    plataformasContainer.style.display = 'none';
+                }
+            }
+
+            // Escuchar cambios en el combo de servicios
+            const serviciosSelect = document.getElementById('servicios');
+            serviciosSelect.addEventListener('change', toggleElements);
+
+            // Inicialmente ocultar el contenedor de plataformas
+            toggleElements();
+        });
+    </script>
+
+
+
+    <form id="logoutform" action="{{ route('logout') }}" method="POST">
+        {{ csrf_field() }}
+    </form>
+
 </body>
 
 </html>
+

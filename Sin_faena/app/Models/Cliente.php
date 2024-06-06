@@ -22,11 +22,14 @@ class Cliente extends Model
         'apellido_cli',
         'rnc_cli',
         'telefono_cli',
-        'estado_cli'
+        'estado_cli',
+        'preferencia_comunicacion',
+        'otra_via_comunicacion'
     ];
 
     public const STATUS = ['Activo', 'Inactivo'];
 
+    public const COMUNICATION = ['Reunión Virtual', 'Reunión Presencial', 'Comunicación por otro medio'];
     public function user(){
         return $this->belongsTo(User::class)->withDefault();
     }
