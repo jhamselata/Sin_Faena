@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreClienteRequest;
+use App\Models\Cliente;
 use App\Models\Notificacion;
 use App\Models\Pedido;
 use App\Models\Servicio;
+use App\Models\Tipo_cliente;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -90,7 +93,7 @@ class UserController extends Controller
             $notificaciones = $user->notificaciones()->whereNull('read_at')->get();
         }
 
-        return view('user.pedidos.create', compact('servicios', 'users','notificaciones'));
+        return view('user.pedidos.create', compact('servicios', 'users', 'notificaciones'));
     }
 
     /**
@@ -115,17 +118,22 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show()
     {
-        //
+        $clientes = Cliente::all();
+        $tipo_clientes = Tipo_cliente::all();
+        $users = User::all();
+
+        return view('user.pedidos.index', compact('clientes', 'tipo_clientes', 'users'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function registrar(StoreClienteRequest $request)
     {
-        //
+        Cliente::create($request->validated());
+        return redirect()->route('user.pedidos.create')->with('success', 'Cliente actualizado exitosamente');
     }
 
     /**
