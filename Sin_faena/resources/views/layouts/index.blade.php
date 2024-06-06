@@ -103,6 +103,8 @@
 
   </section>
 
+ 
+
 
 
   <section class="producto">
@@ -212,9 +214,59 @@
 
   </section>
 
+  <section class="Form-Contacto">
+
+          <div class="container-form">
+
+            <div class="contact-box">
+              <div class="left">
+                <img src="{{ asset('assets/img/contacto.png')}}" alt="">
+              </div>
+
+              <div class="right">
+
+                <!-- Mensajes de error y éxito -->
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                  <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                  </ul>
+                </div>
+                @endif
+
+                @if (session('success'))
+                <div class="alert alert-success">
+                  {{ session('success') }}
+                </div>
+                @endif
+
+                <form action="{{ route('send.email') }}" method="POST">
+                  @csrf
+                  <h2 class="contacto-title">Contáctanos ya</h2>
+
+                  <input type="text" class="field" name="name" placeholder="Nombre" required>
+                  <input type="email" class="field" name="email" placeholder="Correo electrónico" required>
+                  <input type="text" class="field" name="phone" placeholder="Teléfono" required>
+                  <input type="text" class="field" name="subject" placeholder="Asunto" required>
+                  <textarea name="message" placeholder="Mensaje" class="field" required></textarea>
+
+                  <button type="submit" class="btn">Enviar</button>
+                </form>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+
   @include('layouts.partials.footer_client')
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
   <script src="{{ asset('js/script.js') }}"></script>
+
 
   <form id="logoutform" action="{{ route('logout') }}" method="POST">
     {{ csrf_field() }}

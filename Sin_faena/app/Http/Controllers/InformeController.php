@@ -6,6 +6,7 @@ use App\Http\Requests\StoreInformeRequest;
 use App\Http\Requests\UpdateInformeRequest;
 use App\Models\Informe;
 use App\Models\Tipo_informe;
+use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf as facadePdf;
 
 class InformeController extends Controller
@@ -16,17 +17,21 @@ class InformeController extends Controller
     public function index()
     {
         $informes = Informe::all();
-        $tipoinformes = Tipo_informe::all();
+        $tipo_informes = Tipo_informe::all();
+        $users = User::all();
 
-        return view('admin.informes.index', compact('tipoinformes', 'informes'));
+
+        return view('admin.informes.index', compact('tipo_informes', 'informes', 'users'));
     }
 
     public function reporte()
     {
         $informes = Informe::all();
-        $tipoinformes = Tipo_Informe::all();
+        $tipo_informes = Tipo_Informe::all();
+        $users = User::all();
+
   
-        $pdf = facadePdf::loadView('admin.informes.reporte', compact('tipoinformes, informes'));
+        $pdf = facadePdf::loadView('admin.informes.reporte', compact('tipo_informes', 'informes', 'users'));
 
         return $pdf->stream('reporte_informes.pdf');
     }
@@ -54,9 +59,10 @@ class InformeController extends Controller
      */
     public function show(Informe $informe)
     {
-        $tipoinformes = Tipo_informe::all();
+        $users = User::all();
+        $tipo_informes = Tipo_informe::all();
 
-        return view('admin.informes.show', compact('tipoinformes', 'informe'));
+        return view('admin.informes.show', compact('tipo_informes', 'informes', 'users'));
     }
 
     /**
@@ -64,9 +70,10 @@ class InformeController extends Controller
      */
     public function edit(Informe $informe)
     {
-        $tipoinformes = Tipo_informe::all();
+        $users = User::all();
+        $tipo_informes = Tipo_informe::all();
 
-        return view('admin.informes.edit', compact('tipoinformes', 'informe'));
+        return view('admin.informes.edit', compact('tipo_informes', 'informes', 'users'));
     }
 
     /**

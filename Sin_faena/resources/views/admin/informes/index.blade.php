@@ -5,15 +5,18 @@
 <main>
 
   <div class="container-fluid px-4">
-    <h1 class="mt-5">Bancos</h1>
+    <h1 class="mt-5">Informes</h1>
     <div class="mb-4 mt-4 d-grid gap-2 d-md-flex">
       <button type="button" class="btn btn-secondary">
         Inicio
       </button>
-      <form method="GET" action="{{ route('admin.bancos.create') }}">
+      <form method="GET" action="{{ route('admin.informes.create') }}">
         @csrf
         <button type="submit" class="btn btn-primary">Registrar</button>
       </form>
+
+      <a href="{{ route('admin.informes.reporte') }}" class="btn btn-warning" target="_blank">Reporte</a>
+
     </div>
 
 
@@ -42,32 +45,36 @@
           <table id="datatablesSimple">
             <thead>
               <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>RNC</th>
-                <th>Teléfono</th>
-                <th>Correo electrónico</th>
-                <th>Acciones</th>
+                <th>Fecha</th>
+                <th>Remitente</th>
+                <th>Destinatario</th>
+                <th>Tipo de informe</th>
+                <th>Título</th>
+                <th>Descripción</th>
+                <th>Accciones</th>
               </tr>
             </thead>
 
             <tbody>
-              @foreach ($bancos as $banco)
+              @foreach ($informes as $informe)
               <tr>
-                <td>{{ $banco->id }}</td>
-                <td>{{ $banco->nombre_banco }}</td>
-                <td>{{ $banco->rnc }}</td>
-                <td>{{ $banco->telefono_banco }}</td>
-                <td>{{ $banco->correo }}</td>
+
+
+                <td>{{ $informe->fecha_informe }}</td>
+                <td>{{ $informe->id_remitente }}</td>
+                <td>{{ $informe->id_destinatario }}</td>
+                <td>{{ $informe->id_tipoInforme }}</td>
+                <td>{{ $informe->titulo_informe }}</td>
+                <td>{{ $informe->descripcion_informe }}</td>
                 <td>
 
-                  <a href="{{ route('admin.bancos.show', $banco->id) }}" class="btn btn-primary">
+                  <a href="{{ route('admin.informes.show', $informe->id) }}" class="btn btn-primary">
                     <i class="fas fa-solid fa-info-circle"></i>
                   </a>
 
 
 
-                  <form action="{{ route('admin.bancos.destroy', $banco->id) }}" method="post" onsubmit="return confirm('Desea eliminar el registro?')" style="display: inline-block;">
+                  <form action="{{ route('admin.informes.destroy', $informe->id) }}" method="post" onsubmit="return confirm('Desea eliminar el registro?')" style="display: inline-block;">
                     @method('DELETE')
                     @csrf
                     <button type="submit" class="btn btn-danger">
@@ -81,12 +88,13 @@
 
             <tfoot>
               <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>RNC</th>
-                <th>Teléfono</th>
-                <th>Correo electrónico</th>
-                <th>Acciones</th>
+                  <th>Fecha</th>
+                  <th>Remitente</th>
+                  <th>Destinatario</th>
+                  <th>Tipo de informe</th>
+                  <th>Título</th>
+                  <th>Descripción</th>
+                  <th>Accciones</th>
               </tr>
             </tfoot>
 

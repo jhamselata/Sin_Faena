@@ -9,6 +9,7 @@ use App\Models\Servicio;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -16,16 +17,41 @@ class UserController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-{
-    $user = Auth::user();
-    $notificaciones = collect();
+    {
+        $user = Auth::user();
+        $notificaciones = collect();
 
-    if ($user) {
-        $notificaciones = $user->notificaciones()->whereNull('read_at')->get();
+        if ($user) {
+            $notificaciones = $user->notificaciones()->whereNull('read_at')->get();
+        }
+
+        return view('layouts.index', compact('notificaciones'));
     }
 
-    return view('layouts.index', compact('notificaciones'));
-}
+
+    public function sendEmail(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required',
+            'subject' => 'required',
+            'message' => 'required',
+        ]);
+
+        $details = [
+            'title' => 'Nuevo mensaje de contacto',
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'subject' => $request->subject,
+            'message' => $request->message
+        ];
+
+        Mail::to('sinfaena@gmail.com')->send(new \App\Mail\ContactMail($details));
+
+        return back()->with('success', 'Tu mensaje ha sido enviado correctamente.');
+    }
 
 
 
@@ -55,7 +81,14 @@ class UserController extends Controller
         $servicios = Servicio::all();
         $users = User::all();
 
-        return view('user.pedidos.create', compact('servicios', 'users'));
+        $user = Auth::user();
+        $notificaciones = collect();
+
+        if ($user) {
+            $notificaciones = $user->notificaciones()->whereNull('read_at')->get();
+        }
+
+        return view('user.pedidos.create', compact('servicios', 'users','notificaciones'));
     }
 
     /**

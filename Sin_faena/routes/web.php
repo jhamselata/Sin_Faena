@@ -14,7 +14,6 @@ use App\Http\Controllers\BancoController;
 use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\Tipo_pagoController;
 use App\Http\Controllers\ProfileController;
-use App\Mail\ContactMail;
 use App\Models\Tipo_pago;
 use App\Http\Controllers\TipoEquipoController;
 use App\Http\Controllers\EquipoController;
@@ -69,8 +68,10 @@ Route::middleware('auth')->group(function () {
 
 
 Route::post('/send-email', [ContactController::class, 'sendEmail'])->name('send.email');
-Route::post('/send-email', [ContactController::class, 'sendCompleteEmail'])->name('send.complete.email');
+Route::post('/send', [ContactController::class, 'sendCompleteEmail'])->name('send.complete.email');
+
 Route::post('admin.correos.complete', [ContactController::class, 'completeEmail'])->name('admin.correos.complete');
+
 
 
 Route::get('tareas', [TareaController::class, 'index'])->name('admin.tareas.index');

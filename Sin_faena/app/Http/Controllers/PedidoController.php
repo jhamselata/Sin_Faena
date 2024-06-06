@@ -77,7 +77,7 @@ class PedidoController extends Controller
         $pedido->estado_pedido = 'En progreso';
         $pedido->save();
 
-        return redirect()->route('dashboard')->with('success', 'Pedido aceptado exitosamente');
+        return redirect()->route('admin.correos.confirmacion')->with('success', 'Pedido aceptado exitosamente');
     }
 
     public function cancelar($id)
