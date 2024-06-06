@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateEventoRequest;
 use App\Models\Evento;
 use App\Models\TipoEvento;
 use Barryvdh\DomPDF\Facade\Pdf as facadePdf;
+use Illuminate\Support\Facades\Auth;
 
 class EventoController extends Controller
 {
@@ -19,7 +20,18 @@ class EventoController extends Controller
         $tipo_eventos = TipoEvento::all();
         $eventos = Evento::all();
 
-        return view('admin.eventos.index', compact('tipo_eventos', 'eventos'));
+        $user = Auth::user();
+        $layout = 'layouts.app'; // Default view
+
+        if ($user->hasRole('admin')) {
+            $layout = 'layouts.admin';
+        } elseif ($user->hasRole('empleado')) {
+            $layout = 'layouts.empleado';
+        } elseif ($user->hasRole('supervisor')) {
+            $layout = 'layouts.supervisor';
+        }
+
+        return view('admin.eventos.index', compact('tipo_eventos', 'eventos','layout'));
     }
 
     public function reporte()

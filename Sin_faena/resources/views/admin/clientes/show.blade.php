@@ -77,41 +77,41 @@
                                 <div class="row">
 
                                     <div class="col-sm">
-                                            <div class="mb-3 text-dark">
-                                                <label for="code" class="form-label required">Nombre</label>
-                                                <input type="text" class="form-control {{$errors->has('nombre_cli') ? 'is-invalid' : ''}}" id="nombre_cli" placeholder="Nombre del cliente" name="nombre_cli" autofocus value="{{old('nombre_cli', $cliente->nombre_cli)}}" disabled/>
-                                                @if ($errors->has('nombre_cli'))
-                                                <span class="text-danger">
-                                                    <strong>{{ $errors->first('nombre_cli') }}</strong>
-                                                </span>
-                                                @endif
-                                            </div>
+                                        <div class="mb-3 text-dark">
+                                            <label for="code" class="form-label required">Nombre</label>
+                                            <input type="text" class="form-control {{$errors->has('nombre_cli') ? 'is-invalid' : ''}}" id="nombre_cli" placeholder="Nombre del cliente" name="nombre_cli" autofocus value="{{old('nombre_cli', $cliente->nombre_cli)}}" disabled />
+                                            @if ($errors->has('nombre_cli'))
+                                            <span class="text-danger">
+                                                <strong>{{ $errors->first('nombre_cli') }}</strong>
+                                            </span>
+                                            @endif
+                                        </div>
                                     </div>
-                                        
+
                                     <div class="col-sm">
-                                            <div class="mb-3 text-dark">
-                                                <label for="code" class="form-label required">Apellido</label>
-                                                <input type="text" class="form-control {{$errors->has('apellido_cli') ? 'is-invalid' : ''}}" id="apellido_cli" placeholder="Apellido del cliente" name="apellido_cli" autofocus value="{{old('apellido_cli', $cliente->apellido_cli)}}" disabled/>
-                                                @if ($errors->has('apellido_cli'))
-                                                <span class="text-danger">
-                                                    <strong>{{ $errors->first('apellido_cli') }}</strong>
-                                                </span>
-                                                @endif
-                                            </div>
+                                        <div class="mb-3 text-dark">
+                                            <label for="code" class="form-label required">Apellido</label>
+                                            <input type="text" class="form-control {{$errors->has('apellido_cli') ? 'is-invalid' : ''}}" id="apellido_cli" placeholder="Apellido del cliente" name="apellido_cli" autofocus value="{{old('apellido_cli', $cliente->apellido_cli)}}" disabled />
+                                            @if ($errors->has('apellido_cli'))
+                                            <span class="text-danger">
+                                                <strong>{{ $errors->first('apellido_cli') }}</strong>
+                                            </span>
+                                            @endif
                                         </div>
+                                    </div>
 
 
-                                        <div class="col-sm">
-                                            <div class="mb-3 text-dark">
-                                                <label for="code" class="form-label required">RNC</label>
-                                                <input type="text" class="form-control {{$errors->has('rnc_cli') ? 'is-invalid' : ''}}" id="rnc_cli" placeholder="RNC del cliente" name="rnc_cli" autofocus value="{{old('rnc_cli', $cliente->rnc_cli)}}" disabled/>
-                                                @if ($errors->has('rnc_cli'))
-                                                <span class="text-danger">
-                                                    <strong>{{ $errors->first('rnc_cli') }}</strong>
-                                                </span>
-                                                @endif
-                                            </div>
+                                    <div class="col-sm">
+                                        <div class="mb-3 text-dark">
+                                            <label for="code" class="form-label required">RNC</label>
+                                            <input type="text" class="form-control {{$errors->has('rnc_cli') ? 'is-invalid' : ''}}" id="rnc_cli" placeholder="RNC del cliente" name="rnc_cli" autofocus value="{{old('rnc_cli', $cliente->rnc_cli)}}" disabled />
+                                            @if ($errors->has('rnc_cli'))
+                                            <span class="text-danger">
+                                                <strong>{{ $errors->first('rnc_cli') }}</strong>
+                                            </span>
+                                            @endif
                                         </div>
+                                    </div>
 
                                 </div>
 
@@ -122,7 +122,7 @@
                                     <div class="col-sm">
                                         <div class="mb-3 text-dark">
                                             <label for="code" class="form-label required">Telefono</label>
-                                            <input type="text" class="form-control {{$errors->has('telefono_cli') ? 'is-invalid' : ''}}" id="telefono_cli" placeholder="Telefono del cliente" name="telefono_cli" autofocus value="{{old('telefono_cli', $cliente->telefono_cli)}}" disabled/>
+                                            <input type="text" class="form-control {{$errors->has('telefono_cli') ? 'is-invalid' : ''}}" id="telefono_cli" placeholder="Telefono del cliente" name="telefono_cli" autofocus value="{{old('telefono_cli', $cliente->telefono_cli)}}" disabled />
                                             @if ($errors->has('telefono_cli'))
                                             <span class="text-danger">
                                                 <strong>{{ $errors->first('telefono_cli') }}</strong>
@@ -150,9 +150,11 @@
 
                                 </div>
 
+                                @if(auth()->user()->hasRole('supervisor') || auth()->user()->hasRole('admin'))
                                 <a href="{{ route('admin.clientes.edit', $cliente->id) }}" class="btn btn-primary">
-                                    <i">Editar</i>
+                                    <i>Editar</i>
                                 </a>
+                                @endif
 
                                 <a href="{{ route('admin.clientes.index') }}" class="">
                                     <i class="btn btn-danger">Regresar</i>

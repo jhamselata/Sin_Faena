@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends($layout)
 @section('content')
 
 <!--CONTENIDO DE LAS TABLAS Y FORMULARIOS-->
@@ -72,13 +72,10 @@
               <td>{{ $cliente->telefono_cli }}</td>
               <td>{{ $cliente->estado_cli }}</td>
               <td>
-
                 <a href="{{ route('admin.clientes.show', $cliente->id) }}" class="btn btn-primary">
                   <i class="fas fa-solid fa-info-circle"></i>
                 </a>
-
-
-
+                @if(auth()->user()->hasRole('supervisor') || auth()->user()->hasRole('admin'))
                 <form action="{{ route('admin.clientes.destroy', $cliente->id) }}" method="post" onsubmit="return confirm('Desea eliminar el registro?')" style="display: inline-block;">
                   @method('DELETE')
                   @csrf
@@ -86,7 +83,9 @@
                     <i class="fas fa-solid fa-trash"></i>
                   </button>
                 </form>
+                @endif
               </td>
+
             </tr>
             @endforeach
           </tbody>

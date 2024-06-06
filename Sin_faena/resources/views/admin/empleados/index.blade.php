@@ -1,4 +1,17 @@
-@extends('layouts.admin')
+@if(Auth::check())
+    @if(Auth::user()->hasRole('admin'))
+        @extends('layouts.admin')
+    @elseif(Auth::user()->hasRole('empleado'))
+        @extends('layouts.empleado')
+    @elseif(Auth::user()->hasRole('supervisor'))
+        @extends('layouts.supervisor')
+    @else
+        <!-- Puedes manejar otros roles o casos especiales aquí -->
+    @endif
+@else
+    <!-- Opcionalmente, manejar usuarios no autenticados -->
+    <p>No tienes acceso.</p>
+@endif
 @section('content')
 
 <!--CONTENIDO DE LAS TABLAS Y FORMULARIOS-->

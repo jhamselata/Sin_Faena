@@ -144,6 +144,23 @@
 
     <script src="{{ asset('js/script.js') }}"></script>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownToggle = document.querySelector('.dropdown-toggle');
+
+            dropdownToggle.addEventListener('click', function() {
+                const dropdownMenu = this.nextElementSibling;
+                dropdownMenu.classList.toggle('show');
+            });
+        });
+    </script>
+
+
+
+    <form id="logoutform" action="{{ route('logout') }}" method="POST">
+        {{ csrf_field() }}
+    </form>
+
 </body>
 
 </html>

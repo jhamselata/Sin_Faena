@@ -14,7 +14,6 @@ use App\Http\Controllers\BancoController;
 use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\Tipo_pagoController;
 use App\Http\Controllers\ProfileController;
-use App\Mail\ContactMail;
 use App\Models\Tipo_pago;
 use App\Http\Controllers\TipoEquipoController;
 use App\Http\Controllers\EquipoController;
@@ -24,6 +23,7 @@ use App\Http\Controllers\TipoClienteController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\InformeController;
 use App\Http\Controllers\TipoInformeController;
+use Spatie\Permission\Traits\HasRoles;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
@@ -35,17 +35,28 @@ Route::get('/login', function () {
     return view('auth.login');
 });
 
-Route::get('/inicio', [UserController::class, 'index'])->name('inicio');
+Route::middleware(['auth', 'role:cliente'])->group(function () {
+    //
+});
 
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    
+    Route::get('/dashboard', [PedidoController::class, 'dashboard'])->name('dashboard');
+   
+});
 
-/* Route::get('/inicio', function() {
-    return view('layouts.index');
-})->name('inicio'); 
-*/
+Route::middleware(['auth', 'role:empleado'])->group(function () {
+    
+    Route::get('/dashboardEmpleado', [PedidoController::class, 'dashboardEmpleado'])->name('dashboardEmpleado');
+   
+});
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'role:supervisor'])->group(function () {
+    
+    Route::get('/dashboardSupervisor', [PedidoController::class, 'dashboardSupervisor'])->name('dashboardSupervisor');
+});
+
+Route::get('/', [UserController::class, 'index'])->name('inicio');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -56,10 +67,12 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::post('/send-email', [ContactController::class, 'sendEmail'])->name('send.email');
-Route::post('/send-email', [ContactController::class, 'sendCompleteEmail'])->name('send.complete.email');
+Route::post('/send', [ContactController::class, 'sendCompleteEmail'])->name('send.complete.email');
+
 Route::post('admin.correos.complete', [ContactController::class, 'completeEmail'])->name('admin.correos.complete');
 
-//Rutas de las tareas
+
+
 Route::get('tareas', [TareaController::class, 'index'])->name('admin.tareas.index');
 Route::get('tareas/create', [TareaController::class, 'create'])->name('admin.tareas.create');
 Route::post('tareas', [TareaController::class,'store'])->name('admin.tareas.store');
@@ -155,10 +168,10 @@ Route::get('pedidos/{pedido}', [PedidoController::class,'show'])->name('admin.pe
 Route::get('pedidos/{id}/edit', [PedidoController::class, 'edit'])->name('admin.pedidos.edit');
 Route::put('pedidos/{id}', [PedidoController::class,'update'])->name('admin.pedidos.update');
 Route::delete('pedidos/{pedido}', [PedidoController::class,'destroy'])->name('admin.pedidos.destroy');
-Route::get('/dashboard', [PedidoController::class, 'dashboard'])->name('dashboard');
+
 Route::get('/pedidos/aceptar/{id}', [PedidoController::class, 'aceptar'])->name('pedidos.aceptar');
-Route::post('/pedidos/cancelar/{id}', [PedidoController::class, 'cancelar'])->name('pedidos.cancelar');
-Route::post('/pedidos/completado/{id}', [PedidoController::class, 'completado'])->name('pedidos.completado');
+Route::match(['get', 'post'],'/pedidos/cancelar/{id}', [PedidoController::class, 'cancelar'])->name('pedidos.cancelar');
+Route::match(['get', 'post'],'/pedidos/completado/{id}', [PedidoController::class, 'completado'])->name('pedidos.completado');
 
 //Rutas de los Pedidos (Cliente)
 Route::get('user.pedidos.espera', [UserController::class, 'espera'])->name('user.pedidos.espera');

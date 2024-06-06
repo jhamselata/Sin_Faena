@@ -26,4 +26,8 @@ class Informe extends Model
     public function informe(){
         return $this->belongsTo(Tipo_informe::class)->withDefault();
     }   
+
+    public function user(){
+        return $this->belongsTo(User::class)->withDefault();
+    }   
 }

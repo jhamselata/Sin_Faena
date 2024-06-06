@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('apellido_cli', 49)->nullable();
             $table->string('rnc_cli', 13)->nullable();
             $table->string('telefono_cli', 12);
-            $table->string('preferencia_comunicacioon', 75);
+            $table->string('preferencia_comunicacion', 75);
             $table->string('otra_via_comunicacion', 100);
             $table->string('estado_cli', 49)->default('Activo');
 

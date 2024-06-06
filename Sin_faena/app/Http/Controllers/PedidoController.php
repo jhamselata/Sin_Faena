@@ -9,6 +9,7 @@ use App\Models\Pedido;
 use App\Models\Servicio;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf as facadePdf;
+use Illuminate\Support\Facades\Auth;
 
 class PedidoController extends Controller
 {
@@ -17,7 +18,18 @@ class PedidoController extends Controller
         $pedidos = Pedido::with('detallePedidos.servicio')->get();
         $users = User::all();
 
-        return view('admin.pedidos.index', compact('pedidos', 'users'));
+        $user = Auth::user();
+        $layout = 'layouts.app'; // Default view
+
+        if ($user->hasRole('admin')) {
+            $layout = 'layouts.admin';
+        } elseif ($user->hasRole('empleado')) {
+            $layout = 'layouts.empleado';
+        } elseif ($user->hasRole('supervisor')) {
+            $layout = 'layouts.supervisor';
+        }
+
+        return view('admin.pedidos.index', compact('pedidos', 'users', 'layout'));
     }
 
     public function dashboard()
@@ -25,6 +37,20 @@ class PedidoController extends Controller
         $pedidosPendientes = Pedido::where('estado_pedido', 'pendiente')->get();
         $pedidosEnprogresos = Pedido::where('estado_pedido', 'En progreso')->get();
         return view('dashboard', compact('pedidosPendientes','pedidosEnprogresos'));
+    }
+
+    public function dashboardEmpleado()
+    {
+        $pedidosPendientes = Pedido::where('estado_pedido', 'pendiente')->get();
+        $pedidosEnprogresos = Pedido::where('estado_pedido', 'En progreso')->get();
+        return view('dashboardEmpleado', compact('pedidosPendientes','pedidosEnprogresos'));
+    }
+
+    public function dashboardSupervisor()
+    {
+        $pedidosPendientes = Pedido::where('estado_pedido', 'pendiente')->get();
+        $pedidosEnprogresos = Pedido::where('estado_pedido', 'En progreso')->get();
+        return view('dashboardSupervisor', compact('pedidosPendientes','pedidosEnprogresos'));
     }
 
     public function completado($id)
@@ -46,6 +72,7 @@ class PedidoController extends Controller
         $pedido->save();
 
         return redirect()->route('dashboard')->with('success', 'Pedido aceptado exitosamente.');
+        return redirect()->route('admin.correos.confirmacion')->with('success', 'Pedido aceptado exitosamente');
     }
 
     public function cancelar($id)

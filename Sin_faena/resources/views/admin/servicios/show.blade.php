@@ -111,10 +111,11 @@
 
                                 </div>
 
+                                @if(auth()->user()->hasRole('admin'))
                                 <a href="{{ route('admin.servicios.edit', $servicio->id) }}" class="btn btn-primary">
                                     <i">Editar</i>
                                 </a>
-
+                                @endif
                                 <a href="{{ route('admin.servicios.index') }}" class="">
                                     <i class="btn btn-danger">Regresar</i>
                                 </a>

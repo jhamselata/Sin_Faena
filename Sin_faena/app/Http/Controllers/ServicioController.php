@@ -11,6 +11,7 @@ use Barryvdh\DomPDF\Facade\Pdf as facadePdf;
 
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ServicioController extends Controller
 {
@@ -19,7 +20,18 @@ class ServicioController extends Controller
         $servicios = Servicio::all();
         $tipo_servicios = Tipo_servicio::all();
 
-        return view('admin.servicios.index', compact('servicios', 'tipo_servicios'));
+        $user = Auth::user();
+        $layout = 'layouts.app'; // Default view
+
+        if ($user->hasRole('admin')) {
+            $layout = 'layouts.admin';
+        } elseif ($user->hasRole('empleado')) {
+            $layout = 'layouts.empleado';
+        } elseif ($user->hasRole('supervisor')) {
+            $layout = 'layouts.supervisor';
+        }
+
+        return view('admin.servicios.index', compact('servicios', 'tipo_servicios', 'layout'));
     }
 
     public function reporte()

@@ -20,7 +20,7 @@ class CompleteMail extends Mailable
 
     public function build()
     {
-        return $this->subject('Nuevo mensaje de contacto')
-                    ->view('emails.contact');
+        return $this->subject('Solicitud de pago y pre-view de entrega')
+                    ->view('emails.complete');
     }
 }
