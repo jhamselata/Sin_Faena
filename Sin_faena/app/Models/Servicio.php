@@ -22,12 +22,13 @@ class Servicio extends Model
         'duracion_estimada'
     ];
     
-    public function servicio() {
-        return $this->belongsTo(Servicio::class)->withDefault();
+    // Relación inversa con TipoServicio
+    public function tipoServicio() {
+        return $this->belongsTo(Tipo_servicio::class, 'id_tipoServicio')->withDefault();
     }
 
-    public function Detalle_pedido(){
-        return $this->hasmany(Detalle_pedido::class)->withDefault();
+    // Relación con DetallePedido (corregido el nombre de la clase)
+    public function detallePedidos(){
+        return $this->hasMany(Detalle_pedido::class, 'id_servicio')->withDefault();
     }
-
 }

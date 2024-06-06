@@ -66,7 +66,16 @@
                                     <div class="col-sm">
                                         <div class="mb-3 text-dark">
                                             <label for="fecha_pedido" class="form-label">Fecha pedido: </label>
-                                            <input type="date" class="form-control date" name="fecha_pedido" id="fecha_pedido" value="{{ old('fecha_pedido', $pedido->fecha_pedido)}}" required autofocus />
+
+                                            @php
+                                            $fechaPedido = old('fecha_pedido', isset($pedido) ? $pedido->fecha_pedido : null);
+
+                                            if ($fechaPedido && is_string($fechaPedido)) {
+                                            $fechaPedido = \Carbon\Carbon::parse($fechaPedido)->format('Y-m-d');
+                                            }
+                                            @endphp
+
+                                            <input type="date" class="form-control date" name="fecha_pedido" id="fecha_pedido" value="{{ $fechaPedido }}" required autofocus />
                                         </div>
                                     </div>
                                 </div>

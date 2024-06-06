@@ -21,20 +21,20 @@ class Pedido extends Model
         'estado_pedido',
     ];
 
-    public const STATUS = ['Abierto', 'En progreso', 'Cancelado', 'Completado','Pendiente'];
+    public const STATUS = ['Abierto', 'En progreso', 'Cancelado', 'Completado', 'Pendiente'];
 
-    public function detalle_pedido(){
-        return $this->hasmany(Detalle_pedido::class)->withDefault();
+    public function detallePedidos() // CamelCase y plural
+    {
+        return $this->hasMany(Detalle_pedido::class, 'id_pedido');
     }
 
     public function servicios()
     {
-    return $this->belongsToMany(Servicio::class, 'detalle_pedido', 'id_pedido', 'id_servicio');
+        return $this->belongsToMany(Servicio::class, 'detalle_pedido', 'id_pedido', 'id_servicio');
     }
 
-
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class)->withDefault();
     }
-   
 }

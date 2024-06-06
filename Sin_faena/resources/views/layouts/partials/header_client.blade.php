@@ -64,7 +64,6 @@
     </div>
 </header>
 
-
 <section class="banner">
 
     <div class="banner-text">

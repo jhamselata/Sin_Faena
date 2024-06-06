@@ -18,12 +18,13 @@ class Detalle_pedido extends Model
         'id_servicio',
     ];
 
-    public function pedido(){
-        return $this->belongsTo(Pedido::class)->withDefault();
+    public function pedido()
+    {
+        return $this->belongsTo(Pedido::class, 'id_pedido')->withDefault();
     }
 
-    public function servicio(){
-        return $this->belongsTo(Servicio::class)->withDefault();
+    public function servicio()
+    {
+        return $this->belongsTo(Servicio::class, 'id_servicio')->withDefault();
     }
-
 }

@@ -54,7 +54,6 @@ Route::middleware('auth')->group(function () {
     //Route::resource('clientes', ClientController::class);
 });
 
-
 Route::post('/send-email', [ContactController::class, 'sendEmail'])->name('send.email');
 Route::post('/send', [ContactController::class, 'sendCompleteEmail'])->name('send.complete.email');
 
@@ -62,6 +61,9 @@ Route::post('admin.correos.complete', [ContactController::class, 'completeEmail'
 
 
 
+
+
+//Rutas de las tareas
 Route::get('tareas', [TareaController::class, 'index'])->name('admin.tareas.index');
 Route::get('tareas/create', [TareaController::class, 'create'])->name('admin.tareas.create');
 Route::post('tareas', [TareaController::class,'store'])->name('admin.tareas.store');
@@ -155,7 +157,7 @@ Route::get('user.pedidos.espera', [UserController::class, 'espera'])->name('user
 Route::get('user.pedidos.create', [UserController::class, 'create'])->name('user.pedidos.create');
 Route::post('user.pedidos.store', [UserController::class,'store'])->name('user.pedidos.clientStore');
 //Reporte
-Route::get('admin.pedidos.reporte', [PedidoController::class, 'reporte'])->name('admin.pedidos.reporte');
+Route::get('admin/pedidos/{id}/reporte', [PedidoController::class, 'reporte'])->name('admin.pedidos.reporte');
 
 //Ruta para los clientes
 Route::post('index/{id}/marcar-como-leida', [UserController::class, 'marcarComoLeida'])->name('notificaciones.marcarComoLeida');
@@ -170,6 +172,7 @@ Route::get('eventos/{evento}/edit', [EventoController::class, 'edit'])->name('ad
 Route::put('eventos/update/{evento}', [EventoController::class,'update'])->name('admin.eventos.update');
 Route::delete('eventos/{evento}', [EventoController::class,'destroy'])->name('admin.eventos.destroy');
 
+//Rutas de los bancos
 Route::get('bancos', [BancoController::class, 'index'])->name('admin.bancos.index');
 Route::get('bancos/create', [BancoController::class, 'create'])->name('admin.bancos.create');
 Route::post('bancos', [BancoController::class,'store'])->name('admin.bancos.store');
@@ -178,6 +181,7 @@ Route::get('bancos/{bancos}/edit', [BancoController::class, 'edit'])->name('admi
 Route::put('bancos/{banco}', [BancoController::class,'update'])->name('admin.bancos.update');
 Route::delete('bancos/{banco}', [BancoController::class,'destroy'])->name('admin.bancos.destroy');
 
+//Rutas de los departamentos
 Route::get('departamentos', [DepartamentoController::class, 'index'])->name('admin.departamentos.index');
 Route::get('departamentos/create', [DepartamentoController::class, 'create'])->name('admin.departamentos.create');
 Route::post('departamentos', [DepartamentoController::class,'store'])->name('admin.departamentos.store');
@@ -186,6 +190,7 @@ Route::get('departamentos/{departamentos}/edit', [DepartamentoController::class,
 Route::put('departamentos/{departamento}', [DepartamentoController::class,'update'])->name('admin.departamentos.update');
 Route::delete('departamentos/{departamento}', [DepartamentoController::class,'destroy'])->name('admin.departamentos.destroy');
 
+//Rutas de los tipo de pago
 Route::get('tipo_pagos', [Tipo_pagoController::class, 'index'])->name('admin.tipo_pago.index');
 Route::get('tipo_pagos/create', [Tipo_pagoController::class, 'create'])->name('admin.tipo_pago.create');
 Route::post('tipo_pagos', [Tipo_pagoController::class,'store'])->name('admin.tipo_pago.store');
@@ -194,7 +199,7 @@ Route::get('tipo_pagos/{tipo_pagos}/edit', [Tipo_pagoController::class, 'edit'])
 Route::put('tipo_pagos/{tipo_pago}', [Tipo_pagoController::class,'update'])->name('admin.tipo_pago.update');
 Route::delete('tipo_pagos/{tipo_pago}', [Tipo_pagoController::class,'destroy'])->name('admin.tipo_pago.destroy');
 //reportes
-Route::get('admin.eventos.reporte', [EventoController::class, 'reporte'])->name('admin.eventos.reporte');
+Route::get('admin.tipo_pagos.reporte', [Tipo_pagoController::class, 'reporte'])->name('admin.tipo_pagos.reporte');
 
 //Ruta de los Equipos
 Route::get('equipos', [EquipoController::class, 'index'])->name('admin.equipos.index');

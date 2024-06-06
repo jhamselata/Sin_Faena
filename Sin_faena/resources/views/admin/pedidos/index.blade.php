@@ -7,19 +7,17 @@
   <div class="container-fluid px-4">
     <h1 class="mt-5">Pedidos</h1>
     <div class="mb-4 mt-4 d-grid gap-2 d-md-flex">
-      <button type="button" class="btn btn-secondary">
-        Inicio
-      </button>
+
+      <a href="{{ route('inicio')}}" class="btn btn-secondary">
+        <i class="fas fa-solid fa-house"></i>
+      </a>
+
       <form method="GET" action="{{ route('admin.pedidos.create') }}">
         @csrf
         <button type="submit" class="btn btn-primary">Registrar</button>
       </form>
 
-      <button type="button" class="btn btn-warning">
-        Reporte
-      </button>
     </div>
-
 
     <!-- MODAL FORM -->
 
@@ -27,14 +25,13 @@
       @if (session('success'))
       <div id="successAlert" class="alert alert-success alert-dismissible fade show" role="alert">
         {{ session('success') }}
+        <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true"></span>
       </div>
       @endif
     </div>
 
-
-
     <!-- FIN - MODAL FORM -->
-
 
     <!-- CARD DE LA TABLA -->
     <div class="card mb-4">
@@ -73,8 +70,6 @@
                   <i class="fas fa-solid fa-info-circle"></i>
                 </a>
 
-
-
                 <form action="{{ route('admin.pedidos.destroy', $pedido->id) }}" method="post" onsubmit="return confirm('Desea eliminar el registro?')" style="display: inline-block;">
                   @method('DELETE')
                   @csrf
@@ -82,6 +77,11 @@
                     <i class="fas fa-solid fa-trash"></i>
                   </button>
                 </form>
+
+                <a href="{{ route('admin.pedidos.reporte', ['id' => $pedido->id]) }}" class="btn btn-warning" target="_blank">
+                  <i class="fas fa-solid fa-print"></i>
+                </a>
+
               </td>
             </tr>
             @endforeach

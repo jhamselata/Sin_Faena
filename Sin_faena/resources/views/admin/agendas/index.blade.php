@@ -13,11 +13,7 @@
                                   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalForm">
                                     Registrar
                                   </button>
-                                  <button type="button" class="btn btn-warning">
-                                    Reporte
-                                  </button>
                         </div>
-
 
                     <!-- MODAL FORM -->
                         <div class="modal fade" id="modalForm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

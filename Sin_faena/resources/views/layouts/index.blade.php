@@ -32,9 +32,6 @@
 
 <!-- BARRA LATERAL DE NAVEGACION -->
 
-  
-
-
           <section class="nosotros">
               <div class="sn-text">
                   <h1>Sobre <span>Nosotros</span></h1>
