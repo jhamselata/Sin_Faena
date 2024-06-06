@@ -26,7 +26,6 @@
 
                                 <div class="row">
 
-
                                     <div class="col-sm">
                                         <div class="mb-3 text-dark">
                                             <label for="id_usuario" class="form-label">Usuario</label>

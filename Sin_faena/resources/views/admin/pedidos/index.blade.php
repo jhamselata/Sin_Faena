@@ -70,7 +70,6 @@
                   <i class="fas fa-solid fa-info-circle"></i>
                 </a>
 
-
                 @if(auth()->user()->hasRole('supervisor') || auth()->user()->hasRole('admin'))
                 <form action="{{ route('admin.pedidos.destroy', $pedido->id) }}" method="post" onsubmit="return confirm('Desea eliminar el registro?')" style="display: inline-block;">
                   @method('DELETE')
@@ -80,6 +79,10 @@
                   </button>
                 </form>
                 @endif
+
+                <a href="{{ route('admin.pedidos.reporte', $pedido->id) }}" class="btn btn-warning" target="_blank">
+                  <i class="fas fa-solid fa-print"></i>
+                </a>
               </td>
             </tr>
             @endforeach

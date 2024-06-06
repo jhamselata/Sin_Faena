@@ -57,14 +57,12 @@
                                 <input type="text" class="form-control" value="{{ $pedido->estado_pedido }}" readonly>
                             </div>
 
-                            @if(auth()->user()->hasRole('supervisor') || auth()->user()->hasRole('admin'))
-                            <a href="{{ route('admin.pedidos.edit', $pedido->id) }}" class="btn btn-primary">Editar</a>
-                            @endif
-                            <a href="{{ route('admin.pedidos.index') }}" class="btn btn-danger">Regresar</a>
-
-                            <a href="{{ route('admin.pedidos.reporte', $pedido->id) }}" class="btn btn-warning" target="_blank">
-                                <i class="fas fa-solid fa-print"></i>
+                            <a href="{{ route('admin.facturas.reporte', ['factura' => $facturas->id]) }}" target="_blank">
+                                <i class="btn btn-warning">Imprimir factura</i>
                             </a>
+                            
+                            <a href="{{ route('admin.facturas.index') }}" class="btn btn-danger">Regresar</a>
+
                         </div>
                     </div>
                 </div>

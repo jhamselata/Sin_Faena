@@ -22,10 +22,16 @@ class Pedido extends Model
     ];
 
     public const STATUS = ['Abierto', 'En progreso', 'Cancelado', 'Completado', 'Pendiente'];
+    
 
     public function detallePedidos() // CamelCase y plural
     {
         return $this->hasMany(Detalle_pedido::class, 'id_pedido');
+    }
+
+    public function facturas() // CamelCase y plural
+    {
+        return $this->hasMany(Factura::class, 'id_pedido');
     }
 
     public function servicios()
