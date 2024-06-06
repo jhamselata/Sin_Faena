@@ -22,7 +22,9 @@ class Pedido extends Model
         'plataformas',
         'estilo_diseno',
         'frecuencia_publicacion',
-        'formato_entrega'
+        'formato_entrega',
+        'colores',
+        'credenciales'
     ];
 
     public const STATUS = ['Abierto', 'En progreso', 'Cancelado', 'Completado', 'Pendiente'];

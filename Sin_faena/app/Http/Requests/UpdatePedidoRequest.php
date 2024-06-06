@@ -26,11 +26,13 @@ class UpdatePedidoRequest extends FormRequest
         'id_usuario' => ['required'],
         'descripcion_pedido' => ['required'],
         'fecha_pedido' => ['required'],
-        'estado_pedido' => ['nullable'],
-        'plataformas'=> ['nullable'],
-        'estilo_diseno'=> ['nullable'],
-        'frecuencia_publicacion'=> ['nullable'],
-        'formato_entrega'=> ['nullable']
+        'estado_pedido' => ['required'],
+        'plataformas'=> ['required'],
+        'estilo_diseno'=> ['required'],
+        'frecuencia_publicacion'=> ['required'],
+        'formato_entrega'=> ['required'],
+        'colores'=> ['required'],
+        'credenciales'=> ['required']
         ];
     }
 }

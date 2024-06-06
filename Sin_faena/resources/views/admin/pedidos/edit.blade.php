@@ -51,21 +51,7 @@
 
                                     <div class="col-sm">
                                         <div class="mb-3 text-dark">
-                                            <label for="descripcion" class="form-label">Descripcion </label>
-                                            <textarea name="descripcion_pedido" class="form-control" autofocus>{{old('descripcion_pedido', $pedido->descripcion_pedido)}}</textarea>
-                                            @if ($errors->has('descripcion_pedido'))
-                                            <span class="text-danger">
-                                                <strong>{{ $errors->first('descripcion_pedido') }}</strong>
-                                            </span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <div class="mb-3 text-dark">
-                                            <label for="fecha_pedido" class="form-label">Fecha pedido: </label>
+                                            <label for="fecha_pedido" class="form-label">Fecha pedido </label>
 
                                             @php
                                             $fechaPedido = old('fecha_pedido', isset($pedido) ? $pedido->fecha_pedido : null);
@@ -78,18 +64,37 @@
                                             <input type="date" class="form-control date" name="fecha_pedido" id="fecha_pedido" value="{{ $fechaPedido }}" required autofocus />
                                         </div>
                                     </div>
+
                                 </div>
 
                                 <div class="row">
+                                    <div class="col-sm">
+                                        <div class="mb-3 text-dark">
+                                        <label for="servicios">Servicios</label>
+                                        <select name="servicios[]" id="servicios" multiple>
+                                            @foreach ($servicios as $servicio)
+                                            <option value="{{ $servicio->id }}" {{ in_array($servicio->id, $pedido->servicios->pluck('id')->toArray()) ? 'selected' : '' }}>
+                                                {{ $servicio->nombre_servicio }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                        </div>
+                                    </div>
 
-                                    <label for="servicios">Servicios:</label>
-                                    <select name="servicios[]" id="servicios" multiple>
-                                        @foreach ($servicios as $servicio)
-                                        <option value="{{ $servicio->id }}" {{ in_array($servicio->id, $pedido->servicios->pluck('id')->toArray()) ? 'selected' : '' }}>
-                                            {{ $servicio->nombre_servicio }}
-                                        </option>
-                                        @endforeach
-                                    </select>
+                                    <div class="col-sm">
+                                        <div class="mb-3 text-dark">
+                                            <label for="descripcion" class="form-label">Descripcion </label>
+                                            <textarea name="descripcion_pedido" class="form-control" autofocus>{{old('descripcion_pedido', $pedido->descripcion_pedido)}}</textarea>
+                                            @if ($errors->has('descripcion_pedido'))
+                                            <span class="text-danger">
+                                                <strong>{{ $errors->first('descripcion_pedido') }}</strong>
+                                            </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
 
                                     <div class="col-sm">
                                         <div class="mb-3 text-dark">
@@ -183,6 +188,32 @@
                                         </div>
                                     </div>
 
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <div class="mb-3 text-dark">
+                                            <label for="code" class="form-label required">Colores</label>
+                                            <input type="text" class="form-control {{$errors->has('colores') ? 'is-invalid' : ''}}" id="colores" placeholder="Colores de preferencia" name="colores" autofocus value="{{old('colores', $pedido->colores)}}"/>
+                                            @if ($errors->has('colores'))
+                                            <span class="text-danger">
+                                                <strong>{{ $errors->first('colores') }}</strong>
+                                            </span>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm">
+                                        <div class="mb-3 text-dark">
+                                            <label for="credenciales" class="form-label">Credenciales </label>
+                                            <textarea name="credenciales" class="form-control" autofocus>{{old('credenciales', $pedido->credenciales)}}</textarea>
+                                            @if ($errors->has('credenciales'))
+                                            <span class="text-danger">
+                                                <strong>{{ $errors->first('credenciales') }}</strong>
+                                            </span>
+                                            @endif
+                                        </div>
+                                    </div>
                                 </div>
 
 

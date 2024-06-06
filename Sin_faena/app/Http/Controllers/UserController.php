@@ -71,6 +71,12 @@ class UserController extends Controller
         $pedido->descripcion_pedido = $request->input('descripcion_pedido');
         $pedido->fecha_pedido = $request->input('fecha_pedido');
         $pedido->estado_pedido = $request->input('estado_pedido', 'pendiente');
+        $pedido->plataformas = $request->input('plataformas');
+        $pedido->estilo_diseno = $request->input('estilo_diseno');
+        $pedido->frecuencia_publicacion = $request->input('frecuencia_publicacion');
+        $pedido->formato_entrega = $request->input('formato_entrega');
+        $pedido->colores = $request->input('colores');
+        $pedido->credenciales = $request->input('credenciales');
 
         $pedido->save();
 

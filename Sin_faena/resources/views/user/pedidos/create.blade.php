@@ -61,6 +61,26 @@
                                             @csrf
 
                                             <div class="row">
+
+                                                <div class="col-sm">
+                                                    <div class="mb-3 text-dark">
+                                                        <label for="id_usuario" class="form-label">Usuario</label>
+                                                        <select class="form-control select2" name="id_usuario" style="width: 100%;" autofocus>
+                                                            <option value="">Seleccione un usuario</option>
+                                                            @foreach ($users as $user)
+                                                            <option value="{{ $user->id }}" {{ old('id_usuario') == $user->id ? 'selected' : '' }}>
+                                                                {{ $user->name }}
+                                                            </option>
+                                                            @endforeach
+                                                        </select>
+                                                        @if ($errors->has('id_usuario'))
+                                                        <span class="text-danger">
+                                                            <strong>{{ $errors->first('id_usuario') }}</strong>
+                                                        </span>
+                                                        @endif
+            
+                                                    </div>
+                                                </div>
             
                                                 <div class="col-sm">
                                                     <div class="mb-3 text-dark">
@@ -69,22 +89,6 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-sm">
-                                                    <div class="mb-3 text-dark">
-                                                        <label for="estado_pedido" class="form-label">Estado</label>
-                                                        <select class="form-control {{ $errors->has('estado_pedido') ? 'is-invalid' : '' }}" name="estado_pedido" id="estado_pedido" required autofocus>
-                                                            <option value="">Seleccione un estado</option>
-                                                            @foreach(App\Models\Pedido::STATUS as $status)
-                                                            <option value="{{ $status }}" {{ old('estado_pedido') == $status ? 'selected' : '' }}>{{ $status }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                        @if($errors->has('estado_pedido'))
-                                                        <div class="text-danger">
-                                                            {{ $errors->first('estado_pedido') }}
-                                                        </div>
-                                                        @endif
-                                                    </div>
-                                                </div>
             
                                             </div>
             
@@ -190,6 +194,34 @@
                                                 </div>
             
                                             </div>
+
+                                            <div class="row">
+                                                <div class="col-sm">
+                                                    <div class="mb-3 text-dark">
+                                                        <label for="code" class="form-label required">Colores</label>
+                                                        <input type="text" class="form-control {{$errors->has('colores') ? 'is-invalid' : ''}}" id="colores" placeholder="Colores de preferencia" name="colores" autofocus value="{{old('colores', '')}}" />
+                                                        @if ($errors->has('colores'))
+                                                        <span class="text-danger">
+                                                            <strong>{{ $errors->first('colores') }}</strong>
+                                                        </span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm">
+                                                    <div class="mb-3 text-dark">
+                                                        <label for="credenciales" class="form-label">Credenciales</label>
+                                                        <textarea name="credenciales" class="form-control" placeholder="Correo electrónico ; Contraseña" autofocus>{{old('credenciales', '')}}</textarea>
+                                                        @if ($errors->has('credenciales'))
+                                                        <span class="text-danger">
+                                                            <strong>{{ $errors->first('credenciales') }}</strong>
+                                                        </span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </div>
+            
+                                           
 
                                             <button class="btn btn-primary" type="submit">Guardar</button>
                                             <a href="{{ route('inicio') }}" class="">

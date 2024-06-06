@@ -63,7 +63,7 @@
 
                                     <div class="col-sm">
                                         <div class="mb-3 text-dark">
-                                            <label for="fecha_pedido" class="form-label">Fecha entrega: </label>
+                                            <label for="fecha_pedido" class="form-label">Fecha entrega </label>
                                             <input type="date" class="form-control date" name="fecha_pedido" id="fecha_pedido" value="{{ old('fecha_pedido')}}" required autofocus />
                                         </div>
                                     </div>
@@ -74,8 +74,8 @@
 
                                     <div class="col-sm">
                                         <div class="mb-3 text-dark">
-                                            <label for="servicios" class="form-label">Servicios:</label>
-                                            <select name="servicios[]" class="form-control" id="servicios" multiple>
+                                            <label for="servicios" class="form-label">Servicios</label>
+                                            <select name="servicios[]" class="form-control select2" id="servicios" multiple>
                                                 @foreach ($servicios as $servicio)
                                                 <option value="{{ $servicio->id }}">{{ $servicio->nombre_servicio }}</option>
                                                 @endforeach
@@ -173,12 +173,58 @@
 
                                 </div>
 
+
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <div class="mb-3 text-dark">
+                                            <label for="code" class="form-label required">Colores</label>
+                                            <input type="text" class="form-control {{$errors->has('colores') ? 'is-invalid' : ''}}" id="colores" placeholder="Colores de preferencia" name="colores" autofocus value="{{old('colores', '')}}" />
+                                            @if ($errors->has('colores'))
+                                            <span class="text-danger">
+                                                <strong>{{ $errors->first('colores') }}</strong>
+                                            </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-sm">
+                                        <div class="mb-3 text-dark">
+                                            <label for="credenciales" class="form-label">Credenciales</label>
+                                            <textarea name="credenciales" class="form-control" placeholder="Correo electrónico ; Contraseña" autofocus>{{old('credenciales', '')}}</textarea>
+                                            @if ($errors->has('credenciales'))
+                                            <span class="text-danger">
+                                                <strong>{{ $errors->first('credenciales') }}</strong>
+                                            </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <button class="btn btn-primary" type="submit">Guardar</button>
                                 <a href="{{ route('admin.pedidos.index') }}" class="">
                                     <i class="btn btn-danger">Regresar</i>
                                 </a>
 
                             </form>
+
+                            <script>
+                                $(document).ready(function() {
+                                    $('.select2').select2();
+                        
+                                    function toggleFields() {
+                                        const selectedServices = $('#servicios').val();
+                                        const showPlataformas = selectedServices.includes('1'); // Cambia '1' por el ID del servicio que deseas verificar
+                                        const showEstiloDiseno = selectedServices.includes('2'); // Cambia '2' por el ID del servicio que deseas verificar
+                                        const showFormatoEntrega = selectedServices.includes('3'); // Cambia '3' por el ID del servicio que deseas verificar
+                        
+                                        $('#plataformas-container').toggle(showPlataformas);
+                                        $('#estilo-diseno-container').toggle(showEstiloDiseno);
+                                        $('#formato-entrega-container').toggle(showFormatoEntrega);
+                                    }
+                        
+                                    $('#servicios').change(toggleFields);
+                                    toggleFields(); // Llamar a la función al cargar la página para establecer el estado inicial
+                                });
+                            </script>
 
                         </div>
                     </div>

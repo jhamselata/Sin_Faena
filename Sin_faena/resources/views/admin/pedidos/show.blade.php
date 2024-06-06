@@ -77,6 +77,16 @@
                                 <input type="text" class="form-control" value="{{ $pedido->formato_entrega }}" readonly>
                             </div>
 
+                            <div class="mb-3 text-dark">
+                                <label for="descripcion" class="form-label">Colores</label>
+                                <input type="text" class="form-control" value="{{ $pedido->colores }}" readonly>
+                            </div>
+
+                            <div class="mb-3 text-dark">
+                                <label for="descripcion" class="form-label">Credenciales</label>
+                                <input type="text" class="form-control" value="{{ $pedido->credenciales }}" readonly>
+                            </div>
+
                             @if(auth()->user()->hasRole('supervisor') || auth()->user()->hasRole('admin'))
                             <a href="{{ route('admin.pedidos.edit', $pedido->id) }}" class="btn btn-primary">Editar</a>
                             @endif

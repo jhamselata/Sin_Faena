@@ -24,7 +24,7 @@ return new class extends Migration
         Schema::create('SERVICIO', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_tipoServicio')->references('id')->on('tipo_servicio')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('nombre_servicio', 49);
+            $table->string('nombre_servicio', 255);
             $table->string('descripcion_servicio', 1500);
             $table->float('precio_servicio');
             $table->string('duracion_estimada', 49);
