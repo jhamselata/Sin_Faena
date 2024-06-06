@@ -52,7 +52,6 @@
               
           </section>
 
-
           <section class="mvv-cards">
             <div class="wrapper">
 
@@ -60,7 +59,6 @@
                 <h1>Conóce<span>nos</span></h1>
                 <h2>Misión - Visión - Valores</h2>
               </div>
-              
 
                 <div class="box-area">
                   
@@ -188,7 +186,6 @@
 
           </section>
 
-
           <section class="marcas">
 
             <div class="marcas-title">
@@ -204,8 +201,6 @@
               <video src="{{ asset('assets/img/serv4.mp4') }}" loop autoplay muted></video>
 
             </section>
-
-            
             
           </section>
 
@@ -213,6 +208,5 @@
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
                 <script src="{{ asset('js/script.js') }}"></script>
                 
-
     </body>
 </html>
