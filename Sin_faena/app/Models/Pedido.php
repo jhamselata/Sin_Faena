@@ -38,6 +38,11 @@ class Pedido extends Model
         return $this->hasMany(Detalle_pedido::class, 'id_pedido');
     }
 
+    public function facturas() // CamelCase y plural
+    {
+        return $this->hasMany(Factura::class, 'id_pedido');
+    }
+
     public function servicios()
     {
         return $this->belongsToMany(Servicio::class, 'detalle_pedido', 'id_pedido', 'id_servicio');

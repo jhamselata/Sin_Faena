@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreDepartamentoRequest;
 use App\Http\Requests\UpdateDepartamentoRequest;
 use App\Models\Departamento;
-use Illuminate\Http\Request;
 
 class DepartamentoController extends Controller
 {
