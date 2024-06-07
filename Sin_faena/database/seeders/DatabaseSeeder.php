@@ -33,8 +33,6 @@ class DatabaseSeeder extends Seeder
             // Asigna el rol de administrador al usuario
             $adminRole = Role::where('name', 'admin')->first();
             $admin->assignRole($adminRole);
-
-           
     
             // Insert data into tipo_informe table
             DB::table('tipo_informe')->insert([
