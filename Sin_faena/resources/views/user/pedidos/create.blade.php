@@ -65,14 +65,8 @@
                                                 <div class="col-sm">
                                                     <div class="mb-3 text-dark">
                                                         <label for="id_usuario" class="form-label">Usuario</label>
-                                                        <select class="form-control select2" name="id_usuario" style="width: 100%;" autofocus>
-                                                            <option value="">Seleccione un usuario</option>
-                                                            @foreach ($users as $user)
-                                                            <option value="{{ $user->id }}" {{ old('id_usuario') == $user->id ? 'selected' : '' }}>
-                                                                {{ $user->name }}
-                                                            </option>
-                                                            @endforeach
-                                                        </select>
+                                                        <input type="hidden" name="id_usuario" value="{{ auth()->user()->id }}">
+<input class="form-control" style="width: 100%;" value="{{ auth()->user()->name }}" readonly>
                                                         @if ($errors->has('id_usuario'))
                                                         <span class="text-danger">
                                                             <strong>{{ $errors->first('id_usuario') }}</strong>
@@ -99,7 +93,7 @@
                                                         <label for="servicios" class="form-label">Servicios:</label>
                                                         <select name="servicios[]" class="form-control" id="servicios" multiple>
                                                             @foreach ($servicios as $servicio)
-                                                            <option value="{{ $servicio->id }}">{{ $servicio->nombre_servicio }}</option>
+                                                            <option value="{{ $servicio->id }}">{{ $servicio->nombre_servicio }} - ${{ $servicio->precio_servicio }}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>

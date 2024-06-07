@@ -24,14 +24,14 @@
                                     <label for="email" class="form-label">Correo electrónico</label>
                                     @foreach ($users as $user)
                                     @if ($user->id === $pedido->id_usuario)
-                                    <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}" required readonly disabled>
+                                    <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}" required readonly>
                                     @endif
                                     @endforeach
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="cuenta" class="form-label">Cuenta bancaria</label>
-                                    <input type="text" class="form-control" id="cuenta" name="cuenta" value="BanReservas: #9603719290 | A nombre de: Sin Faena" required>
+                                    <input type="text" class="form-control" id="cuenta" name="cuenta" value="BanReservas: #9603719290 | A nombre de: Sin Faena" readonly required>
                                 </div>
 
                                 <div class="mb-3">

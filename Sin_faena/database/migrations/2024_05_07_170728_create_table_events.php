@@ -31,9 +31,9 @@ return new class extends Migration
             $table->foreignId('id_tipoEvento')->references('id')->on('tipo_evento')->onDelete('cascade')->onUpdate('cascade');
             $table->string('titulo_evento', 49);
             $table->string('descripcion_evento', 2500);
-            $table->text('anexos');
-            $table->timestamp('fecha_inicio');
-            $table->datetime('fecha_fin');
+            $table->text('anexos')->nullable();
+            $table->string('fecha_inicio', 39);
+            $table->string('fecha_fin', 39);
 
             $table->timestamps();
             $table->softDeletes();

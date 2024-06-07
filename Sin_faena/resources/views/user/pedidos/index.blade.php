@@ -64,11 +64,9 @@
                                                 <div class="col-sm">
                                                     <div class="mb-3 text-dark">
                                                         <label for="id_usuario" class="form-label">Usuario</label>
-                                                        @foreach ($users as $user)
                                                         <input type="hidden" name="id_usuario" value="{{ auth()->user()->id }}">
-                                                        <input class="form-control" style="width: 100%;" value="{{ auth()->user()->name }}" autofocus readonly>
+<input class="form-control" style="width: 100%;" value="{{ auth()->user()->name }}" readonly>
 
-                                                        @endforeach
                                                         @if ($errors->has('id_usuario'))
                                                         <span class="text-danger">
                                                             <strong>{{ $errors->first('id_usuario') }}</strong>
@@ -111,7 +109,7 @@
                                                 <div class="col-sm">
                                                     <div class="mb-3 text-dark">
                                                         <label for="code" class="form-label required">RNC</label>
-                                                        <input type="text" class="form-control {{$errors->has('rnc_cli') ? 'is-invalid' : ''}}" id="rnc_cli" placeholder="RNC del cliente" name="rnc_cli" autofocus value="{{old('rnc_cli', '')}}" />
+                                                        <input type="text" class="form-control {{$errors->has('rnc_cli') ? 'is-invalid' : ''}}" id="rnc_cli" placeholder="RNC del cliente (Si aplica)" name="rnc_cli" autofocus value="{{old('rnc_cli', '')}}" />
                                                         @if ($errors->has('rnc_cli'))
                                                         <span class="text-danger">
                                                             <strong>{{ $errors->first('rnc_cli') }}</strong>
@@ -119,10 +117,6 @@
                                                         @endif
                                                     </div>
                                                 </div>
-
-                                            </div>
-
-                                            <div class="row">
 
                                                 <div class="col-sm">
                                                     <div class="mb-3 text-dark">
@@ -136,7 +130,6 @@
                                                     </div>
                                                 </div>
 
-                                                
                                             </div>
 
                                             <div class="row">
@@ -161,7 +154,7 @@
                                                 <div class="col-sm">
                                                     <div class="mb-3 text-dark">
                                                         <label for="code" class="form-label required">Otro medio</label>
-                                                        <input type="text" class="form-control {{$errors->has('otra_via_comunicacion') ? 'is-invalid' : ''}}" id="otra_via_comunicacion" placeholder="En caso de otro medio" name="otra_via_comunicacion" autofocus value="{{old('otra_via_comunicacion', '')}}" />
+                                                        <input type="text" class="form-control {{$errors->has('otra_via_comunicacion') ? 'is-invalid' : ''}}" id="otra_via_comunicacion" placeholder="En caso de otro medio (Si aplica)" name="otra_via_comunicacion" autofocus value="{{old('otra_via_comunicacion', '')}}" />
                                                         @if ($errors->has('otra_via_comunicacion'))
                                                         <span class="text-danger">
                                                             <strong>{{ $errors->first('otra_via_comunicacion') }}</strong>

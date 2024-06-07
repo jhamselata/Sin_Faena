@@ -111,7 +111,11 @@
       <p>Para realizar un pedido relativo a nuestros servicios, complete
         de forma correcta el siguiente formulario de solicitud y disfrute de
         cada detalle que tenemos para ti...</p>
-        <a href="{{ route('user.pedidos.index') }}" class="btn">Realizar pedido</a>
+        @auth
+    <a href="{{ route('user.pedidos.index') }}" class="btn">Realizar pedido</a>
+@else
+    <a href="{{ route('login') }}" class="btn">Iniciar sesión</a>
+@endauth
     </div>
 
     <div class="producto-container">
