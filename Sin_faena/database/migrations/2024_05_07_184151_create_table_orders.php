@@ -15,12 +15,14 @@ return new class extends Migration
             $table->id();
             $table->foreignId('id_usuario')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('descripcion_pedido', 2500);
-            $table->timestamp('fecha_pedido');
+            $table->string('fecha_pedido', 244);
             $table->string('estado_pedido', 49)->default('Pendiente');
-            $table->string('plataformas', 49)->nullable();
-            $table->string('estilo_diseno', 49)->nullable();
-            $table->string('frecuencia_publicacion', 49)->nullable();
-            $table->string('formato_entrega', 49)->nullable();
+            $table->string('plataformas', 49);
+            $table->string('estilo_diseno', 49);
+            $table->string('frecuencia_publicacion', 49);
+            $table->string('formato_entrega', 49);
+            $table->string('colores', 49);
+            $table->string('credenciales', 100);
 
             $table->timestamps();
             $table->softDeletes();

@@ -18,7 +18,7 @@
                 @elseif(auth()->user()->hasRole('supervisor'))
                 <a href="{{ route('dashboardSupervisor') }}" class="otro">Dashboard</a>
                 @else
-                <a href="{{ route('') }}" class="otro"></a>
+                <a href="" class="otro"></a>
                 @endif
                 <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                     <li class="nav-item dropdown">

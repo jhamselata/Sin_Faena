@@ -23,7 +23,7 @@ return new class extends Migration
         Schema::create('CLIENTE', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_usuario')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('id_tipoCliente')->references('id')->on('tipo_cliente')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('id_tipoCliente')->default(1)->constrained('tipo_cliente')->onDelete('cascade')->onUpdate('cascade');
             $table->string('nombre_cli', 49);
             $table->string('apellido_cli', 49)->nullable();
             $table->string('rnc_cli', 13)->nullable();

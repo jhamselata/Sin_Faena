@@ -170,7 +170,11 @@ Route::match(['get', 'post'],'/pedidos/completado/{id}', [PedidoController::clas
 
 //Rutas de los Pedidos (Cliente)
 Route::get('user.pedidos.espera', [UserController::class, 'espera'])->name('user.pedidos.espera');
+Route::get('user.pedidos', [UserController::class, 'show'])->name('user.pedidos.index');
+Route::post('user.pedidos.index', [UserController::class, 'registrar'])->name('user.pedidos.store');
 Route::get('user.pedidos.create', [UserController::class, 'create'])->name('user.pedidos.create');
+Route::get('user.cliente.create', [UserController::class, 'create'])->name('user.cliente.create');
+Route::post('user.cliente.store', [UserController::class,'store'])->name('user.cliente.clientStore');
 Route::post('user.pedidos.store', [UserController::class,'store'])->name('user.pedidos.clientStore');
 //Reporte
 Route::get('admin/pedidos/{id}/reporte', [PedidoController::class, 'reporte'])->name('admin.pedidos.reporte');

@@ -31,7 +31,7 @@
 
                                 <div class="mb-3">
                                     <label for="cuenta" class="form-label">Cuenta bancaria</label>
-                                    <input type="text" class="form-control" id="cuenta" name="cuenta" value="BanReservas: #9603719290 | A nombre de: Sin Faena" required>
+                                    <input type="text" class="form-control" id="cuenta" name="cuenta" value="BanReservas: #9603719290 | A nombre de: Sin Faena" readonly required>
                                 </div>
 
                                 <div class="mb-3">
